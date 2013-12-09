@@ -16,6 +16,9 @@
 	</security>
 	
 	<!-- SWT and JFace library and supports -->
+		<resources>
+		<jar href="/~danielar/PASSWebStart/PASSWebStart.jar" />
+	</resources>
 	<resources>
 		<j2se version="1.5+" />		
 		<jar href="/~danielar/PASSWebStart/lib/antlr-4.1-complete.jar"    />
@@ -36,9 +39,7 @@
 		<jar href="/~danielar/PASSWebStart/lib/org.osgi.core-4.3.0.jar"    />
 	</resources>
 
-	<resources>
-		<jar href="/~danielar/PASSWebStart/PASSWebStart.jar" />
-	</resources>
+
 
 	<application-desc main-class="PASSWrapper" />
 </jnlp>
