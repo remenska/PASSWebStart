@@ -29,7 +29,7 @@
 		<jar href="lib/org.eclipse.equinox.simpleconfigurator_1.0.200.v20100503.jar"    />
 		<jar href="lib/org.eclipse.jface_3.6.2.M20110210-1200.jar"    />
 		<jar href="lib/org.eclipse.osgi_3.6.50.R36x_v20120315-1500.jar"    />
-		<jar href="lib/org.eclipse.swt.gtk.linux.x86_3.6.3.v3659f.jar"    />
+		<jar href="lib/org.eclipse.swt.gtk.linux.x86-4.3.jar"    />
 		<jar href="lib/org.eclipse.ui.workbench_3.6.2.M20120227.jar"    />
 		<jar href="lib/org.osgi.core-4.3.0.jar"    />
 	</resources>

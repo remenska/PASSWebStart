@@ -22,5 +22,7 @@ jarsigner -keystore keystore -storepass ahada911 -keypass ahada911 org.eclipse.s
 jarsigner -keystore keystore -storepass ahada911 -keypass ahada911 org.eclipse.swt.gtk.linux.x86.source_3.6.3.v3659f.jar remenska
 jarsigner -keystore keystore -storepass ahada911 -keypass ahada911 org.eclipse.ui.workbench_3.6.2.M20120227.jar remenska
 jarsigner -keystore keystore -storepass ahada911 -keypass ahada911 org.osgi.core-4.3.0.jar remenska
+jarsigner -keystore keystore -storepass ahada911 -keypass ahada911 org.eclipse.swt.gtk.linux.x86-4.3.jar remenska
+
 
 jarsigner -keystore keystore -storepass ahada911 -keypass ahada911 ../PASSWebStart.jar remenska
