@@ -554,7 +554,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 //		    data.verticalAlignment = SWT.BOTTOM;
 		    labelDirectoryFormula.setLayoutData(data);
 			labelDirectoryFormula.setText("The property is not monitorable. ");
-
+			textDirectoryFormula.setEnabled(false);
 		}
 		
 		

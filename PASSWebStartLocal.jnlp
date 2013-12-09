@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <jnlp spec="1.0+"
         codebase="/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/"
-        href="PASSWebStart.jnlp">
+        href="PASSWebStartLocal.jnlp">
         <information>
                   <title>PASS Property ASSistant Web Start</title>
                   <vendor>info.remenska.org</vendor>
                   <homepage href="http://info.remenska.org" />
                   <description>PASS Property ASSistant Web Start</description>
+                  <icon href="icons/check1.png"/>
         </information>
 
         <security>

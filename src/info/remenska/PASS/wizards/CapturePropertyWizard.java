@@ -49,9 +49,19 @@ public class CapturePropertyWizard extends Wizard {
 		String resultModel = new String();
 		// generate the model with the monitor
 		try {
+			if(DisciplinedEnglishPage.textDirectoryFormula!=null && DisciplinedEnglishPage.textDirectoryFormula.isEnabled()){
 			resultModel = main.generateMonitor(new String[] {
 					DisciplinedEnglishPage.pathTemp + "/" + DisciplinedEnglishPage.fileTemp,
 					DisciplinedEnglishPage.textFormula.getText(), DisciplinedEnglishPage.textDirectoryFormula.getText() + "/" + DisciplinedEnglishPage.fileTemp, "false"});
+			
+			MessageDialog dialog = new MessageDialog(getShell(),
+					"Model with the monitor has been generated", null,
+					"The new model is written at: \n" + resultModel,
+					MessageDialog.INFORMATION, new String[] { "OK" }, 0);
+			int result = dialog.open();
+
+			
+			}
 		} catch (FileNotFoundException e2) {
 			MessageDialog dialog = new MessageDialog(getShell(),
 					"Generating model, almost there...", null,
@@ -67,7 +77,7 @@ public class CapturePropertyWizard extends Wizard {
 		} catch (NullPointerException e2) {
 			MessageDialog dialog = new MessageDialog(getShell(),
 					"Generating model, almost there...", null,
-					"PROBLEM! Mu-calculus formula or mCRL2 is not well formed."
+					"PROBLEM! Mu-calculus formula or mCRL2 is not well formed, or property not monitorable."
 							+ e2.getMessage(), MessageDialog.INFORMATION,
 					new String[] { "OK" }, 0);
 			int result = dialog.open();
@@ -81,7 +91,7 @@ public class CapturePropertyWizard extends Wizard {
 					getShell(),
 					"Generating model, almost there...",
 					null,
-					"OOPS! Sorry, something went wrong during parsing. \nCheck for synax errors in formula or model.",
+					"OOPS! Sorry, something went wrong during parsing. \nCheck for synax errors in formula or model. Maybe the poperty is not monitorable.",
 					MessageDialog.INFORMATION, new String[] { "OK" }, 0);
 			int result = dialog.open();
 			e.printStackTrace();
@@ -97,12 +107,7 @@ public class CapturePropertyWizard extends Wizard {
 			e2.printStackTrace();
 			return false;
 		}
-		MessageDialog dialog = new MessageDialog(getShell(),
-				"Model with the monitor has been generated", null,
-				"The new model is written at: \n" + resultModel,
-				MessageDialog.INFORMATION, new String[] { "OK" }, 0);
-		int result = dialog.open();
-
+	
 		// here is where we generate the SD
 
 		try {
