@@ -299,6 +299,7 @@ public class Main {
 		buffer = new StringBuffer(buffer.toString().replaceAll("false",
 				"false "));
 		buffer = new StringBuffer(buffer.toString().replaceAll("nil", "nil "));
+		buffer = new StringBuffer(buffer.toString().replaceAll("!", "! "));
 
 		return buffer.toString();
 	}

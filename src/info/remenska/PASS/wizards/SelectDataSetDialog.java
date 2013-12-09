@@ -55,7 +55,8 @@ public class SelectDataSetDialog extends Dialog {
 
 	public class ModelAction {
 		private String nameAction;
-	
+		private ArrayList<String> arguments;
+
 		public String getNameAction() {
 			return nameAction;
 		}
@@ -64,7 +65,6 @@ public class SelectDataSetDialog extends Dialog {
 			this.nameAction = nameAction;
 		}
 
-		private ArrayList<String> arguments;
 
 		public ArrayList<String> getArguments() {
 			return arguments;
@@ -81,7 +81,7 @@ public class SelectDataSetDialog extends Dialog {
 		}
 
 		public String toString() {
-			if(this.arguments!=null)
+			if(this.arguments.size()!=0)
 				return this.nameAction + ":" + this.arguments;
 			else
 				return this.nameAction;

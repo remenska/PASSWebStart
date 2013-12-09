@@ -47,11 +47,11 @@ public class PASSWrapper extends ApplicationWindow {
 //	public static LinkedList<String> actions;
     public static Hashtable<String, ArrayList<String>> actionsDict = new Hashtable<String, ArrayList<String>>();
 
-	protected Control createContents(Composite parent) {
+	protected Control createContents(final Composite parent) {
 	    getShell().setText("PASS Property ASSistant");
 	    parent.setSize(450,150);
 
-		Composite composite = new Composite(parent, SWT.NONE);
+		final Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		composite.setLayout(layout);
@@ -119,9 +119,16 @@ public class PASSWrapper extends ApplicationWindow {
 					if(!actionKeyEnum.hasMoreElements()){
 			        	button.setEnabled(false);
 			        	styledText.setText("The model has no actions! Please try with a different one.");
+			        	styledText.pack();
+			        	composite.pack();
+			        	parent.pack();
+
 						// show some mesasge that the model has no actions; Disable PASS button
 					} else{
 						styledText.setText("Working mCRL2 model OK, please launch PASS!.");
+			        	styledText.pack();
+			        	composite.pack();
+			        	parent.pack();
 			        	button.setEnabled(true);
 					}
 //					while(actionKeyEnum.hasMoreElements()){
@@ -134,16 +141,25 @@ public class PASSWrapper extends ApplicationWindow {
 //		        	actions.add("Two");
 //		        	actions.add("Three");
 					} catch(org.antlr.v4.runtime.misc.ParseCancellationException e){
-			        	styledText.setText("The model has no actions! Please try with a different one.");
-
-						e.printStackTrace();
+			        	styledText.setText("This is not a syntactically correct mCRL2 model, got an error parsing it. Please try again.");
+			        	button.setEnabled(false);
+			        	styledText.pack();
+			        	composite.pack();
+			        	parent.pack();
+//						e.printStackTrace();
 						
 					} catch (FileNotFoundException e) {
 						
 						// TODO Auto-generated catch block
+			        	styledText.pack();
+			        	composite.pack();
+			        	parent.pack();
 						e.printStackTrace();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
+			        	styledText.pack();
+			        	composite.pack();
+			        	parent.pack();
 						e.printStackTrace();
 					}
 		        	

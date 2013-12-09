@@ -188,217 +188,217 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		parametersComposite.setLayoutData(gd);
 	    parametersComposite.setLayout(gl);
 		final LinkedHashMap<Text, String> parameterTypes = new LinkedHashMap<Text,String>(); 
-//
-//	    final Set<Text> traceLines = QuestionTreePage.traceLineMap.keySet();
-//	    final LinkedList<Text> traceLinesToChange = new LinkedList<Text>();
-////	    final LinkedList<TraceLine> traceLinesList = new LinkedList<TraceLine>();
-//	    for(Text tl:traceLines){
-//	    	if(tl.isEnabled() && !tl.getText().equals("double-click to select")){
-//	    		Group eventInfo = new Group(parametersComposite, SWT.TOP);
-//	    		eventInfo.setText(QuestionTreePage.traceLineMap.get(tl).getMethodCall());
-//	    		GridLayout gridLayout = new GridLayout();
-//	    		if(QuestionTreePage.traceLineMap.get(tl).isReply()){
-//	    			if(QuestionTreePage.traceLineMap.get(tl).getReturnParams()!=null){
-////	    	    		traceLinesList.add(QuestionTreePage.traceLineMap.get(tl));
-//	    				traceLinesToChange.add(tl);
-//	    				gridLayout.numColumns = QuestionTreePage.traceLineMap.get(tl).getReturnParams().length;
-//		    			eventInfo.setLayout(gridLayout);
-//	    				String[] params = QuestionTreePage.traceLineMap.get(tl).getReturnParams();
-//	    				for(String param:params){
-//	    					final Text argument = new Text(eventInfo, SWT.BORDER);
-//	    					argument.setText(param);
-//	    					parameterTypes.put(argument, QuestionTreePage.traceLineMap.get(tl).parameterTypes.get(param));
-//	    					gd = new GridData();
-//	    					gd.verticalAlignment = SWT.TOP;
-//	    					argument.setLayoutData(gd);
-//	    				}
-//	    			}else{
-//	    				eventInfo.setLayout(gridLayout);
-//	    				final Label noParams = new Label(eventInfo, SWT.NONE);
-//	    				noParams.setText("No parameters...");
-//	    				gd = new GridData();
-//	    				gd.verticalAlignment = SWT.TOP;
-//	    				noParams.setLayoutData(gd);	    			
-//	    			}
-//	    		}
-//	    		else{
-//	    			if( QuestionTreePage.traceLineMap.get(tl).getParameters()!=null){
-////	    	    		traceLinesList.add(QuestionTreePage.traceLineMap.get(tl));
-//	    				traceLinesToChange.add(tl);
-//	    				gridLayout.numColumns = QuestionTreePage.traceLineMap.get(tl).getParameters().length;
-//		    			eventInfo.setLayout(gridLayout);
-//	    				String[] params = QuestionTreePage.traceLineMap.get(tl).getParameters();
-//	    				for(String param:params){
-//	    					final Text argument = new Text(eventInfo, SWT.BORDER);
-//	    					argument.setText(param);
-//	    					parameterTypes.put(argument, QuestionTreePage.traceLineMap.get(tl).parameterTypes.get(param));
-//	    					gd = new GridData();
-//	    					argument.setLayoutData(gd);
-//	    				}
-//	    			}else{
-//	    				eventInfo.setLayout(gridLayout);
-//	    				final Label noParams = new Label(eventInfo, SWT.NONE);
-//	    				noParams.setText("No parameters...");
-//	    				gd = new GridData();
-//	    				noParams.setLayoutData(gd);	    			
-//	    			}
-//	    		}
-////		    	System.out.println("EventInfo children:"+eventInfo.getChildren());
-//
-//	    	} 
-//	    }
-//	    
-//	    if(traceLinesToChange.size()!=0){
-//	    final Button setThem = new Button(parametersComposite, SWT.PUSH);
-//	    setThem.setText("Assign them!");
-//
-//	    setThem.addSelectionListener(new SelectionAdapter() {
-//		      public void widgetSelected(SelectionEvent event) {
-//		  		StringBuffer quantifiers = new StringBuffer();
-//		  	
-//		    	  Control[] events =  parametersComposite.getChildren();
-//		    	  
-//		    	  for(Text tl:traceLinesToChange){
-//		    		  for(Control group:events){
-//		    			  if(group instanceof Group && QuestionTreePage.traceLineMap.get(tl).getMethodCall()!=null){
-//		    				  if(QuestionTreePage.traceLineMap.get(tl).getMethodCall().equals(((Group)group).getText()) 
-//		    						  && 
-//		    						  (QuestionTreePage.traceLineMap.get(tl).getParameters()!=null 
-//		    						  || 
-//		    						  QuestionTreePage.traceLineMap.get(tl).getReturnParams()!=null
-//		    						  )
-//		    					){
-//			    				  TraceLine toChangeTL = QuestionTreePage.traceLineMap.get(tl);
-//			    				  Control[] argumentsText = ((Group)group).getChildren();
-//			    				  String[] argsString = new String[argumentsText.length];
-//
-//		    					  String[] paramNames;
-//		    					  if (toChangeTL.isReply)
-//		    						  paramNames = toChangeTL.getReturnParamNames();
-//		    					  else
-//		    						  paramNames = toChangeTL.getParamNames(); 
-//		    					  
-//			    				  int i=0;
-//			    				  for(Control argsText:argumentsText){
-//			    					  
-////			    					  if(((Text)argsText).getText().equals("*"))
-////			    						   argsString[i++] = parameterTypes.get((Text)argsText);
-////			    						  else 	  
-//			    						if (QuestionTreePage.behavior.equals("Universality")) { // special treatment 
-//			    							argsString[i] = ((Text)argsText).getText();
-//			    							quantifiers.insert(0,"forall " + paramNames[i] + ":" + parameterTypes.get((Text)argsText) +".val( " + paramNames[i] + "!= " + argsString[i] + "). ");
-//			    							i++;
-//			    							if(i == argumentsText.length){
-//			    								quantifiers = new StringBuffer(quantifiers.substring(0, quantifiers.length()-2));
-//			    								quantifiers.append(" => ");
-//			    							}
-//			    				  		 
-//			    					  }else{
-////			    							 for(String paramName:paramNames){
-//			    								 if(((Text)argsText).getText().equals("*"))	{
-//			    									 if(quantifiers.indexOf(paramNames[i])!=-1){ //that parameter name already exists, add some randomness in the name
-//			    										 int random = (int )(Math.random() * 100 + 1);
-//			    										 quantifiers.append("forall " + paramNames[i] + random + ":" + parameterTypes.get((Text)argsText) +". ");
-//						    							 argsString[i] = paramNames[i] + random ;	 
-//			    									 }else {
-//			    										 quantifiers.append("forall " + paramNames[i] + ":" + parameterTypes.get((Text)argsText) +". ");
-//						    							 argsString[i] = paramNames[i];	 
-//			    									 }
-//					    						 }else
-//					    							 argsString[i] = ((Text)argsText).getText(); //new argument values taken from text fields	  
-//				    							 
-////					    					  }
-//			    							 i++;
-//			    				  		}
-//			    				  }
-//			    				  if(toChangeTL.isReply){
-//			    					  // if it's a value, we don't need a quantifier, otherwise we need to pre
-//			    					  // the formula with forall nameParam:DomainParam
-//			    					  
-//			    					  toChangeTL.setReturnParams(argsString);
-//
-//			    				  }
-//			    				  else {
-//			    					  
-//			    					  toChangeTL.setParameters(argsString);
-//			    					  
-//			    				  }
-//			    				  
-//			    				  QuestionTreePage.traceLineMap.put(tl, toChangeTL);
-//			    				  
-//			    			  }
-//		    			  }
-//		    			 
-//		    			  		
-//		    		  }
-//		    	   
-//		    		  //and again
-//		      }	
-//		    			StringBuffer modifiedBuffer = new StringBuffer();
-//		    			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//
-//		    			if (QuestionTreePage.behavior.equals("Precedence Chain 1")) {
-//		    				modifiedBuffer = new StringBuffer();
-//		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//
-//
-//		    			} else if(QuestionTreePage.behavior.equals("Precedence Chain 2")){
-//		    				
-//		    				modifiedBuffer = new StringBuffer();
-//		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//
-//		    			}	else if(QuestionTreePage.behavior.equals("Response Chain 1")) {
-//		    				modifiedBuffer = new StringBuffer();
-//		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//
-//		    			}	else if(QuestionTreePage.behavior.equals("Response Chain 2")){
-//		    				modifiedBuffer = new StringBuffer();
-//		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//
-//		    			}
-//		    			else if(QuestionTreePage.behavior.equals("Constrained Response Chain 2")){
-//		    				modifiedBuffer = new StringBuffer();
-//		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Z ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventX).toString())+"  ");
-//
-//		    			}
-//		    			modifiedBuffer = new StringBuffer(quantifiers + "" + modifiedBuffer);
-//		    			textFormula.setText(modifiedBuffer.toString());
-//		    		  //END and again
-//		    	  
-//		      }
-//		    });
-//	    
-//	    }
+
+	    final Set<Text> traceLines = QuestionTreePage.traceLineMap.keySet();
+	    final LinkedList<Text> traceLinesToChange = new LinkedList<Text>();
+//	    final LinkedList<TraceLine> traceLinesList = new LinkedList<TraceLine>();
+	    for(Text tl:traceLines){
+	    	if(tl.isEnabled() && !tl.getText().equals("double-click to select")){
+	    		Group eventInfo = new Group(parametersComposite, SWT.TOP);
+	    		eventInfo.setText(QuestionTreePage.traceLineMap.get(tl).getOriginMessage());
+	    		GridLayout gridLayout = new GridLayout();
+	    		if(QuestionTreePage.traceLineMap.get(tl).isReply()){
+	    			if(QuestionTreePage.traceLineMap.get(tl).getReturnParams()!=null){
+//	    	    		traceLinesList.add(QuestionTreePage.traceLineMap.get(tl));
+	    				traceLinesToChange.add(tl);
+	    				gridLayout.numColumns = QuestionTreePage.traceLineMap.get(tl).getReturnParams().length;
+		    			eventInfo.setLayout(gridLayout);
+	    				String[] params = QuestionTreePage.traceLineMap.get(tl).getReturnParams();
+	    				for(String param:params){
+	    					final Text argument = new Text(eventInfo, SWT.BORDER);
+	    					argument.setText(param);
+	    					parameterTypes.put(argument, QuestionTreePage.traceLineMap.get(tl).parameterTypes.get(param));
+	    					gd = new GridData();
+	    					gd.verticalAlignment = SWT.TOP;
+	    					argument.setLayoutData(gd);
+	    				}
+	    			}else{
+	    				eventInfo.setLayout(gridLayout);
+	    				final Label noParams = new Label(eventInfo, SWT.NONE);
+	    				noParams.setText("No parameters...");
+	    				gd = new GridData();
+	    				gd.verticalAlignment = SWT.TOP;
+	    				noParams.setLayoutData(gd);	    			
+	    			}
+	    		}
+	    		else{
+	    			if( QuestionTreePage.traceLineMap.get(tl).getParameters()!=null){
+//	    	    		traceLinesList.add(QuestionTreePage.traceLineMap.get(tl));
+	    				traceLinesToChange.add(tl);
+	    				gridLayout.numColumns = QuestionTreePage.traceLineMap.get(tl).getParameters().length;
+		    			eventInfo.setLayout(gridLayout);
+	    				String[] params = QuestionTreePage.traceLineMap.get(tl).getParameters();
+	    				for(String param:params){
+	    					final Text argument = new Text(eventInfo, SWT.BORDER);
+	    					argument.setText(param);
+	    					parameterTypes.put(argument, QuestionTreePage.traceLineMap.get(tl).parameterTypes.get(param));
+	    					gd = new GridData();
+	    					argument.setLayoutData(gd);
+	    				}
+	    			}else{
+	    				eventInfo.setLayout(gridLayout);
+	    				final Label noParams = new Label(eventInfo, SWT.NONE);
+	    				noParams.setText("No parameters...");
+	    				gd = new GridData();
+	    				noParams.setLayoutData(gd);	    			
+	    			}
+	    		}
+//		    	System.out.println("EventInfo children:"+eventInfo.getChildren());
+
+	    	} 
+	    }
+	    
+	    if(traceLinesToChange.size()!=0){
+	    final Button setThem = new Button(parametersComposite, SWT.PUSH);
+	    setThem.setText("Assign them!");
+
+	    setThem.addSelectionListener(new SelectionAdapter() {
+		      public void widgetSelected(SelectionEvent event) {
+		  		StringBuffer quantifiers = new StringBuffer();
+		  	
+		    	  Control[] events =  parametersComposite.getChildren();
+		    	  
+		    	  for(Text tl:traceLinesToChange){
+		    		  for(Control group:events){
+		    			  if(group instanceof Group && QuestionTreePage.traceLineMap.get(tl).getMethodCall()!=null){
+		    				  if(QuestionTreePage.traceLineMap.get(tl).getMethodCall().equals(((Group)group).getText()) 
+		    						  && 
+		    						  (QuestionTreePage.traceLineMap.get(tl).getParameters()!=null 
+		    						  || 
+		    						  QuestionTreePage.traceLineMap.get(tl).getReturnParams()!=null
+		    						  )
+		    					){
+			    				  TraceLine toChangeTL = QuestionTreePage.traceLineMap.get(tl);
+			    				  Control[] argumentsText = ((Group)group).getChildren();
+			    				  String[] argsString = new String[argumentsText.length];
+
+		    					  String[] paramNames;
+		    					  if (toChangeTL.isReply)
+		    						  paramNames = toChangeTL.getReturnParamNames();
+		    					  else
+		    						  paramNames = toChangeTL.getParamNames(); 
+		    					  
+			    				  int i=0;
+			    				  for(Control argsText:argumentsText){
+			    					  
+//			    					  if(((Text)argsText).getText().equals("*"))
+//			    						   argsString[i++] = parameterTypes.get((Text)argsText);
+//			    						  else 	  
+			    						if (QuestionTreePage.behavior.equals("Universality")) { // special treatment 
+			    							argsString[i] = ((Text)argsText).getText();
+			    							quantifiers.insert(0,"forall " + paramNames[i] + ":" + parameterTypes.get((Text)argsText) +".val( " + paramNames[i] + "!= " + argsString[i] + "). ");
+			    							i++;
+			    							if(i == argumentsText.length){
+			    								quantifiers = new StringBuffer(quantifiers.substring(0, quantifiers.length()-2));
+			    								quantifiers.append(" => ");
+			    							}
+			    				  		 
+			    					  }else{
+//			    							 for(String paramName:paramNames){
+			    								 if(((Text)argsText).getText().equals("*"))	{
+			    									 if(quantifiers.indexOf(paramNames[i])!=-1){ //that parameter name already exists, add some randomness in the name
+			    										 int random = (int )(Math.random() * 100 + 1);
+			    										 quantifiers.append("forall " + paramNames[i] + random + ":" + parameterTypes.get((Text)argsText) +". ");
+						    							 argsString[i] = paramNames[i] + random ;	 
+			    									 }else {
+			    										 quantifiers.append("forall " + paramNames[i] + ":" + parameterTypes.get((Text)argsText) +". ");
+						    							 argsString[i] = paramNames[i];	 
+			    									 }
+					    						 }else
+					    							 argsString[i] = ((Text)argsText).getText(); //new argument values taken from text fields	  
+				    							 
+//					    					  }
+			    							 i++;
+			    				  		}
+			    				  }
+			    				  if(toChangeTL.isReply){
+			    					  // if it's a value, we don't need a quantifier, otherwise we need to pre
+			    					  // the formula with forall nameParam:DomainParam
+			    					  
+			    					  toChangeTL.setReturnParams(argsString);
+
+			    				  }
+			    				  else {
+			    					  
+			    					  toChangeTL.setParameters(argsString);
+			    					  
+			    				  }
+			    				  
+			    				  QuestionTreePage.traceLineMap.put(tl, toChangeTL);
+			    				  
+			    			  }
+		    			  }
+		    			 
+		    			  		
+		    		  }
+		    	   
+		    		  //and again
+		      }	
+		    			StringBuffer modifiedBuffer = new StringBuffer();
+		    			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+
+		    			if (QuestionTreePage.behavior.equals("Precedence Chain 1")) {
+		    				modifiedBuffer = new StringBuffer();
+		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+
+
+		    			} else if(QuestionTreePage.behavior.equals("Precedence Chain 2")){
+		    				
+		    				modifiedBuffer = new StringBuffer();
+		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+
+		    			}	else if(QuestionTreePage.behavior.equals("Response Chain 1")) {
+		    				modifiedBuffer = new StringBuffer();
+		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+
+		    			}	else if(QuestionTreePage.behavior.equals("Response Chain 2")){
+		    				modifiedBuffer = new StringBuffer();
+		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+
+		    			}
+		    			else if(QuestionTreePage.behavior.equals("Constrained Response Chain 2")){
+		    				modifiedBuffer = new StringBuffer();
+		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Z ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventX).toString())+"  ");
+
+		    			}
+		    			modifiedBuffer = new StringBuffer(quantifiers + "" + modifiedBuffer);
+		    			textFormula.setText(modifiedBuffer.toString());
+		    		  //END and again
+		    	  
+		      }
+		    });
+	    
+	    }
 
 		final Label note = new Label(parametersComposite, SWT.NONE);
 		FontData[] fD = note.getFont().getFontData();
@@ -432,63 +432,63 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		
 		PatternMuCalculusFormat.fill();
 		StringBuffer modifiedBuffer = new StringBuffer();
-//		modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+" ");
-//		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+" ");
-//		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+" ");
-//		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+ " ");
-//
-//		if (QuestionTreePage.behavior.equals("Precedence Chain 1")) {
-//			modifiedBuffer = new StringBuffer();
-//			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//
-//
-//		} else if(QuestionTreePage.behavior.equals("Precedence Chain 2")){
-//			
-//			modifiedBuffer = new StringBuffer();
-//			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//
-//		}	else if(QuestionTreePage.behavior.equals("Response Chain 1")) {
-//			modifiedBuffer = new StringBuffer();
-//			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//
-//		}	else if(QuestionTreePage.behavior.equals("Response Chain 2")){
-//			modifiedBuffer = new StringBuffer();
-//			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//
-//		}
-//		else if(QuestionTreePage.behavior.equals("Constrained Response Chain 2")){
-//			modifiedBuffer = new StringBuffer();
-//			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-//			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Z ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventX).toString())+"  ");
-//
-//		}
-//		
+		modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+" ");
+		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+" ");
+		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+" ");
+		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+ " ");
+
+		if (QuestionTreePage.behavior.equals("Precedence Chain 1")) {
+			modifiedBuffer = new StringBuffer();
+			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+
+
+		} else if(QuestionTreePage.behavior.equals("Precedence Chain 2")){
+			
+			modifiedBuffer = new StringBuffer();
+			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+
+		}	else if(QuestionTreePage.behavior.equals("Response Chain 1")) {
+			modifiedBuffer = new StringBuffer();
+			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+
+		}	else if(QuestionTreePage.behavior.equals("Response Chain 2")){
+			modifiedBuffer = new StringBuffer();
+			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+
+		}
+		else if(QuestionTreePage.behavior.equals("Constrained Response Chain 2")){
+			modifiedBuffer = new StringBuffer();
+			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" S ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" T ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Z ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventX).toString())+"  ");
+
+		}
+		
 		textFormula.setText(modifiedBuffer.toString());
 		final Label labelDirectoryFormula = new Label(composite, SWT.NONE);
 		if (PatternMuCalculusFormat.patternsMonitorable.get(QuestionTreePage.scope).get(QuestionTreePage.behavior).booleanValue()){

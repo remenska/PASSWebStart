@@ -1,8 +1,11 @@
 package info.remenska.PASS.wizards;
 
+import info.remenska.PASS.wizards.SelectDataSetDialog.ModelAction;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -451,48 +454,30 @@ public class QuestionTreePage extends WizardPage {
 				dialog.open();
 				if(dialog.getResult()!=null){
 					System.out.println(dialog.getResult());
-					((Text)event.widget).setText(dialog.getResult().toString());
+					((Text)event.widget).setText(dialog.getResult().getNameAction());
+					ModelAction action = dialog.getResult();
 					((Text)event.widget).pack();
+					TraceLine trObj = new TraceLine();
+					trObj.setOriginMessage(action.getNameAction());
+					ArrayList<String> parameters = action.getArguments();
+					LinkedList<String> paramsList = new LinkedList<String>();
+
+					if(parameters.size()>0){
+						int i = 1;
+						for(String argument:parameters){
+							paramsList.add("arg" + i);
+							trObj.parameterTypes.put("arg" + i++, argument);
+						}
+						trObj.setParameters(paramsList.toArray(new String[paramsList.size()]));
+						trObj.setParamNames(paramsList.toArray(new String[paramsList.size()]));
+					}
+					
+					
 					dialog.close();
 					checkIfValid();
-				}
 
-						
-////						 UMLSelectExistingElementDialog(getShell(),Collections.   singletonList(UMLElementTypes.ASYNCH_CALL_MESSAGE | UMLElementTypes.SYNCH_CALL_MESSAGE));
-////				 UMLSelectExistingElementDialog(getShell(),Collections.singletonList(UMLElementTypes.CALL_OPERATION_ACTION));
-//						 LinkedList<IMessageElementType> fuckYou = new LinkedList<IMessageElementType>();
-//						 fuckYou.add(UMLElementTypes.ASYNCH_CALL_MESSAGE);
-//						 fuckYou.add(UMLElementTypes.SYNCH_CALL_MESSAGE);
-//						 UMLSelectExistingElementDialog dialogOperation = new
-//
-//						 UMLSelectExistingElementDialog(getShell(), fuckYou);
-//
-////				 UMLSelectExistingElementDialog(getShell(),Collections.singletonList(UMLElementTypes.CALL_EVENT));
-//				 dialogOperation.create();
-//						if(dialogOperation.open()==Window.OK){
-//							List<Message> selected = (List<Message>) dialogOperation.getSelectedElements();
-//							System.out.println("Selected message:"+ selected.get(0).getName()+" : "+selected.get(0).getQualifiedName());
-//							System.out.println("Object:" + selected.get(0).getConnector().getEnds().get(1).getRole().getName());
-//							System.out.println("Class:" + selected.get(0).getConnector().getEnds().get(1).getRole().getType().getName());
-//
-//							System.out.println("Selected message:"+ selected.get(0));
 //							
-//							
-//							TraceLine trObj = new TraceLine();
-//							trObj.setOriginMessage(selected.get(0));
-//							trObj.setMethodCall(selected.get(0).getName());
-//							trObj.setClassName(selected.get(0).getConnector().getEnds().get(1).getRole().getType().getName());
-//							trObj.setObjectName(selected.get(0).getConnector().getEnds().get(1).getRole().getName());
-//							trObj.setClassNameSource(selected.get(0).getConnector().getEnds().get(0).getRole().getType().getName());
-//							trObj.setObjectNameSource(selected.get(0).getConnector().getEnds().get(0).getRole().getName());
-//							
-//							
-//							Operation operation = ((SendOperationEvent) ((MessageOccurrenceSpecification) selected.get(0).getSendEvent()).getEvent()).getOperation();
-//							EList<Parameter> parameters = operation.getOwnedParameters();
-//							LinkedList<String> paramsList = new LinkedList<String>();
-//							LinkedList<String> paramsListReturn = new LinkedList<String>();
 //
-//							if(parameters.size()>0){
 //								for(Parameter argument:parameters){
 //									if(argument.getType()!=null){ //convert type from UML to mCRL2
 //										try{
@@ -533,7 +518,7 @@ public class QuestionTreePage extends WizardPage {
 //							if (selected.get(0).getMessageSort().getLiteral().equals("asynchCall"))
 //								trObj.setAsynchronous(true);
 //	
-//							traceLineMap.put((Text)event.widget, trObj);
+							traceLineMap.put((Text)event.widget, trObj);
 //							// if it's NOT a reply message, then we care about the receiver object, and the class as well!
 //							// how about parameters?
 //							System.out.println(trObj);
@@ -541,7 +526,7 @@ public class QuestionTreePage extends WizardPage {
 //							((Text)event.widget).pack();
 //							dialogOperation.close();
 //							checkIfValid();
-//						}
+						}
 			}
 		};	
 //		
@@ -710,15 +695,16 @@ class TraceLine{
 
 	public String methodCall;
 	public boolean isAsynchronous = false;
-//	Message originMessage;
-//	
-//	public Message getOriginMessage() {
-//		return originMessage;
-//	}
-//
-//	public void setOriginMessage(Message originMessage) {
-//		this.originMessage = originMessage;
-//	}
+	String originMessage;
+	
+	public String getOriginMessage() {
+		return originMessage;
+	}
+
+	public void setOriginMessage(String originMessage) {
+		this.originMessage = originMessage;
+		this.methodCall = originMessage;
+	}
 
 	public boolean isAsynchronous() {
 		return isAsynchronous;
@@ -796,28 +782,28 @@ class TraceLine{
 	
 	public String toString(){
 		StringBuffer tmp = new StringBuffer();
-		if(this.isAsynchronous)
-			tmp.append("asynch_call(1, ");
-		else if(isReply())
-			tmp.append("synch_reply(1, ");
-		else
-			tmp.append("synch_call(1, ");
+//		if(this.isAsynchronous)
+//			tmp.append("asynch_call(1, ");
+//		else if(isReply())
+//			tmp.append("synch_reply(1, ");
+//		else
+//			tmp.append("synch_call(1, ");
+//		
+//		tmp.append(getClassName()+", ");
+//		tmp.append(getObjectName()+", ");
 		
-		tmp.append(getClassName()+", ");
-		tmp.append(getObjectName()+", ");
-		
-		if (isReply()){
-			if(returnParams!=null){
-				StringBuffer params = new StringBuffer(Arrays.toString(returnParams));
-				params = new StringBuffer(params.substring(1));
-				params = new StringBuffer(params.substring(0, params.length()-1));
-				tmp.append(getMethodCall()+"_return"+"("+params+"))");
-			}
-			else
-				tmp.append(getMethodCall()+"_return"+")");
-		}
-		else
-		{
+//		if (isReply()){
+//			if(returnParams!=null){
+//				StringBuffer params = new StringBuffer(Arrays.toString(returnParams));
+//				params = new StringBuffer(params.substring(1));
+//				params = new StringBuffer(params.substring(0, params.length()-1));
+//				tmp.append(getMethodCall()+"_return"+"("+params+"))");
+//			}
+//			else
+//				tmp.append(getMethodCall()+"_return"+")");
+//		}
+//		else
+//		{
 			if(parameters!=null){
 				StringBuffer params = new StringBuffer(Arrays.toString(parameters));
 				params = new StringBuffer(params.substring(1));
@@ -828,7 +814,7 @@ class TraceLine{
 			else
 				tmp.append(getMethodCall()+")");
 
-		}
+//		}
 			
 		
 		return tmp.toString();
@@ -836,13 +822,3 @@ class TraceLine{
 	
 }
 
-class FileLblProvider extends LabelProvider 
-{ 
-public String getText(Object element) { 
-return ((File)element).getName(); 
-} 
-
-public String toString(Object element){
-	return ((File)element).getName();
-}
-} 
