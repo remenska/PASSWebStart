@@ -494,7 +494,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		final Label labelDirectoryFormula = new Label(composite, SWT.NONE);
 		if (PatternMuCalculusFormat.patternsMonitorable.get(QuestionTreePage.scope).get(QuestionTreePage.behavior).booleanValue()){
 //			System.out.println("Monitorable...");
-			labelDirectoryFormula.setText("Select the file containing the mCRL2 model:");
+			labelDirectoryFormula.setText("Select a location for the target mCRL2 model that will contain the monitor code:");
 			GridData data = new GridData();
 		    data.horizontalSpan = 2;
 //		    data.verticalSpan = 2;
@@ -554,6 +554,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 //		    data.verticalAlignment = SWT.BOTTOM;
 		    labelDirectoryFormula.setLayoutData(data);
 			labelDirectoryFormula.setText("The property is not monitorable. ");
+			if(textDirectoryFormula!=null)
 			textDirectoryFormula.setEnabled(false);
 		}
 		

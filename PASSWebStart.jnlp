@@ -7,6 +7,8 @@
   		<vendor>info.remenska.org</vendor>
   		<homepage href="http://info.remenska.org" />
   		<description>PASS Property ASSistant Web Start</description>
+  		<icon href="icons/check1.png"/>
+  		
 	</information>
 
 	<security>

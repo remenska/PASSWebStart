@@ -190,7 +190,7 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("Between Q and R", "Absence",Boolean.TRUE );
 	   addPatternMonitorable("Between Q and R variant", "Absence",Boolean.FALSE ); //TODO
 	   addPatternMonitorable("After Q until R","Absence", Boolean.TRUE );
-	   addPatternMonitorable("After Q until R variant","Absence", Boolean.TRUE ); //TODO
+	   addPatternMonitorable("After Q until R variant","Absence", Boolean.FALSE ); //TODO
 	   
 	   addPatternMonitorable("Globally", "Existence",Boolean.FALSE );
 	   addPatternMonitorable("Before R", "Existence", Boolean.TRUE );
@@ -198,7 +198,7 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q", "Existence", Boolean.FALSE );
 	   addPatternMonitorable("After Q variant", "Existence", Boolean.FALSE );//TODO: check After Q variants if they are monitorable, they have implication sign! 
 	   addPatternMonitorable("Between Q and R", "Existence", Boolean.TRUE );
-	   addPatternMonitorable("Between Q and R variant", "Existence", Boolean.TRUE ); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Existence", Boolean.FALSE ); //TODO
 	   addPatternMonitorable("After Q until R", "Existence", Boolean.FALSE );
 	   addPatternMonitorable("After Q until R variant", "Existence", Boolean.FALSE ); //TODO
 	   
@@ -208,7 +208,7 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q", "Universality", Boolean.TRUE );
 	   addPatternMonitorable("After Q variant", "Universality", Boolean.FALSE );//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Universality", Boolean.TRUE );
-	   addPatternMonitorable("Between Q and R variant", "Universality", Boolean.TRUE ); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Universality", Boolean.FALSE ); //TODO
 	   addPatternMonitorable("After Q until R", "Universality", Boolean.TRUE );
 	   addPatternMonitorable("After Q until R variant", "Universality", Boolean.TRUE ); //TODO
 	   
@@ -218,19 +218,19 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q", "Precedence", Boolean.TRUE );
 	   addPatternMonitorable("After Q variant", "Precedence", Boolean.FALSE );//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Precedence", Boolean.TRUE );
-	   addPatternMonitorable("Between Q and R variant", "Precedence", Boolean.TRUE ); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Precedence", Boolean.FALSE ); //TODO
 	   addPatternMonitorable("After Q until R", "Precedence",  Boolean.TRUE );
-	   addPatternMonitorable("After Q until R variant", "Precedence",  Boolean.TRUE ); //TODO
+	   addPatternMonitorable("After Q until R variant", "Precedence",  Boolean.FALSE ); //TODO
 	   
-	   addPatternMonitorable("Globally", "Precedence variant", Boolean.TRUE ); //TODO
-	   addPatternMonitorable("Before R" , "Precedence variant" , Boolean.TRUE );
-	   addPatternMonitorable("Before R variant" , "Precedence variant" , Boolean.TRUE );
-	   addPatternMonitorable("After Q", "Precedence variant", Boolean.TRUE );
+	   addPatternMonitorable("Globally", "Precedence variant", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("Before R" , "Precedence variant" , Boolean.FALSE );
+	   addPatternMonitorable("Before R variant" , "Precedence variant" , Boolean.FALSE );
+	   addPatternMonitorable("After Q", "Precedence variant", Boolean.FALSE );
 	   addPatternMonitorable("After Q variant", "Precedence variant", Boolean.FALSE );//TODO: check After Q variants if they are...
-	   addPatternMonitorable("Between Q and R", "Precedence variant", Boolean.TRUE );
-	   addPatternMonitorable("Between Q and R variant", "Precedence variant", Boolean.TRUE ); //TODO
-	   addPatternMonitorable("After Q until R", "Precedence variant",  Boolean.TRUE );
-	   addPatternMonitorable("After Q until R variant", "Precedence variant",  Boolean.TRUE ); //TODO
+	   addPatternMonitorable("Between Q and R", "Precedence variant", Boolean.FALSE );
+	   addPatternMonitorable("Between Q and R variant", "Precedence variant", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("After Q until R", "Precedence variant",  Boolean.FALSE );
+	   addPatternMonitorable("After Q until R variant", "Precedence variant",  Boolean.FALSE ); //TODO
 	   
 	   addPatternMonitorable("Globally", "Response", Boolean.FALSE );
 	   addPatternMonitorable("Before R", "Response", Boolean.TRUE );
@@ -238,7 +238,7 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q", "Response", Boolean.FALSE );
 	   addPatternMonitorable("After Q variant", "Response", Boolean.FALSE );//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Response", Boolean.TRUE );
-	   addPatternMonitorable("Between Q and R variant", "Response", Boolean.TRUE ); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Response", Boolean.FALSE ); //TODO
 	   addPatternMonitorable("After Q until R", "Response", Boolean.FALSE );
 	   addPatternMonitorable("After Q until R variant", "Response", Boolean.FALSE ); //TODO
 	   
@@ -258,9 +258,9 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q", "Precedence Chain 1", Boolean.TRUE);
 	   addPatternMonitorable("After Q variant", "Precedence Chain 1", Boolean.FALSE);//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Precedence Chain 1", Boolean.TRUE);
-	   addPatternMonitorable("Between Q and R variant", "Precedence Chain 1", Boolean.TRUE); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Precedence Chain 1", Boolean.FALSE); //TODO
 	   addPatternMonitorable("After Q until R", "Precedence Chain 1", Boolean.TRUE);
-	   addPatternMonitorable("After Q until R variant", "Precedence Chain 1", Boolean.TRUE); //TODO
+	   addPatternMonitorable("After Q until R variant", "Precedence Chain 1", Boolean.FALSE); //TODO
 	  
 	   
 	   addPatternMonitorable("Globally", "Precedence Chain 2", Boolean.TRUE);
@@ -270,17 +270,17 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q variant", "Precedence Chain 2", Boolean.FALSE);//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Precedence Chain 2", Boolean.TRUE);
 	   addPatternMonitorable("After Q until R", "Precedence Chain 2",Boolean.TRUE);
-	   addPatternMonitorable("Between Q and R variant", "Precedence Chain 2", Boolean.TRUE); //TODO
-	   addPatternMonitorable("After Q until R variant", "Precedence Chain 2",Boolean.TRUE); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Precedence Chain 2", Boolean.FALSE); //TODO
+	   addPatternMonitorable("After Q until R variant", "Precedence Chain 2",Boolean.FALSE); //TODO
 	   
 	   addPatternMonitorable("Globally", "Response Chain 1", Boolean.FALSE);
-	   addPatternMonitorable("Before R", "Response Chain 1", Boolean.FALSE);
+	   addPatternMonitorable("Before R", "Response Chain 1", Boolean.TRUE);
 	   addPatternMonitorable("Before R variant", "Response Chain 1", Boolean.FALSE);
 	   addPatternMonitorable("After Q", "Response Chain 1", Boolean.FALSE );
 	   addPatternMonitorable("After Q variant", "Response Chain 1", Boolean.FALSE );//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Response Chain 1", Boolean.TRUE);
 	   addPatternMonitorable("After Q until R", "Response Chain 1", Boolean.FALSE);
-	   addPatternMonitorable("Between Q and R variant", "Response Chain 1", Boolean.TRUE); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Response Chain 1", Boolean.FALSE); //TODO
 	   addPatternMonitorable("After Q until R variant", "Response Chain 1", Boolean.FALSE); //TODO
 	   
 	   addPatternMonitorable("Globally", "Response Chain 2", Boolean.FALSE);
@@ -290,7 +290,7 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q variant", "Response Chain 2", Boolean.FALSE);//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Response Chain 2", Boolean.TRUE);
 	   addPatternMonitorable("After Q until R", "Response Chain 2", Boolean.FALSE);
-	   addPatternMonitorable("Between Q and R variant", "Response Chain 2", Boolean.TRUE); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Response Chain 2", Boolean.FALSE); //TODO
 	   addPatternMonitorable("After Q until R variant", "Response Chain 2", Boolean.FALSE); //TODO
 	   
 	   
@@ -301,7 +301,7 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q variant", "Constrained Response Chain 2", Boolean.FALSE);//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Constrained Response Chain 2", Boolean.TRUE);
 	   addPatternMonitorable("After Q until R", "Constrained Response Chain 2", Boolean.FALSE);
-	   addPatternMonitorable("Between Q and R variant", "Constrained Response Chain 2", Boolean.TRUE); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Constrained Response Chain 2", Boolean.FALSE); //TODO
 	   addPatternMonitorable("After Q until R variant", "Constrained Response Chain 2", Boolean.FALSE); //TODO
 	   
 	   
@@ -309,11 +309,11 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("Before R", "Bounded Existence", Boolean.TRUE);
 	   addPatternMonitorable("Before R variant", "Bounded Existence", Boolean.TRUE);
 	   addPatternMonitorable("After Q", "Bounded Existence", Boolean.TRUE);
-	   addPatternMonitorable("After Q variant", "Bounded Existence", Boolean.TRUE);//TODO: check After Q variants if they are...
+	   addPatternMonitorable("After Q variant", "Bounded Existence", Boolean.FALSE);//TODO: check After Q variants if they are...
 	   addPatternMonitorable("Between Q and R", "Bounded Existence", Boolean.TRUE);
 	   addPatternMonitorable("After Q until R", "Bounded Existence" , Boolean.TRUE);
-	   addPatternMonitorable("Between Q and R variant", "Bounded Existence", Boolean.TRUE); //TODO
-	   addPatternMonitorable("After Q until R variant", "Bounded Existence" , Boolean.TRUE); //TODO
+	   addPatternMonitorable("Between Q and R variant", "Bounded Existence", Boolean.FALSE); //TODO
+	   addPatternMonitorable("After Q until R variant", "Bounded Existence" , Boolean.FALSE); //TODO
 	  
 //	  Questionnaire.answ12.setScope("Globally");
 	  Questionnaire.answ12.setScope("Globally");
