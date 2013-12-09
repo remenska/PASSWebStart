@@ -79,7 +79,7 @@ public class PASSWrapper extends ApplicationWindow {
 		
 		buttonModel.addSelectionListener(new SelectionAdapter() {
 		      public void widgetSelected(SelectionEvent event) {
-		    	FileDialog dlg = new FileDialog(getShell());
+		    	FileDialog dlg = new FileDialog(parent.getShell());
 //		        dlg.setFilterPath(textDirectoryFormula.getText());
 
 		        dlg.setText("Please select the original mCRL2 model");

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+"
+	codebase="/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/"
+	href="PASSWebStart.jnlp">
+	<information>
+  		<title>PASS Property ASSistant Web Start</title>
+  		<vendor>info.remenska.org</vendor>
+  		<homepage href="http://info.remenska.org" />
+  		<description>PASS Property ASSistant Web Start</description>
+	</information>
+
+	<security>
+		<all-permissions />
+	</security>
+	
+	<!-- SWT and JFace library and supports -->
+	<resources>
+		<j2se version="1.5+" />		
+		<jar href="lib/antlr-4.1-complete.jar"    />
+		<jar href="lib/commons-io-2.4.jar"    />
+		<jar href="lib/org.eclipse.core.commands_3.6.0.I20100512-1500.jar"    />
+		<jar href="lib/org.eclipse.core.jobs_3.5.2.R36x_v20110419.jar"    />
+		<jar href="lib/org.eclipse.core.resources_3.6.2.R36x_v20110628-1020.jar"    />
+		<jar href="lib/org.eclipse.core.runtime.compatibility_3.2.100.v20100505.jar"    />
+		<jar href="lib/org.eclipse.core.runtime_3.6.0.v20100505.jar"    />
+		<jar href="lib/org.eclipse.equinox.common_3.6.0.v20100503.jar"    />
+		<jar href="lib/org.eclipse.equinox.concurrent_1.0.100.v20100503.jar"    />
+		<jar href="lib/org.eclipse.equinox.registry_3.5.0.v20100503.jar"    />
+		<jar href="lib/org.eclipse.equinox.simpleconfigurator_1.0.200.v20100503.jar"    />
+		<jar href="lib/org.eclipse.jface_3.6.2.M20110210-1200.jar"    />
+		<jar href="lib/org.eclipse.osgi_3.6.50.R36x_v20120315-1500.jar"    />
+		<jar href="lib/org.eclipse.swt.gtk.linux.x86_3.6.3.v3659f.jar"    />
+		<jar href="lib/org.eclipse.ui.workbench_3.6.2.M20120227.jar"    />
+		<jar href="lib/org.osgi.core-4.3.0.jar"    />
+	</resources>
+
+	<resources>
+		<jar href="PASSWebStart.jar" />
+	</resources>
+
+	<application-desc main-class="PASSWrapper" />
+</jnlp>
