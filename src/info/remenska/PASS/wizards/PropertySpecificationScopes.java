@@ -90,16 +90,6 @@ public class PropertySpecificationScopes extends WizardPage {
 		gridData.verticalAlignment = SWT.TOP;
 		Label imageHolder = new Label(composite, SWT.WRAP | SWT.BORDER);
 
-
-//		URL url = Platform.getBundle("info.remenska.PASS").getEntry("/"); 
-//		URL localURL = null;
-//		try {
-//			localURL = Platform.asLocalURL(url);
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		String pluginDirString = localURL.getPath(); 
 		//TODO: Change
 		//for testing
 //		Image scopesGraphical = new Image(Display.getCurrent(),

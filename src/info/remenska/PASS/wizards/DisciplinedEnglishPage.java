@@ -18,6 +18,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
@@ -33,6 +34,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 	public static StyledText styledText;
 	public static StyledText textFormula;
 	public static Text textDirectoryFormula;
+	public static String pathTemp,fileTemp;
 	protected DisciplinedEnglishPage(String pageName, String description) {
 		super(pageName);
 		setTitle(pageName);
@@ -134,7 +136,6 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 	@Override
 	public void createControl(Composite parent) {
 		final Composite composite = new Composite(parent, SWT.NONE);
-
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		composite.setLayout(layout);
@@ -509,10 +510,10 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 			button.setText("Browse...");
 			button.addSelectionListener(new SelectionAdapter() {
 			      public void widgetSelected(SelectionEvent event) {
-			    	FileDialog dlg = new FileDialog(getShell());
+			    	DirectoryDialog dlg = new DirectoryDialog(getShell());
 			        dlg.setFilterPath(textDirectoryFormula.getText());
 
-			        dlg.setText("Please select the original mCRL2 model.");
+			        dlg.setText("Please select a location for the target mCRL2 model that will contain the monitor code.");
 
 			        // Customizable message displayed in the dialog
 //			        dlg.setMessage("Please select the original mCRL2 model.");
@@ -540,6 +541,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 			
 
 			textDirectoryFormula = new Text(composite, SWT.LEFT);
+			textDirectoryFormula.setText(pathTemp);
 			gd = new GridData();
 			gd.horizontalSpan = 2;
 			textDirectoryFormula.setLayoutData(gd);

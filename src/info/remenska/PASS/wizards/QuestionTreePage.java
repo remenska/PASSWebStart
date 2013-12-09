@@ -304,16 +304,7 @@ public class QuestionTreePage extends WizardPage {
 		// Turn relative path to a local path with the help of Eclipse-platform: 
 
 		// From this you can get the path
-		
-//		
-//		URL url = Platform.getBundle("info.remenska.PASS").getEntry("/"); 
-//		URL localURL = Platform.asLocalURL(url);
-//		String pluginDirString = localURL.getPath(); 
-		
-		//for deployment
-//		ClassLoader cl = this.getClass().getClassLoader();		
-//		Image scopesGraphical = new Image(Display.getCurrent(),
-//				cl.getResourceAsStream("/images/ScopeTimelineView/"));
+
 		//TODO:
 //		String path = "/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/ScopeTimelineView/";
 		String path = "/";
@@ -534,7 +525,6 @@ public class QuestionTreePage extends WizardPage {
 		try {
 			fillTreeMap();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -808,11 +798,12 @@ class TraceLine{
 				StringBuffer params = new StringBuffer(Arrays.toString(parameters));
 				params = new StringBuffer(params.substring(1));
 				params = new StringBuffer(params.substring(0, params.length()-1));
-				tmp.append(getMethodCall()+"("+params + "))");
+				tmp.append(getMethodCall()+"("+params + ")");
 
 			}
 			else
-				tmp.append(getMethodCall()+")");
+				;
+//				tmp.append(getMethodCall()+")");
 
 //		}
 			

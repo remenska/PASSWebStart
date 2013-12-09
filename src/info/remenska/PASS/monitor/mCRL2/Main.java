@@ -24,10 +24,10 @@ public class Main {
 			throws java.io.FileNotFoundException, NotMonitorableException,
 			java.lang.NullPointerException, Exception {
 		String result = new String();
-		if (args.length < 2) {
+		if (args.length < 3) {
 			System.out.println("Your arguments: " + args.toString());
 			System.out
-					.println("Usage: java info.remenska.PASS.monitor.mCRL2.Main <mCRL2ModelFile> <muCalculusFile> <humanReadable>");
+					.println("Usage: java info.remenska.PASS.monitor.mCRL2.Main <mCRL2ModelFile> <muCalculusFile> <targetmCRL2File> <humanReadable>");
 			System.out
 					.println("\t\t<humanReadable> is optional boolean switch, and if set to true, \n\t\tyields to process names that are not parsable by mCRL2. ");
 			System.out
@@ -100,10 +100,10 @@ public class Main {
 
 			tree = parser.start();
 			MyMuCalculusVisitor visitor1 = null;
-			if (args.length == 3)
+			if (args.length == 4)
 				visitor1 = new MyMuCalculusVisitor(tokens,
 						Mymcrl2Visitor.actionsDict,
-						Boolean.parseBoolean(args[2]));
+						Boolean.parseBoolean(args[3]));
 			else
 				visitor1 = new MyMuCalculusVisitor(tokens,
 						Mymcrl2Visitor.actionsDict, false);
@@ -123,7 +123,7 @@ public class Main {
 			outputModel.append(createInit());
 
 			BufferedOutputStream os = new BufferedOutputStream(
-					new FileOutputStream(args[0] + "_mod.mcrl2"));
+					new FileOutputStream(args[2] + "_mod.mcrl2"));
 			for (int i = 0; i < (splitModel.length - 1); i++)
 				os.write(splitModel[i].getBytes());
 			os.flush();
@@ -131,7 +131,7 @@ public class Main {
 			os.write(generated.getBytes());
 			os.write(outputModel.toString().getBytes());
 			os.flush();
-			result = new String(args[0] + "_mod.crl2");
+			result = new String(args[2] + "_mod.mcrl2");
 		} catch (java.io.FileNotFoundException e) {
 			System.err
 					.println("PROBLEM! File does not exist or permission denied:"

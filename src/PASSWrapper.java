@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import info.remenska.PASS.monitor.mCRL2.Mymcrl2Visitor;
 import info.remenska.PASS.monitor.mCRL2.mcrl2Lexer;
 import info.remenska.PASS.monitor.mCRL2.mcrl2Parser;
 import info.remenska.PASS.wizards.CapturePropertyWizard;
+import info.remenska.PASS.wizards.DisciplinedEnglishPage;
 import info.remenska.PASS.wizards.SelectDataSetDialog;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -42,13 +44,14 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class PASSWrapper extends ApplicationWindow {
-	public static Text textDirectoryFormula;
+	public static Text modelFullPath;
+//	public static String fileName;
 	public static Label styledText;
 //	public static LinkedList<String> actions;
     public static Hashtable<String, ArrayList<String>> actionsDict = new Hashtable<String, ArrayList<String>>();
 
 	protected Control createContents(final Composite parent) {
-	    getShell().setText("PASS Property ASSistant");
+	    getShell().setText("PASS Property ASSistant Web Start");
 	    parent.setSize(450,150);
 
 		final Composite composite = new Composite(parent, SWT.NONE);
@@ -93,14 +96,17 @@ public class PASSWrapper extends ApplicationWindow {
 		        String dir = dlg.open();
 		        if (dir != null) {
 		          // Set the text box to the new selection
-		        	textDirectoryFormula.setText(dir);
-		        	textDirectoryFormula.pack();
+		        	modelFullPath.setText(dir);
+		        	modelFullPath.pack();
+		        	
 		        	Main main = new Main();
 		        	// collect actions here
 					InputStream ismcrl2;
 					try {
-						ismcrl2 = new FileInputStream(dir);
-					
+						File mcrl2File = new File(dir);
+						ismcrl2 = new FileInputStream(mcrl2File);
+						DisciplinedEnglishPage.pathTemp = mcrl2File.getParent();
+						DisciplinedEnglishPage.fileTemp = mcrl2File.getName();
 					// full mCRL2 grammar
 					String initialStringmcrl2 = IOUtils.toString(ismcrl2);
 					String[] splitModel = initialStringmcrl2.split("init ");
@@ -169,10 +175,10 @@ public class PASSWrapper extends ApplicationWindow {
 		      }
 		    });
 		
-		textDirectoryFormula = new Text(composite, SWT.LEFT);
+		modelFullPath = new Text(composite, SWT.LEFT);
 		gd = new GridData();
 		gd.horizontalSpan = 2;
-		textDirectoryFormula.setLayoutData(gd);		
+		modelFullPath.setLayoutData(gd);		
 
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
