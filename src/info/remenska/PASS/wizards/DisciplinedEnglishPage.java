@@ -434,6 +434,9 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		PatternMuCalculusFormat.fill();
 		StringBuffer modifiedBuffer = new StringBuffer();
 		modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
+		System.out.println("OriginalFormula: " + modifiedBuffer);
+//		System.out.println("AMAAAAN: " + QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent));
+//		System.out.println("AMAAAAN1: " + QuestionTreePage.textStartEvent.getText());
 		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" Q ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+" ");
 		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" R ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+" ");
 		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" P ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+" ");

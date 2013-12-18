@@ -802,8 +802,7 @@ class TraceLine{
 
 			}
 			else
-				;
-//				tmp.append(getMethodCall()+")");
+				tmp.append(getMethodCall());
 
 //		}
 			
