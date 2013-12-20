@@ -21,7 +21,6 @@ public class TreeNodeIter<T> implements Iterator<TreeNode<T>> {
 	private Iterator<TreeNode<T>> childrenCurNodeIter;
 	private Iterator<TreeNode<T>> childrenSubNodeIter;
 
-	@Override
 	public boolean hasNext() {
 
 		if (this.doNext == ProcessStages.ProcessParent) {
@@ -59,12 +58,10 @@ public class TreeNodeIter<T> implements Iterator<TreeNode<T>> {
 		return false;
 	}
 
-	@Override
 	public TreeNode<T> next() {
 		return this.next;
 	}
 
-	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}

@@ -34,7 +34,6 @@ public class PropertySpecificationScopes extends WizardPage {
 
 	}
 
-	@Override
 	public void createControl(Composite parent) {
 		String explanation = "Property Specification Patterns describe commonly occurring requirements in a generalized, classified manner. " +
 				"There are two aspects of each property. The first one tells when the property should hold, and the second " +

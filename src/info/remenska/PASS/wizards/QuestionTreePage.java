@@ -56,7 +56,6 @@ import org.eclipse.ui.dialogs.FilteredList;
 //import org.eclipse.ocl.ecore.impl.PrimitiveTypeImpl;
 public class QuestionTreePage extends WizardPage {
 	class MySelectionListener implements SelectionListener{
-		@Override
 		public void widgetSelected(SelectionEvent e) {
 			// ExpandBar contains: ExpandItem and Composite(contains:
 			// Buttons))
@@ -257,7 +256,6 @@ public class QuestionTreePage extends WizardPage {
 		
 		}
 
-		@Override
 		public void widgetDefaultSelected(SelectionEvent e) {
 			widgetSelected(e);
 		}
@@ -415,7 +413,7 @@ public class QuestionTreePage extends WizardPage {
 		
 	}
 	
-	@Override
+	
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.FILL);
 		parentLe = composite;
@@ -573,7 +571,6 @@ public class QuestionTreePage extends WizardPage {
 	
 	class MyExpandListener implements ExpandListener{
 
-		@Override
 		public void itemCollapsed(ExpandEvent e) {
 			 // we need to propagate the height to all ExpandItem parents in the hierarchy
 			
@@ -610,8 +607,6 @@ public class QuestionTreePage extends WizardPage {
 			}
 		}
 
-
-		@Override
 		public void itemExpanded(ExpandEvent e) {
 	     // we need to propagate the height to all ExpandItem parents in the hierarchy
 			ExpandItem itemExpanded = (ExpandItem) e.item;

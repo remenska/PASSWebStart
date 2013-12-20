@@ -114,13 +114,11 @@ public class TreeNode<T> implements Iterable<TreeNode<T>>, Comparable<T> {
 		return data != null ? data.toString() : "[data null]";
 	}
 
-	@Override
 	public Iterator<TreeNode<T>> iterator() {
 		TreeNodeIter<T> iter = new TreeNodeIter<T>(this);
 		return iter;
 	}
 
-	@Override
 	public int compareTo(Object arg0) {
 		if(this.data.equals(((TreeNode<T>)arg0).data))
 			return 0;

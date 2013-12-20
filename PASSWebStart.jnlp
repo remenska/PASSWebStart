@@ -18,12 +18,12 @@
 	<!-- SWT and JFace library and supports -->
 	
 		
-		<resources  os="Linux" arch="x86_64">
+		<resources os="Linux" arch="x86_64">
 		<j2se version="1.5+" />	
 		<jar href="/~danielar/PASSWebStart/PASSWebStart64.jar" main="true" />
 	</resources>
 	
-	<resources  os="Linux" arch="amd64">
+	<resources os="Linux" arch="amd64">
 		<j2se version="1.5+" />	
 		<jar href="/~danielar/PASSWebStart/PASSWebStart64.jar" main="true" />
 	</resources>
@@ -43,7 +43,7 @@
 				<jar href="~danielar/PASSWebStart/lib/swt-64.jar"    />
 	</resources>
 	
-	<resources os="Linux" arch="x86">
+	<resources>
 		<j2se version="1.5+" />		
 		<jar href="~danielar/PASSWebStart/lib/antlr-4.1-complete.jar"    />
 		<jar href="~danielar/PASSWebStart/lib/commons-io-2.4.jar"    />

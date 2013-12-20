@@ -155,7 +155,6 @@ public class SelectDataSetDialog extends Dialog {
 					 * 
 					 * @param event
 					 */
-					@Override
 					public void selectionChanged(SelectionChangedEvent event) {
 						ISelection selection = tableViewer.getSelection();
 						if (selection != null
