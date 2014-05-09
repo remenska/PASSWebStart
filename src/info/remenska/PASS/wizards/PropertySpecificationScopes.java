@@ -1,5 +1,7 @@
 package info.remenska.PASS.wizards;
 
+import info.remenska.PASS.monitor.mCRL2.Main;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,8 +26,10 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import java.util.logging.Logger;
 
 public class PropertySpecificationScopes extends WizardPage {
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS"); 
 
 	protected PropertySpecificationScopes(String pageName, String description) {
 		super(pageName);
@@ -91,15 +95,15 @@ public class PropertySpecificationScopes extends WizardPage {
 
 		//TODO: Change
 		//for testing
-//		Image scopesGraphical = new Image(Display.getCurrent(),
-//				"/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/scopes.gif");
+		Image scopesGraphical = new Image(Display.getCurrent(),
+				"/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/scopes.gif");
 		//for testing
 		
 		// Create icons
 		// for deployment
 		ClassLoader cl = this.getClass().getClassLoader();		
-		Image scopesGraphical = new Image(Display.getCurrent(),
-				cl.getResourceAsStream("images/scopes.gif"));
+//		Image scopesGraphical = new Image(Display.getCurrent(),
+//				cl.getResourceAsStream("images/scopes.gif"));
 		// for deployment
 
 		imageHolder.setImage(scopesGraphical);
@@ -130,7 +134,7 @@ public class PropertySpecificationScopes extends WizardPage {
 		link.addSelectionListener(new SelectionAdapter(){
 	        @Override
 	        public void widgetSelected(SelectionEvent e) {
-	               System.out.println("You have selected: "+e.text);
+	               LOGGER.fine("You have selected: "+e.text);
 	               try {
 	                //  Open default external browser 
 	                PlatformUI.getWorkbench().getBrowserSupport().getExternalBrowser().openURL(new URL(e.text));

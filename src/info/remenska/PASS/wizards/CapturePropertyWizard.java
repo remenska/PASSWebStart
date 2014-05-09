@@ -7,13 +7,15 @@ import java.io.FileNotFoundException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.graphics.Rectangle;
+import java.util.logging.Logger;
 
 public class CapturePropertyWizard extends Wizard {
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS"); 
+
 	PropertySpecificationScopes propertyScopes;
 	QuestionTreePage scopeQuestionTreePage;
 	QuestionTreePage behaviorQuestionTreePage;
 	DisciplinedEnglishPage disciplinedEnglishPage;
-
 	public void addPages() {
 		propertyScopes = new PropertySpecificationScopes("Introduction",
 				"Property Specification Scopes");
@@ -69,8 +71,7 @@ public class CapturePropertyWizard extends Wizard {
 							+ e2.getMessage(), MessageDialog.INFORMATION,
 					new String[] { "OK" }, 0);
 			int result = dialog.open();
-			System.out
-					.println("PROBLEM! Directory does not exist or permission denied:"
+			LOGGER.severe("PROBLEM! Directory does not exist or permission denied:"
 							+ e2.getMessage());
 			return false;
 
@@ -82,9 +83,7 @@ public class CapturePropertyWizard extends Wizard {
 					new String[] { "OK" }, 0);
 			int result = dialog.open();
 
-			System.out
-					.println("Mu-calculus formula or mCRL2 is not well formed. ");
-			e2.printStackTrace();
+			LOGGER.severe("Mu-calculus formula or mCRL2 is not well formed. " + e2.getStackTrace());
 			return false;
 		} catch (RuntimeException e) {
 			MessageDialog dialog = new MessageDialog(
@@ -115,8 +114,8 @@ public class CapturePropertyWizard extends Wizard {
 					.getPage("Disciplined English Summary: ");
 
 		} catch (Exception e) {
-			System.out.println("The operation was interrupted"); //$NON-NLS-1$
-			System.out.println("StackTrace: " + e);
+			LOGGER.severe("The operation was interrupted!"); //$NON-NLS-1$
+			LOGGER.severe("StackTrace: " + e);
 			return false;
 		}
 

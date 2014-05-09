@@ -1,5 +1,7 @@
 package info.remenska.PASS.wizards;
 
+import info.remenska.PASS.monitor.mCRL2.Main;
+
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Set;
@@ -25,7 +27,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import java.util.logging.Logger;
+
+
 public class DisciplinedEnglishPage  extends WizardPage  {
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS"); 
+
 	protected Composite aman;
 	protected TreeMap<String,String> scope;
 	protected TreeMap<String, String> behavior;
@@ -39,7 +46,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		super(pageName);
 		setTitle(pageName);
 		setDescription(description);
-//		setPageComplete(false);
+		setPageComplete(false);
 
 	}
 	
@@ -86,10 +93,9 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 	    super.setVisible(visible);
 
 	    if (visible) {
-
 	        onEnterPage();
 	    }
-	}
+	 }
 	
 	void onEnterPage()
 	{
@@ -243,7 +249,6 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 	    				noParams.setLayoutData(gd);	    			
 	    			}
 	    		}
-//		    	System.out.println("EventInfo children:"+eventInfo.getChildren());
 
 	    	} 
 	    }
@@ -433,9 +438,8 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		PatternMuCalculusFormat.fill();
 		StringBuffer modifiedBuffer = new StringBuffer();
 		modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-		System.out.println("OriginalFormula: " + modifiedBuffer);
-//		System.out.println("AMAAAAN: " + QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent));
-//		System.out.println("AMAAAAN1: " + QuestionTreePage.textStartEvent.getText());
+		LOGGER.fine("OriginalFormula: " + modifiedBuffer);
+
 		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+" ");
 		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+" ");
 		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+" ");
@@ -495,7 +499,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		textFormula.setText(modifiedBuffer.toString());
 		final Label labelDirectoryFormula = new Label(composite, SWT.NONE);
 		if (PatternMuCalculusFormat.patternsMonitorable.get(QuestionTreePage.scope).get(QuestionTreePage.behavior).booleanValue()){
-//			System.out.println("Monitorable...");
+			LOGGER.fine("Monitorable...");
 			labelDirectoryFormula.setText("Select a location for the target mCRL2 model that will contain the monitor code:");
 			GridData data = new GridData();
 		    data.horizontalSpan = 2;

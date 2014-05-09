@@ -22,7 +22,6 @@ public class Pattern {
    public static void fill(){
 	   
 	   patterns = new HashMap<String,HashMap<String,String>>();
-//		  System.out.println(patterns.keySet());
 			  patterns.put("Globally", new HashMap<String, String>());
 			  patterns.put("Before R", new HashMap<String, String>());
 			  patterns.put("Before R variant", new HashMap<String, String>()); //like until, if R does not happen, the property still must hold
@@ -34,7 +33,6 @@ public class Pattern {
 			  patterns.put("After Q until R variant", new HashMap<String, String>());
 
 			  patternsMonitorable = new HashMap<String,HashMap<String,Boolean>>();
-//			  System.out.println(patterns.keySet());
 			  patternsMonitorable.put("Globally", new HashMap<String, Boolean>());
 			  patternsMonitorable.put("Before R", new HashMap<String, Boolean>());
 			  patternsMonitorable.put("Before R variant", new HashMap<String, Boolean>());
@@ -352,9 +350,6 @@ public class Pattern {
 	  Questionnaire.aansw1314.setBehavior("Precedence Chain 2");
    }
    
-   public void printOut(){
-	   System.out.println(patterns.get("Globally").get("Response Chain 2"));
-   }
 
 }
 	

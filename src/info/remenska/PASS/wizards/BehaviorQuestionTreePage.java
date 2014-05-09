@@ -17,6 +17,8 @@ public class BehaviorQuestionTreePage extends QuestionTreePage {
 	protected BehaviorQuestionTreePage(String pageName, String description,
 			TreeNode<String> questionnaire) {
 		super(pageName, description, questionnaire);
+		setPageComplete(false);
+
 	}
 	
 	public void addEventSlots(Composite composite, ExpandBar root, Listener operationListener){

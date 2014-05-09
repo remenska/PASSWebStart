@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -55,12 +56,13 @@ import org.eclipse.ui.dialogs.FilteredList;
 //import org.eclipse.ocl.uml.impl.PrimitiveTypeImpl;
 //import org.eclipse.ocl.ecore.impl.PrimitiveTypeImpl;
 public class QuestionTreePage extends WizardPage {
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS"); 
+
 	class MySelectionListener implements SelectionListener{
 		public void widgetSelected(SelectionEvent e) {
 			// ExpandBar contains: ExpandItem and Composite(contains:
 			// Buttons))
 			boolean isSelected = ((Button) e.getSource()).getSelection();
-//			System.out.println("-----------");
 			if (isSelected) {
 				
 				List<TreeNode<String>> newQuestions = questionnaire.findTreeNode(((Button) e.getSource()).getText()).children;
@@ -68,18 +70,18 @@ public class QuestionTreePage extends WizardPage {
 				// (1) find parent 
 				// (2) remove all children
 				// (3) add this clicked one
-//				System.out.println("SELECTED: "+ selected);
+				LOGGER.finer("SELECTED: "+ selected);
 
 				TreeNode<String> staticNode = questionnaire.findTreeNode(selected);
-				System.out.println("FOUND STATIC NODE: "+ staticNode.data);
+				LOGGER.finer("FOUND STATIC NODE: "+ staticNode.data);
 
 				TreeNode<String> staticParentNode = staticNode.parent;
-//				System.out.println("STATIC NODE PARENT: "+ staticParentNode.data);
+//				LOGGER.finer("STATIC NODE PARENT: "+ staticParentNode.data);
 
 				// (1)
 				TreeNode<String> dynamicParentNode =  dynamicQuestionnaire.findTreeNode(staticParentNode.data);
-//				System.out.println("DYNAMIC NODE PARENT: "+ dynamicParentNode.data);
-//				System.out.println("DYNAMIC PARENT HAS: "+ dynamicParentNode.children.size());
+//				LOGGER.finer("DYNAMIC NODE PARENT: "+ dynamicParentNode.data);
+//				LOGGER.finer("DYNAMIC PARENT HAS: "+ dynamicParentNode.children.size());
 
 				// (2)
 				dynamicParentNode.removeChildren();
@@ -100,8 +102,8 @@ public class QuestionTreePage extends WizardPage {
 
 					labelGraphicsHolder.setVisible(true);
 					//TODO:
-					scopeGraphical = new Image(Display.getCurrent(), this.getClass().getClassLoader().getResourceAsStream("images/ScopeTimelineView" + scopeImage.get(staticNode)));
-//					scopeGraphical = new Image(Display.getCurrent(), scopeImage.get(staticNode));
+//					scopeGraphical = new Image(Display.getCurrent(), this.getClass().getClassLoader().getResourceAsStream("images/ScopeTimelineView" + scopeImage.get(staticNode)));
+					scopeGraphical = new Image(Display.getCurrent(), scopeImage.get(staticNode));
 
 					labelGraphicsHolder.getDisplay().asyncExec(new Runnable () {
 						public void run() {
@@ -155,10 +157,10 @@ public class QuestionTreePage extends WizardPage {
 				
 				int height = 0; 
 				ExpandItem prevQuest = null;
-//				System.out.println("NEW QUESTIONS: " + newQuestions);
+//				LOGGER.finer("NEW QUESTIONS: " + newQuestions);
 				for(TreeNode<String> newQuestion:newQuestions){
 					Composite questionComposite = new Composite(expandBarNewQuestions, SWT.NONE);
-//					System.out.println("Added child, now: " + questionnaireValidation.getLevel());
+//					LOGGER.finer("Added child, now: " + questionnaireValidation.getLevel());
 					GridLayout layout1 = new GridLayout(1, true);
 					questionComposite.setLayout(layout1);
 					
@@ -166,7 +168,7 @@ public class QuestionTreePage extends WizardPage {
 					question.setText((String) newQuestion.data);
 					TreeNode<String> dynamicQuestion = dynamicNode.addChild(newQuestion.data, true);
 					
-//					System.out.println("QUESTION INSERTED, TEXT:"+ question.getText());
+//					LOGGER.finer("QUESTION INSERTED, TEXT:"+ question.getText());
 					question.setControl(questionComposite);//Sets the control that is shown when the item is expanded.
 
 					//new answers for each question
@@ -208,8 +210,8 @@ public class QuestionTreePage extends WizardPage {
 //				getShell().pack();
 
 //				traverseQuestionnaire(dynamicQuestionnaire);
-				System.out.println("\n");System.out.println("\n");
-				System.out.println("SCOPE: " + scope + "; BEHAVIOR: " + behavior);
+				LOGGER.fine("\n");
+				LOGGER.fine("SCOPE: " + scope + "; BEHAVIOR: " + behavior);
 				checkIfValid();
 
 			}
@@ -280,7 +282,7 @@ public class QuestionTreePage extends WizardPage {
 	public static HashMap<Text,TraceLine> traceLineMap;
 	
 //	public static String determinePrimitiveType(org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl typearg) {
-//		// System.out.println("typeArg:"+typearg+";"+typearg.eIsProxy());
+//		// LOGGER.info("typeArg:"+typearg+";"+typearg.eIsProxy());
 //			if (typearg.getName().equals("Integer"))
 //				return "Int";
 //			else if (typearg.getName().equals("Boolean"))
@@ -304,8 +306,8 @@ public class QuestionTreePage extends WizardPage {
 		// From this you can get the path
 
 		//TODO:
-//		String path = "/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/ScopeTimelineView/";
-		String path = "/";
+		String path = "/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/ScopeTimelineView/";
+//		String path = "/";
 
 		scopeImage.put(Questionnaire.answ12, path+ "1.png");
 		scopeImage.put(Questionnaire.answ11, null);
@@ -376,14 +378,14 @@ public class QuestionTreePage extends WizardPage {
 	
 	public void traverseQuestionnaire(TreeNode<String> questionnaireAman){
 //		Iterator<TreeNode<String>> iter = this.questionnaire.iterator();
-		System.out.println("TRAVERSAL-------");
+		LOGGER.fine("TRAVERSAL-------");
 		Iterator<TreeNode<String>> iter = dynamicQuestionnaire.iterator();
 		while(iter.hasNext()){
 			TreeNode<String> el = iter.next();			
 			String ident = createIndent(el.getLevel());
 			String hmmm = el.isQuestion?"Q: ":"A: ";
 			
-			System.out.println(el.getLevel()+ident+hmmm+el.data);
+			LOGGER.fine(el.getLevel()+ident+hmmm+el.data);
 		}
 	}
 	
@@ -442,7 +444,7 @@ public class QuestionTreePage extends WizardPage {
 				dialog.create();
 				dialog.open();
 				if(dialog.getResult()!=null){
-					System.out.println(dialog.getResult());
+					LOGGER.fine(dialog.getResult().toString());
 					((Text)event.widget).setText(dialog.getResult().getNameAction());
 					ModelAction action = dialog.getResult();
 					((Text)event.widget).pack();
@@ -473,7 +475,7 @@ public class QuestionTreePage extends WizardPage {
 //											String type = determinePrimitiveType((org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl) argument.getType());
 //											trObj.parameterTypes.put(argument.getName(), type);
 //										}catch(ClassCastException ex){
-//											System.out.println("Not a primitive type" + ex);
+//											LOGGER.info("Not a primitive type" + ex);
 //											trObj.parameterTypes.put(argument.getName(), "ClassObject");
 //										}
 //									
@@ -510,7 +512,7 @@ public class QuestionTreePage extends WizardPage {
 							traceLineMap.put((Text)event.widget, trObj);
 //							// if it's NOT a reply message, then we care about the receiver object, and the class as well!
 //							// how about parameters?
-//							System.out.println(trObj);
+//							LOGGER.info(trObj);
 //							((Text)event.widget).setText(selected.get(0).getName());
 //							((Text)event.widget).pack();
 //							dialogOperation.close();
@@ -564,7 +566,7 @@ public class QuestionTreePage extends WizardPage {
 		}
 		
 		question.setHeight(answersContainer.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-		System.out.println("Dynamic QUESTIONNAIRE!!: ");
+		LOGGER.fine("Dynamic QUESTIONNAIRE: ");
 		traverseQuestionnaire(dynamicQuestionnaire);
 		PatternMuCalculusFormat.fill();
 	}

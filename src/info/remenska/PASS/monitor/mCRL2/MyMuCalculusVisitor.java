@@ -20,7 +20,13 @@ import org.antlr.v4.runtime.TokenStreamRewriter;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS");
+	
 	public static BufferedTokenStream tokens;
 	public static TokenStreamRewriter rewriter;
 	public static LinkedList<String> actions = new LinkedList<String>();
@@ -51,14 +57,14 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 
 		if (humanReadable){
 			finalResult.append("proc Monitor = " + monProc + "; \n\n");
-//			System.out.println("proc Monitor = " + monProc + ";");
+			LOGGER.finest("proc Monitor = " + monProc + ";");
 					
 		}
 		else{
 			finalResult.append("proc Monitor = "
 					+ "Mon_" + monitorProcesses.get(monProc) + ";\n\n");
-//			System.out.println("proc Monitor = "
-//					+ monitorProcesses.get(monProc));
+			LOGGER.finest("proc Monitor = "
+					+ monitorProcesses.get(monProc));
 			
 		}
 		return visitChildren(ctx);
@@ -149,18 +155,20 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		
 
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ sumOverAllActions + ";");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ sumOverAllActions + ";");
+					
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ sumOverAllActions + ";\n\n");
 		}
 		else{
 			
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ sumOverAllActions + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ sumOverAllActions + ";");
+			
 			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ sumOverAllActions + ";\n\n");
@@ -180,18 +188,19 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			monitorProcesses.put(monProc1, new Integer(counter++));
 
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-//					+ varList + ". " + monProc + varList + ";");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+					+ varList + ". " + monProc + varList + ";");
+			
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + ". " + monProc + varList + ";\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ monitorProcesses.get(monProc1) + varList + ". "
-//					+ monitorProcesses.get(monProc) + varList + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ monitorProcesses.get(monProc1) + varList + ". "
+					+ monitorProcesses.get(monProc) + varList + ";");
 			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "Mon_" + monitorProcesses.get(monProc1) + varList + ". "
@@ -227,18 +236,19 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		if (monitorProcesses.get(monProc2) == null)
 			monitorProcesses.put(monProc2, new Integer(counter++));
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-//					+ varList + "." + monProc2 + varList + ";");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+					+ varList + "." + monProc2 + varList + ";");
+			
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + "." + monProc2 + varList + ";\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ monitorProcesses.get(monProc1) + varList + "."
-//					+ monitorProcesses.get(monProc2) + varList + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ monitorProcesses.get(monProc1) + varList + "."
+					+ monitorProcesses.get(monProc2) + varList + ";");
 			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "Mon_" + monitorProcesses.get(monProc1) + varList + "."
@@ -275,18 +285,18 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		if (monitorProcesses.get(monProc2) == null)
 			monitorProcesses.put(monProc2, new Integer(counter++));
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-//					+ varList + " . " + monProc2 + varList + ";");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+					+ varList + " . " + monProc2 + varList + ";");
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + " . " + monProc2 + varList + ";\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ monitorProcesses.get(monProc1) + varList + " . "
-//					+ monitorProcesses.get(monProc2) + varList + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ monitorProcesses.get(monProc1) + varList + " . "
+					+ monitorProcesses.get(monProc2) + varList + ";");
 			finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "Mon_" + monitorProcesses.get(monProc1) + varList + " . "
@@ -325,18 +335,18 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			monitorProcesses.put(monProc2, new Integer(counter++));
 
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-//					+ varList + " + " + monProc2 + varList + ";");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+					+ varList + " + " + monProc2 + varList + ";");
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + " + " + monProc2 + varList + ";\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ monitorProcesses.get(monProc1) + varList + " + "
-//					+ monitorProcesses.get(monProc2) + varList + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ monitorProcesses.get(monProc1) + varList + " + "
+					+ monitorProcesses.get(monProc2) + varList + ";");
 			finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "Mon_" + monitorProcesses.get(monProc1) + varList + " + "
@@ -369,17 +379,19 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			monitorProcesses.put(monProc1, new Integer(counter++));
 
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-//					+ varList + ";");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+					+ varList + ";");
+			
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + ";\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ monitorProcesses.get(monProc1) + varList + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ monitorProcesses.get(monProc1) + varList + ";");
+			
 			finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
@@ -472,17 +484,19 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			monitorProcesses.put(monProc1, new Integer(counter++));
 
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-//					+ varList + ";");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+					+ varList + ";");
+			
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + ";\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ monitorProcesses.get(monProc1) + varList + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ monitorProcesses.get(monProc1) + varList + ";");
+			
 			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
@@ -501,17 +515,19 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			monitorProcesses.put(monProc, new Integer(counter++));
 
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ "internal_mon ;");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ "internal_mon ;");
+			
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "internal_mon ;\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ "internal_mon ;");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ "internal_mon ;");
+			
 			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "internal_mon ;\n\n");
@@ -536,18 +552,20 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			monitorProcesses.put(monProc2, new Integer(counter++));
 
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-//					+ varList + " + " + monProc2 + varList + ";");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+					+ varList + " + " + monProc2 + varList + ";");
+			
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + " + " + monProc2 + varList + ";\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = "
-//					+ monitorProcesses.get(monProc1) + varList + " + "
-//					+ monitorProcesses.get(monProc2) + varList + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = "
+					+ monitorProcesses.get(monProc1) + varList + " + "
+					+ monitorProcesses.get(monProc2) + varList + ";");
+			
 			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "Mon_" + monitorProcesses.get(monProc1) + varList + " + "
@@ -566,14 +584,16 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		if (monitorProcesses.get(monProc) == null)
 			monitorProcesses.put(monProc, new Integer(counter++));
 		if (humanReadable){
-//			System.out.println("proc " + monProc
-//					+ prepend_UniversalQuantifierStateFrm + " = error;");
+			LOGGER.finest("proc " + monProc
+					+ prepend_UniversalQuantifierStateFrm + " = error;");
+			
 			finalResult.append("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = error;\n\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ prepend_UniversalQuantifierStateFrm + " = error;");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ prepend_UniversalQuantifierStateFrm + " = error;");
+			
 			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = error;\n\n");
 		}
@@ -605,17 +625,19 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		}
 		varList = varList + ")";
 		if (humanReadable){
-//			System.out.println("proc " + monProc + " = sum "
-//					+ ctx.varsDeclList().getText() + ". " + monProc2 + varList
-//					+ ";");
+			LOGGER.finest("proc " + monProc + " = sum "
+					+ ctx.varsDeclList().getText() + ". " + monProc2 + varList
+					+ ";");
+			
 			finalResult.append("proc " + monProc + " = sum "
 					+ ctx.varsDeclList().getText() + ". " + monProc2 + varList
 					+ ";\n");
 		}
 		else{
-//			System.out.println("proc " + monitorProcesses.get(monProc)
-//					+ " = sum " + ctx.varsDeclList().getText() + ". "
-//					+ monitorProcesses.get(monProc2) + varList + ";");
+			LOGGER.finest("proc " + monitorProcesses.get(monProc)
+					+ " = sum " + ctx.varsDeclList().getText() + ". "
+					+ monitorProcesses.get(monProc2) + varList + ";");
+			
 			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 					+ " = sum " + ctx.varsDeclList().getText() + ". "
 					+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
@@ -645,7 +667,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("MuOperatorContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 		}
 		return visitChildren(ctx);
@@ -655,7 +677,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("NuOperatorContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}
@@ -666,7 +688,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("DiamondModalityStateFrmContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}
@@ -677,7 +699,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("DisjunctionStateFmrContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 		}
 		return visitChildren(ctx);
@@ -687,7 +709,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("ImplicationStateFrmContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}
@@ -698,7 +720,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("PBESVariableStateFrmContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}
@@ -709,7 +731,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("DelayOpStateFrmContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}
@@ -720,7 +742,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			try {
 				throw new NotMonitorableException("YaledOpStateFrmContext: The property is not monitorable! Exiting...");
 			} catch (NotMonitorableException e) {
-				System.out.println(e.getMessage());
+				LOGGER.severe(e.getMessage());
 //				System.exit(1);
 
 			}
@@ -732,7 +754,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("YaledOpStateFrmContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}
@@ -743,7 +765,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("YaledOpStateFrmContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}
@@ -754,7 +776,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("YaledOpStateFrmContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}
@@ -765,7 +787,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		try {
 			throw new NotMonitorableException("YaledOpStateFrmContext: The property is not monitorable! Exiting...");
 		} catch (NotMonitorableException e) {
-			System.out.println(e.getMessage());
+			LOGGER.severe(e.getMessage());
 //			System.exit(1);
 
 		}

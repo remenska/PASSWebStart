@@ -21,7 +21,6 @@ public class PatternMuCalculusFormat {
    public static void fill(){
 	   
 	   patterns = new HashMap<String,HashMap<String,String>>();
-//		  System.out.println(patterns.keySet());
 			  patterns.put("Globally", new HashMap<String, String>());
 			  patterns.put("Before R", new HashMap<String, String>());
 			  patterns.put("Before RRR variant", new HashMap<String, String>()); //like until, if RRR does ! happen, the property still must hold
@@ -33,7 +32,6 @@ public class PatternMuCalculusFormat {
 			  patterns.put("After QQQ until RRR variant", new HashMap<String, String>());
 
 			  patternsMonitorable = new HashMap<String,HashMap<String,Boolean>>();
-//			  System.out.println(patterns.keySet());
 			  patternsMonitorable.put("Globally", new HashMap<String, Boolean>());
 			  patternsMonitorable.put("Before R", new HashMap<String, Boolean>());
 			  patternsMonitorable.put("Before RRR variant", new HashMap<String, Boolean>());
@@ -350,10 +348,7 @@ public class PatternMuCalculusFormat {
 	  Questionnaire.aansw1313.setBehavior("Precedence Chain 1");
 	  Questionnaire.aansw1314.setBehavior("Precedence Chain 2");
    }
-   
-   public void printOut(){
-	   System.out.println(patterns.get("Globally").get("Response Chain 2"));
-   }
+
 
 }
 	

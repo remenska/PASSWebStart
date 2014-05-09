@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+import java.util.logging.Logger;
 
 /**
  * Abstract class for all dialogs to select an UniDataSet entry from a table
@@ -33,6 +34,8 @@ import org.eclipse.ui.PlatformUI;
  * @author Gerd Bartelt
  */
 public class SelectDataSetDialog extends Dialog {
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS"); 
+
 	public static Hashtable<String, ArrayList<String>> actionsDict = new Hashtable<String, ArrayList<String>>();
 
 	private ModelAction result;
@@ -162,7 +165,7 @@ public class SelectDataSetDialog extends Dialog {
 							Object obj = ((IStructuredSelection) selection)
 									.getFirstElement();
 							result = (ModelAction) obj;
-							System.out.println(obj);
+							LOGGER.finer(obj.toString());
 						}
 					}
 
@@ -177,7 +180,7 @@ public class SelectDataSetDialog extends Dialog {
 					Object obj = ((IStructuredSelection) selection)
 							.getFirstElement();
 					result = (ModelAction) obj;
-					System.out.println(obj);
+					LOGGER.finer(obj.toString());
 				}
 				close();
 			}

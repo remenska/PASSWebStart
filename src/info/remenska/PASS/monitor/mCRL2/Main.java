@@ -17,21 +17,19 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.io.IOUtils;
 //import org.antlr.runtime.ANTLRInputStream;
 //import org.antlr.runtime.CharStream;
+import java.util.logging.Logger;
 
 public class Main {
-
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS"); 
 	public String generateMonitor(String args[])
 			throws java.io.FileNotFoundException, NotMonitorableException,
 			java.lang.NullPointerException, Exception {
 		String result = new String();
 		if (args.length < 3) {
-			System.out.println("Your arguments: " + args.toString());
-			System.out
-					.println("Usage: java info.remenska.PASS.monitor.mCRL2.Main <mCRL2ModelFile> <muCalculusFile> <targetmCRL2File> <humanReadable>");
-			System.out
-					.println("\t\t<humanReadable> is optional boolean switch, and if set to true, \n\t\tyields to process names that are not parsable by mCRL2. ");
-			System.out
-					.println("\t\tIt should be used this way only for inspecting the translation. Default value is false.");
+			LOGGER.warning("Your arguments: " + args.toString());
+			LOGGER.warning("Usage: java info.remenska.PASS.monitor.mCRL2.Main <mCRL2ModelFile> <muCalculusFile> <targetmCRL2File> <humanReadable>");
+			LOGGER.warning("\t\t<humanReadable> is optional boolean switch, and if set to true, \n\t\tyields to process names that are not parsable by mCRL2. ");
+			LOGGER.warning("\t\tIt should be used this way only for inspecting the translation. Default value is false.");
 			return result;
 			// System.exit(1);
 		}
@@ -64,8 +62,8 @@ public class Main {
 
 			String finalString = args[1];
 
-			System.out.println("----------------------------------------");
-			System.out.println("Original formula : " + finalString);
+			LOGGER.fine("----------------------------------------");
+			LOGGER.fine("Original formula : " + finalString);
 
 			mucalculusLexer lexer = new mucalculusLexer(
 					(CharStream) new ANTLRInputStream(finalString));
@@ -133,24 +131,21 @@ public class Main {
 			os.flush();
 			result = new String(args[2] + "_mod.mcrl2");
 		} catch (java.io.FileNotFoundException e) {
-			System.err
-					.println("PROBLEM! File does not exist or permission denied:"
+			LOGGER.severe("PROBLEM! File does not exist or permission denied:"
 							+ e.getMessage());
 			throw e;
 		}
 
 		catch (java.lang.NullPointerException e) {
-			System.err
-					.println("Mu-calculus formula or mCRL2 is not well formed. ");
+			LOGGER.severe("Mu-calculus formula or mCRL2 is not well formed. ");
 			throw e;
 
 		} catch (RuntimeException e) {
-			System.err
-					.println("Something went terribly wrong. Check for syntax errors in model or formula");
+			LOGGER.severe("Something went terribly wrong. Check for syntax errors in model or formula");
 			throw e;
 
 		} catch (Exception e) {
-			System.err.println("Something went terribly wrong. ");
+			LOGGER.severe("Something went terribly wrong. ");
 			throw e;
 		}
 		return result;
@@ -159,12 +154,9 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		if (args.length < 2) {
-			System.out
-					.println("Usage: java info.remenska.PASS.monitor.mCRL2.Main <mCRL2ModelFile> <muCalculusFile> <humanReadable>");
-			System.out
-					.println("\t\t<humanReadable> is optional boolean switch, and if set to true, \n\t\tyields to process names that are not parsable by mCRL2. ");
-			System.out
-					.println("\t\tIt should be used this way only for inspecting the translation. Default value is false.");
+			LOGGER.warning("Usage: java info.remenska.PASS.monitor.mCRL2.Main <mCRL2ModelFile> <muCalculusFile> <humanReadable>");
+			LOGGER.warning("\t\t<humanReadable> is optional boolean switch, and if set to true, \n\t\tyields to process names that are not parsable by mCRL2. ");
+			LOGGER.warning("\t\tIt should be used this way only for inspecting the translation. Default value is false.");
 			System.exit(1);
 		}
 		try {
@@ -196,8 +188,8 @@ public class Main {
 			// full mCRL2 grammar
 			String initialString = IOUtils.toString(is);
 			String finalString = initialString;
-			System.out.println("----------------------------------------");
-			System.out.println("Original formula : " + finalString);
+			LOGGER.fine("----------------------------------------");
+			LOGGER.fine("Original formula : " + finalString);
 
 			mucalculusLexer lexer = new mucalculusLexer(
 					(CharStream) new ANTLRInputStream(finalString));
@@ -221,9 +213,9 @@ public class Main {
 			visitor.visit(tree);
 			finalStringModified = preprocess(MyMuCalculusVisitorSilent.rewriter
 					.getText());
-			System.out.println("----------------------------------------");
-			System.out.println("Modified formula : " + finalStringModified);
-			System.out.println("----------------------------------------");
+			LOGGER.fine("----------------------------------------");
+			LOGGER.fine("Modified formula : " + finalStringModified);
+			LOGGER.fine("----------------------------------------");
 			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
 					finalStringModified));
 			tokens = new CommonTokenStream(lexer);
@@ -260,23 +252,20 @@ public class Main {
 			os.write(generated.getBytes());
 			os.write(outputModel.toString().getBytes());
 			os.flush();
-			System.out.println("The new model has been written at: \n"
+			LOGGER.info("The new model has been written at: \n"
 					+ args[0] + "_mod.crl2" + "\n");
 
 		} catch (java.io.FileNotFoundException e) {
-			System.err
-					.println("PROBLEM! File does not exist or permission denied:"
+			LOGGER.severe("PROBLEM! File does not exist or permission denied:"
 							+ e.getMessage());
 			System.exit(1);
 		}
 
 		catch (java.lang.NullPointerException e) {
-			System.err
-					.println("Mu-calculus formula or mCRL2 is not well formed. ");
+			LOGGER.severe("Mu-calculus formula or mCRL2 is not well formed. ");
 			System.exit(1);
 		} catch (RuntimeException e) {
-			System.err
-					.println("Something went terribly wrong. Check for syntax errors in model or formula");
+			LOGGER.severe("Something went terribly wrong. Check for syntax errors in model or formula");
 			System.exit(1);
 		}
 

@@ -15,6 +15,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
@@ -41,6 +45,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class PASSWrapper extends ApplicationWindow {
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS"); 
+	private static FileHandler fh = null;
+	
 	public static Text modelFullPath;
 //	public static String fileName;
 	public static Label styledText;
@@ -48,6 +55,15 @@ public class PASSWrapper extends ApplicationWindow {
     public static Hashtable<String, ArrayList<String>> actionsDict = new Hashtable<String, ArrayList<String>>();
 
 	protected Control createContents(final Composite parent) {
+		
+		try {
+			 fh=new FileHandler("/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/logger/loggerExample.log", false);
+			 } catch (IOException e) {
+				 e.printStackTrace();
+			 }
+		fh.setFormatter(new SimpleFormatter());
+		LOGGER.addHandler(fh);
+		LOGGER.setLevel(Level.FINEST);
 	    getShell().setText("PASS Property ASSistant Web Start");
 	    parent.setSize(450,150);
 
