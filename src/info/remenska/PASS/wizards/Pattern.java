@@ -65,8 +65,7 @@ public class Pattern {
 	   addPattern("After Q until R", "Existence", "[true*. Q ] mu X. <true> true and [ R ] false and [not P ] X");
 	   addPattern("After Q until R variant", "Existence", "[true*. Q ](([true*. Q ] false) =>  mu X. <true> true and [ R ] false and [not P ] X) ");
 	   
-	   //TODO: missing Universality scope variations!!!
-	   // actually it's the same as absence, but we're just using val(xx)  instead of false
+
 	   
 	   addPattern("Globally", "Universality", "[true*. P ] false ");
 	   addPattern("Before R", "Universality", "[(not R )*. P . (not R )*. R ] false ");
@@ -314,7 +313,6 @@ public class Pattern {
 	   addPatternMonitorable("Between Q and R variant", "Bounded Existence", Boolean.TRUE); //TODO
 	   addPatternMonitorable("After Q until R variant", "Bounded Existence" , Boolean.TRUE); //TODO
 	  
-//	  Questionnaire.answ12.setScope("Globally");
 	  Questionnaire.answ12.setScope("Globally");
 	  Questionnaire.answ111111.setScope("After Q");
 	  Questionnaire.answ111112.setScope("After Q variant"); 

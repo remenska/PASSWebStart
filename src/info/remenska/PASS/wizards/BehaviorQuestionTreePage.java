@@ -120,7 +120,8 @@ public class BehaviorQuestionTreePage extends QuestionTreePage {
 	public IWizardPage getNextPage(){
 		Wizard wizard = (Wizard) this.getWizard();
 		
-		DisciplinedEnglishPage disciplinedEnglishPage = new DisciplinedEnglishPage("Disciplined English Summary: ", "Please review the collected information regarding the requested property. ");
+		DisciplinedEnglishPage disciplinedEnglishPage =
+				new DisciplinedEnglishPage("Disciplined English Summary: ", "Please review the collected information regarding the requested property. ");
 		
 		wizard.addPage(disciplinedEnglishPage);
 		return disciplinedEnglishPage;

@@ -31,7 +31,6 @@ public class Main {
 			LOGGER.warning("\t\t<humanReadable> is optional boolean switch, and if set to true, \n\t\tyields to process names that are not parsable by mCRL2. ");
 			LOGGER.warning("\t\tIt should be used this way only for inspecting the translation. Default value is false.");
 			return result;
-			// System.exit(1);
 		}
 		try {
 			String actionSort = new String();

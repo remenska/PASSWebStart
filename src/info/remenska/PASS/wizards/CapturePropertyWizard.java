@@ -42,7 +42,6 @@ public class CapturePropertyWizard extends Wizard {
 		Rectangle clientArea = this.getShell().getClientArea();
 		this.getShell().setSize(clientArea.width, clientArea.height);
 
-		// this.getShell().pack();
 	}
 
 	public boolean canFinish(){

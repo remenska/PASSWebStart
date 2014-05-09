@@ -287,9 +287,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 			    				  int i=0;
 			    				  for(Control argsText:argumentsText){
 			    					  
-//			    					  if(((Text)argsText).getText().equals("*"))
-//			    						   argsString[i++] = parameterTypes.get((Text)argsText);
-//			    						  else 	  
+
 			    						if (QuestionTreePage.behavior.equals("Universality")) { // special treatment 
 			    							argsString[i] = ((Text)argsText).getText();
 			    							quantifiers.insert(0,"forall " + paramNames[i] + ":" + parameterTypes.get((Text)argsText) +".val( " + paramNames[i] + "!= " + argsString[i] + "). ");
@@ -318,7 +316,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 			    				  		}
 			    				  }
 			    				  if(toChangeTL.isReply){
-			    					  // if it's a value, we don't need a quantifier, otherwise we need to pre
+			    					  // if it's a value, we don't need a quantifier, otherwise we need to prepend
 			    					  // the formula with forall nameParam:DomainParam
 			    					  
 			    					  toChangeTL.setReturnParams(argsString);
@@ -504,14 +502,8 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 			labelDirectoryFormula.setText("Select a location for the target mCRL2 model that will contain the monitor code:");
 			GridData data = new GridData();
 		    data.horizontalSpan = 2;
-//		    data.verticalSpan = 2;
 		    labelDirectoryFormula.setLayoutData(data);
 
-//			Composite here = new Composite(composite, SWT.NONE);
-
-
-//		    data = new GridData();
-//		    textDirectoryFormula.setLayoutData(data);
 
 			Button button = new Button(composite, SWT.PUSH);
 			button.setText("Browse...");
@@ -522,12 +514,6 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 
 			        dlg.setText("Please select a location for the target mCRL2 model that will contain the monitor code.");
 
-			        // Customizable message displayed in the dialog
-//			        dlg.setMessage("Please select the original mCRL2 model.");
-
-			        // Calling open() will open and run the dialog.
-			        // It will return the selected directory, or
-			        // null if user cancels
 			        String dir = dlg.open();
 			        if (dir != null) {
 			          // Set the text box to the new selection
@@ -548,9 +534,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 			    });
 			data = new GridData();
 		    data.horizontalSpan = 2;
-//		    data.verticalSpan = 1;
 
-//		    data.verticalAlignment = SWT.TOP;
 			button.setLayoutData(data);
 			
 
@@ -564,8 +548,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		else {
 		    GridData  data = new GridData();
 		    data.horizontalSpan = 2;
-//		    data.verticalSpan = 1;
-//		    data.verticalAlignment = SWT.BOTTOM;
+
 		    labelDirectoryFormula.setLayoutData(data);
 			labelDirectoryFormula.setText("The property is not monitorable. ");
 			if(textDirectoryFormula!=null)

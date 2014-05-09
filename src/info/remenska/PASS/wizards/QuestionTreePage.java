@@ -50,266 +50,285 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.FilteredList;
 
-//import com.ibm.xtools.uml.type.IMessageElementType;
-//import com.ibm.xtools.uml.type.UMLElementTypes;
-//import com.ibm.xtools.uml.ui.internal.dialogs.UMLSelectExistingElementDialog;
-//import org.eclipse.ocl.uml.impl.PrimitiveTypeImpl;
-//import org.eclipse.ocl.ecore.impl.PrimitiveTypeImpl;
 public class QuestionTreePage extends WizardPage {
-	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS"); 
+	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS");
 
-	class MySelectionListener implements SelectionListener{
+	class MySelectionListener implements SelectionListener {
 		public void widgetSelected(SelectionEvent e) {
 			// ExpandBar contains: ExpandItem and Composite(contains:
 			// Buttons))
 			boolean isSelected = ((Button) e.getSource()).getSelection();
 			if (isSelected) {
-				
-				List<TreeNode<String>> newQuestions = questionnaire.findTreeNode(((Button) e.getSource()).getText()).children;
+
+				List<TreeNode<String>> newQuestions = questionnaire
+						.findTreeNode(((Button) e.getSource()).getText()).children;
 				String selected = ((Button) e.getSource()).getText();
-				// (1) find parent 
+				// (1) find parent
 				// (2) remove all children
 				// (3) add this clicked one
-				LOGGER.finer("SELECTED: "+ selected);
+				LOGGER.finer("SELECTED: " + selected);
 
-				TreeNode<String> staticNode = questionnaire.findTreeNode(selected);
-				LOGGER.finer("FOUND STATIC NODE: "+ staticNode.data);
+				TreeNode<String> staticNode = questionnaire
+						.findTreeNode(selected);
+				LOGGER.finer("FOUND STATIC NODE: " + staticNode.data);
 
 				TreeNode<String> staticParentNode = staticNode.parent;
-//				LOGGER.finer("STATIC NODE PARENT: "+ staticParentNode.data);
+				// LOGGER.finer("STATIC NODE PARENT: "+ staticParentNode.data);
 
 				// (1)
-				TreeNode<String> dynamicParentNode =  dynamicQuestionnaire.findTreeNode(staticParentNode.data);
-//				LOGGER.finer("DYNAMIC NODE PARENT: "+ dynamicParentNode.data);
-//				LOGGER.finer("DYNAMIC PARENT HAS: "+ dynamicParentNode.children.size());
+				TreeNode<String> dynamicParentNode = dynamicQuestionnaire
+						.findTreeNode(staticParentNode.data);
+				// LOGGER.finer("DYNAMIC NODE PARENT: "+
+				// dynamicParentNode.data);
+				// LOGGER.finer("DYNAMIC PARENT HAS: "+
+				// dynamicParentNode.children.size());
 
 				// (2)
 				dynamicParentNode.removeChildren();
 
 				// (3)
-				TreeNode<String> dynamicNode = dynamicParentNode.addChild(selected, false); 
+				TreeNode<String> dynamicNode = dynamicParentNode.addChild(
+						selected, false);
 
-				Composite questionsHolder = ((Button) e.getSource()).getParent();
-				
-				// update the scope & behavior if it's decided with the answers so far
-				if(staticNode.isLeaf() && staticNode.getScope()!=null) scope = staticNode.getScope(); 
-//						else scope = null;
-				if(staticNode.isLeaf() && staticNode.getBehavior()!=null) behavior = staticNode.getBehavior();
-//						else behavior = null;
-				
-				// refresh graphical scopes (for Scope Question Tree only?)
-				if(scopeImage.get(staticNode)!=null){
+				Composite questionsHolder = ((Button) e.getSource())
+						.getParent();
+
+				// update the scope & behavior if it's decided with the answers
+				// so far
+				if (staticNode.isLeaf() && staticNode.getScope() != null)
+					scope = staticNode.getScope();
+				if (staticNode.isLeaf() && staticNode.getBehavior() != null)
+					behavior = staticNode.getBehavior();
+
+				if (scopeImage.get(staticNode) != null) {
 
 					labelGraphicsHolder.setVisible(true);
-					//TODO:
-//					scopeGraphical = new Image(Display.getCurrent(), this.getClass().getClassLoader().getResourceAsStream("images/ScopeTimelineView" + scopeImage.get(staticNode)));
-					scopeGraphical = new Image(Display.getCurrent(), scopeImage.get(staticNode));
+					// TODO:
+					// scopeGraphical = new Image(Display.getCurrent(),
+					// this.getClass().getClassLoader().getResourceAsStream("images/ScopeTimelineView"
+					// + scopeImage.get(staticNode)));
+					scopeGraphical = new Image(Display.getCurrent(),
+							scopeImage.get(staticNode));
 
-					labelGraphicsHolder.getDisplay().asyncExec(new Runnable () {
+					labelGraphicsHolder.getDisplay().asyncExec(new Runnable() {
 						public void run() {
 
 							Composite parent = labelGraphicsHolder.getParent();
-							labelGraphicsHolder.setImage(scopeGraphical) ;
+							labelGraphicsHolder.setImage(scopeGraphical);
 							labelGraphicsHolder.pack(true);
 							getShell().pack();
 
 							labelGraphicsHolder.redraw();
 							labelGraphicsHolder.update();
 						}
-						}); 
+					});
 
 				}
-				
+
 				// refresh enabled/disabled text fields for selection of events
-				if(fieldMap.get(staticNode)!=null){
-					for (Text ownedText:ownedTexts){
+				if (fieldMap.get(staticNode) != null) {
+					for (Text ownedText : ownedTexts) {
 						ownedText.setEnabled(false);
 					}
-					
+
 					List<Text> fieldsToEnable = fieldMap.get(staticNode);
-					for(Text field:fieldsToEnable){
+					for (Text field : fieldsToEnable) {
 						field.setEnabled(true);
 						field.pack(true);
 					}
 
 				}
-				
-				
-				int oldOldHeight = questionsHolder.computeSize(SWT.DEFAULT, SWT.DEFAULT).y;
-				//first remove existing expandBars. This means only answers remain, no nested questions
-				 for (Control control : questionsHolder.getChildren()) {
-				        if (!(control instanceof Button)){
-				        	control.dispose();
-				        }
-				    }		
-				 
-				 questionsHolder.layout();
 
-				//dynamically create new questions. 
-				ExpandBar expandBarNewQuestions = new ExpandBar(questionsHolder, SWT.NONE);
-//				expandBarNewQuestions.setBackgroundImage(new Image(Display.getCurrent(),"/home/daniela/Downloads/background.jpg"));
-//				expandBarNewQuestions.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLUE)); 
+				int oldOldHeight = questionsHolder.computeSize(SWT.DEFAULT,
+						SWT.DEFAULT).y;
+				// first remove existing expandBars. This means only answers
+				// remain, no nested questions
+				for (Control control : questionsHolder.getChildren()) {
+					if (!(control instanceof Button)) {
+						control.dispose();
+					}
+				}
+
+				questionsHolder.layout();
+
+				// dynamically create new questions.
+				ExpandBar expandBarNewQuestions = new ExpandBar(
+						questionsHolder, SWT.NONE);
+
 				MyExpandListener myExpandListener = new MyExpandListener();
 				expandBarNewQuestions.addExpandListener(myExpandListener);
-				
-				expandBarNewQuestions.setLayoutData(new GridData(GridData.FILL, GridData.FILL,
-						true, true, 2, 1));
-				
-				int height = 0; 
+
+				expandBarNewQuestions.setLayoutData(new GridData(GridData.FILL,
+						GridData.FILL, true, true, 2, 1));
+
+				int height = 0;
 				ExpandItem prevQuest = null;
-//				LOGGER.finer("NEW QUESTIONS: " + newQuestions);
-				for(TreeNode<String> newQuestion:newQuestions){
-					Composite questionComposite = new Composite(expandBarNewQuestions, SWT.NONE);
-//					LOGGER.finer("Added child, now: " + questionnaireValidation.getLevel());
+				// LOGGER.finer("NEW QUESTIONS: " + newQuestions);
+				for (TreeNode<String> newQuestion : newQuestions) {
+					Composite questionComposite = new Composite(
+							expandBarNewQuestions, SWT.NONE);
+					// LOGGER.finer("Added child, now: " +
+					// questionnaireValidation.getLevel());
 					GridLayout layout1 = new GridLayout(1, true);
 					questionComposite.setLayout(layout1);
-					
-					ExpandItem question = new ExpandItem(expandBarNewQuestions, SWT.NONE, 0);
-					question.setText((String) newQuestion.data);
-					TreeNode<String> dynamicQuestion = dynamicNode.addChild(newQuestion.data, true);
-					
-//					LOGGER.finer("QUESTION INSERTED, TEXT:"+ question.getText());
-					question.setControl(questionComposite);//Sets the control that is shown when the item is expanded.
 
-					//new answers for each question
+					ExpandItem question = new ExpandItem(expandBarNewQuestions,
+							SWT.NONE, 0);
+					question.setText((String) newQuestion.data);
+					TreeNode<String> dynamicQuestion = dynamicNode.addChild(
+							newQuestion.data, true);
+
+					// LOGGER.finer("QUESTION INSERTED, TEXT:"+
+					// question.getText());
+					question.setControl(questionComposite);// Sets the control
+															// that is shown
+															// when the item is
+															// expanded.
+
+					// new answers for each question
 					List<TreeNode<String>> answers = newQuestion.children;
-					for(TreeNode<String> answer:answers){
+					for (TreeNode<String> answer : answers) {
 						Button label1 = new Button(questionComposite, SWT.RADIO);
 						label1.setText((String) answer.data);
 						label1.addSelectionListener(this);
-						
+
 						dynamicQuestion.addChild(answer.data, false);
 					}
-					question.setHeight(questionComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-					height += questionComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT).y;
+					question.setHeight(questionComposite.computeSize(
+							SWT.DEFAULT, SWT.DEFAULT).y);
+					height += questionComposite.computeSize(SWT.DEFAULT,
+							SWT.DEFAULT).y;
 					questionComposite.setVisible(true);
 					questionComposite.layout();
 					questionsHolder.layout();
 				}
-				
-				//we need to adjust the (parent) ExpandItem's height
-				//first let's find it
-				ExpandBar expandBarParent = (ExpandBar) questionsHolder.getParent();
+
+				// we need to adjust the (parent) ExpandItem's height
+
+				ExpandBar expandBarParent = (ExpandBar) questionsHolder
+						.getParent();
 				ExpandItem[] expandItems = expandBarParent.getItems();
 				ExpandItem theOneWeNeed = null;
-				for(ExpandItem expandItem:expandItems){
-					if(expandItem.getControl().equals(questionsHolder))
+				for (ExpandItem expandItem : expandItems) {
+					if (expandItem.getControl().equals(questionsHolder))
 						theOneWeNeed = expandItem;
 				}
 				questionsHolder.layout();
 
-				//recalculate the height // <-- needs to be propagated to outer levels
-				if(theOneWeNeed!=null){
+				// recalculate the height // <-- needs to be propagated to outer
+				// levels
+				if (theOneWeNeed != null) {
 					int oldHeight = theOneWeNeed.getHeight();
-					theOneWeNeed.setHeight(questionsHolder.computeSize(SWT.DEFAULT, SWT.DEFAULT).y); 
+					theOneWeNeed.setHeight(questionsHolder.computeSize(
+							SWT.DEFAULT, SWT.DEFAULT).y);
 
 				}
-				
+
 				recallibrateHeight(height, oldOldHeight, questionsHolder);
 				questionsHolder.layout();
-//				getShell().pack();
 
-//				traverseQuestionnaire(dynamicQuestionnaire);
 				LOGGER.fine("\n");
 				LOGGER.fine("SCOPE: " + scope + "; BEHAVIOR: " + behavior);
 				checkIfValid();
 
 			}
-			
+
 		}
 
 		private void recallibrateHeight(int height, int oldOldHeight,
 				Composite questionsHolder) {
-			// we need to propagate the height to all ExpandItem parents in the hierarchy
+			// we need to propagate the height to all ExpandItem parents in the
+			// hierarchy
 			ExpandBar barHeigher = (ExpandBar) questionsHolder.getParent();
 			ExpandItem[] items = barHeigher.getItems();
 			ExpandItem itemExpanded = null;
-			for(ExpandItem item:items){
-				if(item.getControl().equals(questionsHolder))
+			for (ExpandItem item : items) {
+				if (item.getControl().equals(questionsHolder))
 					itemExpanded = item;
 			}
-			ExpandItem theOneWeLookFor = null; 
-			Composite compositeControlled = (Composite) itemExpanded.getControl();
-//			int heightToAdd = compositeControlled.computeSize(SWT.DEFAULT, SWT.DEFAULT).y;
-			while(itemExpanded!=null){
+			ExpandItem theOneWeLookFor = null;
+			Composite compositeControlled = (Composite) itemExpanded
+					.getControl();
+			while (itemExpanded != null) {
 				theOneWeLookFor = null;
 				ExpandBar itemParentBar = itemExpanded.getParent();
-				Composite compositeParent =itemParentBar.getParent();
-				if(compositeParent!=null  && !itemParentBar.getParent().equals(parentLe)){
-					ExpandBar expandBarSuperParent = (ExpandBar) compositeParent.getParent();
-					if(expandBarSuperParent!=null){
-						ExpandItem[] allItemsOfSuperParent = expandBarSuperParent.getItems();
-						
-						for(ExpandItem item:allItemsOfSuperParent){
-							if(item.getControl().equals(compositeParent))
+				Composite compositeParent = itemParentBar.getParent();
+				if (compositeParent != null
+						&& !itemParentBar.getParent().equals(parentLe)) {
+					ExpandBar expandBarSuperParent = (ExpandBar) compositeParent
+							.getParent();
+					if (expandBarSuperParent != null) {
+						ExpandItem[] allItemsOfSuperParent = expandBarSuperParent
+								.getItems();
+
+						for (ExpandItem item : allItemsOfSuperParent) {
+							if (item.getControl().equals(compositeParent))
 								theOneWeLookFor = item;
 						}
 
-						theOneWeLookFor.setHeight(theOneWeLookFor.getHeight()+questionsHolder.computeSize(SWT.DEFAULT, SWT.DEFAULT).y - oldOldHeight);
+						theOneWeLookFor.setHeight(theOneWeLookFor.getHeight()
+								+ questionsHolder.computeSize(SWT.DEFAULT,
+										SWT.DEFAULT).y - oldOldHeight);
 
 						compositeParent.layout();
-					
+
 					}
-					
+
 				}
-				itemExpanded = theOneWeLookFor; 
+				itemExpanded = theOneWeLookFor;
 
 			}
-		
+
 		}
 
 		public void widgetDefaultSelected(SelectionEvent e) {
 			widgetSelected(e);
 		}
 	}
+
 	public MySelectionListener mySelectionListener;
 	public TreeNode<String> questionnaire;
 	public TreeNode<String> dynamicQuestionnaire;
 	public static Label labelStartEvent, labelEndEvent;
 	public static Text textStartEvent, textEndEvent;
 	public static TraceLine trStartEvent, trEndEvent;
-	
+
 	public LinkedList<Text> ownedTexts;
 	public static Label labelEventA, labelEventB, labelEventC, labelEventX;
 	public static Text textEventA, textEventB, textEventC, textEventX;
 	public static TraceLine trEventA, trEventB, trEventC, trEventX;
-	
+
 	public static String scope, behavior;
-	public  Label labelGraphicsHolder;
-	public  Image scopeGraphical;
-	public static LinkedHashMap<TreeNode<String>, String> scopeImage; 
+	public Label labelGraphicsHolder;
+	public Image scopeGraphical;
+	public static LinkedHashMap<TreeNode<String>, String> scopeImage;
 	public static LinkedHashMap<TreeNode<String>, LinkedList<Text>> fieldMap;
-	public static HashMap<Text,TraceLine> traceLineMap;
-	
-//	public static String determinePrimitiveType(org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl typearg) {
-//		// LOGGER.info("typeArg:"+typearg+";"+typearg.eIsProxy());
-//			if (typearg.getName().equals("Integer"))
-//				return "Int";
-//			else if (typearg.getName().equals("Boolean"))
-//				return "Bool";
-//			else if (typearg.getName().equals("Natural"))
-//				return "Nat";
-//			else if (typearg.getName().equals("String"))
-//				return "SortString";
-//			else
-//				return "Unknown %FIXME";
-//		
-//	}
+	public static HashMap<Text, TraceLine> traceLineMap;
 
-	
-	public static void fillTreeMap() throws IOException{
-		
-		// URL to the root ("/") of the plugin-path: 
+	// public static String
+	// determinePrimitiveType(org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl
+	// typearg) {
+	// // LOGGER.info("typeArg:"+typearg+";"+typearg.eIsProxy());
+	// if (typearg.getName().equals("Integer"))
+	// return "Int";
+	// else if (typearg.getName().equals("Boolean"))
+	// return "Bool";
+	// else if (typearg.getName().equals("Natural"))
+	// return "Nat";
+	// else if (typearg.getName().equals("String"))
+	// return "SortString";
+	// else
+	// return "Unknown %FIXME";
+	//
+	// }
 
-		// Turn relative path to a local path with the help of Eclipse-platform: 
+	public static void fillTreeMap() throws IOException {
 
-		// From this you can get the path
-
-		//TODO:
+		// TODO:
 		String path = "/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/ScopeTimelineView/";
-//		String path = "/";
+		// String path = "/";
 
-		scopeImage.put(Questionnaire.answ12, path+ "1.png");
+		scopeImage.put(Questionnaire.answ12, path + "1.png");
 		scopeImage.put(Questionnaire.answ11, null);
 		scopeImage.put(Questionnaire.answ1111, path + "3.png");
 		scopeImage.put(Questionnaire.answ111111, path + "3.png");
@@ -320,29 +339,56 @@ public class QuestionTreePage extends WizardPage {
 		scopeImage.put(Questionnaire.answ1113, path + "4.png");
 		scopeImage.put(Questionnaire.answ11311, path + "4.png");
 		scopeImage.put(Questionnaire.answ11312, path + "9.png");
-		scopeImage.put(Questionnaire.answ1131211, path + "11.png"); // same as 5?
+		scopeImage.put(Questionnaire.answ1131211, path + "11.png"); // same as
+																	// 5?
 		scopeImage.put(Questionnaire.answ1131212, path + "10.png");
-		scopeImage.put(Questionnaire.answ1131111, path + "12.png"); // same as 5?
-		scopeImage.put(Questionnaire.answ1131112, path + "13.png");		
-		
+		scopeImage.put(Questionnaire.answ1131111, path + "12.png"); // same as
+																	// 5?
+		scopeImage.put(Questionnaire.answ1131112, path + "13.png");
+
 		// (10,10) can just as well be (12 13)! how to determine?
 
 		fieldMap.put(Questionnaire.answ11, new LinkedList<Text>());
-		fieldMap.put(Questionnaire.answ1111,new LinkedList<Text>(Arrays.asList(textStartEvent)));
-		fieldMap.put(Questionnaire.answ1112, new LinkedList<Text>(Arrays.asList(textEndEvent)));
-		fieldMap.put(Questionnaire.answ1113, new LinkedList<Text>(Arrays.asList(textStartEvent,textEndEvent)));
+		fieldMap.put(Questionnaire.answ1111,
+				new LinkedList<Text>(Arrays.asList(textStartEvent)));
+		fieldMap.put(Questionnaire.answ1112,
+				new LinkedList<Text>(Arrays.asList(textEndEvent)));
+		fieldMap.put(
+				Questionnaire.answ1113,
+				new LinkedList<Text>(Arrays
+						.asList(textStartEvent, textEndEvent)));
 
 		fieldMap.put(Questionnaire.answ12, new LinkedList<Text>());
-		fieldMap.put(Questionnaire.aansw11, new LinkedList<Text>(Arrays.asList(textEventA)));
-		fieldMap.put(Questionnaire.aansw12, new LinkedList<Text>(Arrays.asList(textEventA,textEventB)));
-		fieldMap.put(Questionnaire.aansw13, new LinkedList<Text>(Arrays.asList(textEventA,textEventB,textEventC)));
-		fieldMap.put(Questionnaire.aansw1312, new LinkedList<Text>(Arrays.asList(textEventA,textEventB,textEventC)));
-		fieldMap.put(Questionnaire.aansw1312, new LinkedList<Text>(Arrays.asList(textEventA,textEventB,textEventC)));
-		fieldMap.put(Questionnaire.aansw1312, new LinkedList<Text>(Arrays.asList(textEventA,textEventB,textEventC)));
+		fieldMap.put(Questionnaire.aansw11,
+				new LinkedList<Text>(Arrays.asList(textEventA)));
+		fieldMap.put(Questionnaire.aansw12,
+				new LinkedList<Text>(Arrays.asList(textEventA, textEventB)));
+		fieldMap.put(
+				Questionnaire.aansw13,
+				new LinkedList<Text>(Arrays.asList(textEventA, textEventB,
+						textEventC)));
+		fieldMap.put(
+				Questionnaire.aansw1312,
+				new LinkedList<Text>(Arrays.asList(textEventA, textEventB,
+						textEventC)));
+		fieldMap.put(
+				Questionnaire.aansw1312,
+				new LinkedList<Text>(Arrays.asList(textEventA, textEventB,
+						textEventC)));
+		fieldMap.put(
+				Questionnaire.aansw1312,
+				new LinkedList<Text>(Arrays.asList(textEventA, textEventB,
+						textEventC)));
 
-		fieldMap.put(Questionnaire.aansw131112,  new LinkedList<Text>(Arrays.asList(textEventA,textEventB,textEventC, textEventX)));
-		fieldMap.put(Questionnaire.aansw131111, new LinkedList<Text>(Arrays.asList(textEventA,textEventB,textEventC)));
-		
+		fieldMap.put(
+				Questionnaire.aansw131112,
+				new LinkedList<Text>(Arrays.asList(textEventA, textEventB,
+						textEventC, textEventX)));
+		fieldMap.put(
+				Questionnaire.aansw131111,
+				new LinkedList<Text>(Arrays.asList(textEventA, textEventB,
+						textEventC)));
+
 		trEventA = new TraceLine();
 		trEventB = new TraceLine();
 		trEventC = new TraceLine();
@@ -357,182 +403,134 @@ public class QuestionTreePage extends WizardPage {
 		traceLineMap.put(textEndEvent, trEndEvent);
 
 	}
-	
+
 	private static String createIndent(int depth) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < depth; i++) {
-                sb.append(' ');
-                sb.append(' ');
-        }
-        return sb.toString();
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < depth; i++) {
+			sb.append(' ');
+			sb.append(' ');
+		}
+		return sb.toString();
 	}
 
 	public Composite parentLe = null;
-	protected QuestionTreePage(String pageName, String description, TreeNode<String> questionnaire){
+
+	protected QuestionTreePage(String pageName, String description,
+			TreeNode<String> questionnaire) {
 		super(pageName);
 		this.questionnaire = questionnaire;
 		setTitle(pageName);
 		setDescription(description);
 		setPageComplete(false);
 	}
-	
-	public void traverseQuestionnaire(TreeNode<String> questionnaireAman){
-//		Iterator<TreeNode<String>> iter = this.questionnaire.iterator();
+
+	public void traverseQuestionnaire(TreeNode<String> questionnaireAman) {
 		LOGGER.fine("TRAVERSAL-------");
 		Iterator<TreeNode<String>> iter = dynamicQuestionnaire.iterator();
-		while(iter.hasNext()){
-			TreeNode<String> el = iter.next();			
+		while (iter.hasNext()) {
+			TreeNode<String> el = iter.next();
 			String ident = createIndent(el.getLevel());
-			String hmmm = el.isQuestion?"Q: ":"A: ";
-			
-			LOGGER.fine(el.getLevel()+ident+hmmm+el.data);
+			String hmmm = el.isQuestion ? "Q: " : "A: ";
+
+			LOGGER.fine(el.getLevel() + ident + hmmm + el.data);
 		}
 	}
-	
-	public void checkIfValid(){
+
+	public void checkIfValid() {
 		boolean isValid = true;
 		Iterator<TreeNode<String>> iter = dynamicQuestionnaire.iterator();
-		while(iter.hasNext()){
+		while (iter.hasNext()) {
 			TreeNode<String> el = iter.next();
-			if(el.isQuestion)
-			if(el.children.size()!=1 && el.isQuestion){
-				isValid = false;
-				break;
-			}
+			if (el.isQuestion)
+				if (el.children.size() != 1 && el.isQuestion) {
+					isValid = false;
+					break;
+				}
 		}
-		
-		for(Text ownedText:ownedTexts){
-			if(ownedText.isEnabled() && ownedText.getText().equals("double-click to select"))
+
+		for (Text ownedText : ownedTexts) {
+			if (ownedText.isEnabled()
+					&& ownedText.getText().equals("double-click to select"))
 				isValid = false;
 		}
-		if(isValid)
+		if (isValid)
 			setPageComplete(true);
 		else
 			setPageComplete(false);
 	}
-	
-	public void addEventSlots(Composite parent, ExpandBar root, Listener operationListener){
-		
+
+	public void addEventSlots(Composite parent, ExpandBar root,
+			Listener operationListener) {
+
 	}
-	
-	
+
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.FILL);
 		parentLe = composite;
 
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 2;
-		
-		composite.setLayout(gridLayout); 
+
+		composite.setLayout(gridLayout);
 
 		setControl(composite);
 		scopeImage = new LinkedHashMap<TreeNode<String>, String>();
 		fieldMap = new LinkedHashMap<TreeNode<String>, LinkedList<Text>>();
 		ownedTexts = new LinkedList<Text>();
-		traceLineMap = new HashMap<Text,TraceLine>();
-		ExpandBar root = new ExpandBar(composite, SWT.V_SCROLL | SWT.H_SCROLL);;
+		traceLineMap = new HashMap<Text, TraceLine>();
+		ExpandBar root = new ExpandBar(composite, SWT.V_SCROLL | SWT.H_SCROLL);
+		;
 
-//		
-		Listener operationListener = new Listener(){
-		    
-////
-//			@Override
+		Listener operationListener = new Listener() {
+
+			// @Override
 			public void handleEvent(Event event) {
-		
+
 				SelectDataSetDialog dialog = new SelectDataSetDialog(getShell());
 				dialog.setTitle("PASS Property ASSistant: Select an action");
 				dialog.create();
 				dialog.open();
-				if(dialog.getResult()!=null){
+				if (dialog.getResult() != null) {
 					LOGGER.fine(dialog.getResult().toString());
-					((Text)event.widget).setText(dialog.getResult().getNameAction());
+					((Text) event.widget).setText(dialog.getResult()
+							.getNameAction());
 					ModelAction action = dialog.getResult();
-					((Text)event.widget).pack();
+					((Text) event.widget).pack();
 					TraceLine trObj = new TraceLine();
 					trObj.setOriginMessage(action.getNameAction());
 					ArrayList<String> parameters = action.getArguments();
 					LinkedList<String> paramsList = new LinkedList<String>();
 
-					if(parameters.size()>0){
+					if (parameters.size() > 0) {
 						int i = 1;
-						for(String argument:parameters){
+						for (String argument : parameters) {
 							paramsList.add("arg" + i);
 							trObj.parameterTypes.put("arg" + i++, argument);
 						}
-						trObj.setParameters(paramsList.toArray(new String[paramsList.size()]));
-						trObj.setParamNames(paramsList.toArray(new String[paramsList.size()]));
+						trObj.setParameters(paramsList
+								.toArray(new String[paramsList.size()]));
+						trObj.setParamNames(paramsList
+								.toArray(new String[paramsList.size()]));
 					}
-					
-					
+
 					dialog.close();
 					checkIfValid();
-
-//							
-//
-//								for(Parameter argument:parameters){
-//									if(argument.getType()!=null){ //convert type from UML to mCRL2
-//										try{
-//											String type = determinePrimitiveType((org.eclipse.uml2.uml.internal.impl.PrimitiveTypeImpl) argument.getType());
-//											trObj.parameterTypes.put(argument.getName(), type);
-//										}catch(ClassCastException ex){
-//											LOGGER.info("Not a primitive type" + ex);
-//											trObj.parameterTypes.put(argument.getName(), "ClassObject");
-//										}
-//									
-//									} else 
-//										trObj.parameterTypes.put(argument.getName(), "ClassObject");
-//									
-//									if(argument.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL) 
-//											|| argument.getDirection().equals(ParameterDirectionKind.OUT_LITERAL)){
-//										paramsListReturn.add(argument.getName());
-//										
-//									}
-//									else {
-//										paramsList.add(argument.getName());
-//									}
-//								}
-//								if(paramsList.size()!=0){
-//									trObj.setParameters(paramsList.toArray(new String[paramsList.size()]));
-//									trObj.setParamNames(paramsList.toArray(new String[paramsList.size()]));
-//
-//								}
-//								if(paramsListReturn.size()!=0){
-//									trObj.setReturnParams(paramsListReturn.toArray(new String[paramsListReturn.size()]));
-//									trObj.setReturnParamNames(paramsListReturn.toArray(new String[paramsListReturn.size()]));
-//
-//								}
-//							}
-//							
-//							if (selected.get(0).getMessageSort().getLiteral().equals("reply"))
-//								trObj.setIsReply(true);
-//	
-//							if (selected.get(0).getMessageSort().getLiteral().equals("asynchCall"))
-//								trObj.setAsynchronous(true);
-//	
-							traceLineMap.put((Text)event.widget, trObj);
-//							// if it's NOT a reply message, then we care about the receiver object, and the class as well!
-//							// how about parameters?
-//							LOGGER.info(trObj);
-//							((Text)event.widget).setText(selected.get(0).getName());
-//							((Text)event.widget).pack();
-//							dialogOperation.close();
-//							checkIfValid();
-						}
+					traceLineMap.put((Text) event.widget, trObj);
+				}
 			}
-		};	
-//		
+		};
+		//
 		addEventSlots(composite, root, operationListener);
 		try {
 			fillTreeMap();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		labelGraphicsHolder = new Label(composite, SWT.WRAP | SWT.BORDER);
 
 		labelGraphicsHolder.setImage(null);
 
-		
 		GridData gridData = new GridData();
 		gridData.horizontalAlignment = GridData.BEGINNING;
 		gridData.verticalAlignment = SWT.TOP;
@@ -540,114 +538,131 @@ public class QuestionTreePage extends WizardPage {
 		labelGraphicsHolder.setVisible(false);
 
 		composite.pack();
-		
 
 		mySelectionListener = new MySelectionListener();
 		final MyExpandListener myExpandListener = new MyExpandListener();
-//		root.setBackgroundImage(new Image(display,"/home/daniela/Downloads/background.jpg"));
+		// root.setBackgroundImage(new
+		// Image(display,"/home/daniela/Downloads/background.jpg"));
 		ExpandItem question = new ExpandItem(root, SWT.NONE, 0);
 		question.setText((String) questionnaire.data);
-		 root.addExpandListener(myExpandListener);
+		root.addExpandListener(myExpandListener);
 		Composite answersContainer = new Composite(root, SWT.NONE);
-		dynamicQuestionnaire = new TreeNode<String>(this.questionnaire.data, true);
+		dynamicQuestionnaire = new TreeNode<String>(this.questionnaire.data,
+				true);
 		GridLayout layout1 = new GridLayout(1, true);
 		answersContainer.setLayout(layout1);
 		answersContainer.setVisible(true);
 		question.setControl(answersContainer); //
 		// now the answers
 		List<TreeNode<String>> deca = this.questionnaire.children;
-		for(TreeNode dete:deca){
+		for (TreeNode dete : deca) {
 			Button answer = new Button(answersContainer, SWT.RADIO);
 			answer.setText((String) dete.data);
-			
+
 			answer.addSelectionListener(mySelectionListener);
-			
-			dynamicQuestionnaire.addChild((String)dete.data, false);
+
+			dynamicQuestionnaire.addChild((String) dete.data, false);
 		}
-		
-		question.setHeight(answersContainer.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
+
+		question.setHeight(answersContainer.computeSize(SWT.DEFAULT,
+				SWT.DEFAULT).y);
 		LOGGER.fine("Dynamic QUESTIONNAIRE: ");
 		traverseQuestionnaire(dynamicQuestionnaire);
 		PatternMuCalculusFormat.fill();
 	}
-	
-	class MyExpandListener implements ExpandListener{
+
+	class MyExpandListener implements ExpandListener {
 
 		public void itemCollapsed(ExpandEvent e) {
-			 // we need to propagate the height to all ExpandItem parents in the hierarchy
-			
+			// we need to propagate the height to all ExpandItem parents in the
+			// hierarchy
+
 			ExpandItem itemExpanded = (ExpandItem) e.item;
-			ExpandItem theOneWeLookFor = null; 
-			Composite compositeControlled = (Composite) itemExpanded.getControl(); 
-			int heightToRemove = compositeControlled.computeSize(SWT.DEFAULT, SWT.DEFAULT).y;
-			while(itemExpanded!=null){
+			ExpandItem theOneWeLookFor = null;
+			Composite compositeControlled = (Composite) itemExpanded
+					.getControl();
+			int heightToRemove = compositeControlled.computeSize(SWT.DEFAULT,
+					SWT.DEFAULT).y;
+			while (itemExpanded != null) {
 				theOneWeLookFor = null;
-				
+
 				ExpandBar itemParentBar = itemExpanded.getParent();
 				compositeControlled = (Composite) itemExpanded.getControl();
-				
-				Composite compositeParent =itemParentBar.getParent();
-				if(compositeParent!=null  && !itemParentBar.getParent().equals(parentLe)){
-					ExpandBar expandBarSuperParent = (ExpandBar) compositeParent.getParent();
-					if(expandBarSuperParent!=null){
-						ExpandItem[] allItemsOfSuperParent = expandBarSuperParent.getItems();
-						
-						for(ExpandItem item:allItemsOfSuperParent){
-							if(item.getControl().equals(compositeParent))
+
+				Composite compositeParent = itemParentBar.getParent();
+				if (compositeParent != null
+						&& !itemParentBar.getParent().equals(parentLe)) {
+					ExpandBar expandBarSuperParent = (ExpandBar) compositeParent
+							.getParent();
+					if (expandBarSuperParent != null) {
+						ExpandItem[] allItemsOfSuperParent = expandBarSuperParent
+								.getItems();
+
+						for (ExpandItem item : allItemsOfSuperParent) {
+							if (item.getControl().equals(compositeParent))
 								theOneWeLookFor = item;
 						}
 
-						theOneWeLookFor.setHeight(theOneWeLookFor.getHeight()-heightToRemove);
+						theOneWeLookFor.setHeight(theOneWeLookFor.getHeight()
+								- heightToRemove);
 
 						compositeParent.layout();
 						compositeControlled.layout();
 					}
-					
+
 				}
-				itemExpanded = theOneWeLookFor; 
+				itemExpanded = theOneWeLookFor;
 
 			}
 		}
 
 		public void itemExpanded(ExpandEvent e) {
-	     // we need to propagate the height to all ExpandItem parents in the hierarchy
+			// we need to propagate the height to all ExpandItem parents in the
+			// hierarchy
 			ExpandItem itemExpanded = (ExpandItem) e.item;
-			ExpandItem theOneWeLookFor = null; 
-			Composite compositeControlled = (Composite) itemExpanded.getControl();
-			int heightToAdd = compositeControlled.computeSize(SWT.DEFAULT, SWT.DEFAULT).y;
-			while(itemExpanded!=null){
+			ExpandItem theOneWeLookFor = null;
+			Composite compositeControlled = (Composite) itemExpanded
+					.getControl();
+			int heightToAdd = compositeControlled.computeSize(SWT.DEFAULT,
+					SWT.DEFAULT).y;
+			while (itemExpanded != null) {
 				theOneWeLookFor = null;
 				ExpandBar itemParentBar = itemExpanded.getParent();
 				compositeControlled = (Composite) itemExpanded.getControl();
-				if(itemParentBar.getParent()!=null && !itemParentBar.getParent().equals(parentLe)){
-					ExpandBar expandBarSuperParent = (ExpandBar) itemParentBar.getParent().getParent(); // BUG
-					if(expandBarSuperParent!=null){
-						ExpandItem[] allItemsOfSuperParent = expandBarSuperParent.getItems();
-						
-						for(ExpandItem item:allItemsOfSuperParent){
-							if(item.getControl().equals(itemParentBar.getParent()))
+				if (itemParentBar.getParent() != null
+						&& !itemParentBar.getParent().equals(parentLe)) {
+					ExpandBar expandBarSuperParent = (ExpandBar) itemParentBar
+							.getParent().getParent(); // BUG
+					if (expandBarSuperParent != null) {
+						ExpandItem[] allItemsOfSuperParent = expandBarSuperParent
+								.getItems();
+
+						for (ExpandItem item : allItemsOfSuperParent) {
+							if (item.getControl().equals(
+									itemParentBar.getParent()))
 								theOneWeLookFor = item;
 						}
 
-						theOneWeLookFor.setHeight(theOneWeLookFor.getHeight()+heightToAdd);
+						theOneWeLookFor.setHeight(theOneWeLookFor.getHeight()
+								+ heightToAdd);
 
 						itemParentBar.getParent().layout();
 					}
-					
+
 				}
-				itemExpanded = theOneWeLookFor; 
+				itemExpanded = theOneWeLookFor;
 
 			}
 		}
 	}
 }
 
-
-class TraceLine{
+class TraceLine {
 	public boolean isReply = false;
 	public String className;
 	public String[] parameters = null;
 	public String[] returnParams = null;
+
 	public String[] getParamNames() {
 		return paramNames;
 	}
@@ -664,11 +679,9 @@ class TraceLine{
 		this.returnParamNames = returnParamNames;
 	}
 
-
-
 	public String[] paramNames = null;
 	public String[] returnParamNames = null;
-	public LinkedHashMap<String, String> parameterTypes = new LinkedHashMap<String,String>(); 
+	public LinkedHashMap<String, String> parameterTypes = new LinkedHashMap<String, String>();
 
 	public String[] getReturnParams() {
 		return returnParams;
@@ -678,12 +691,10 @@ class TraceLine{
 		this.returnParams = returnParams;
 	}
 
-
-
 	public String methodCall;
 	public boolean isAsynchronous = false;
 	String originMessage;
-	
+
 	public String getOriginMessage() {
 		return originMessage;
 	}
@@ -725,9 +736,8 @@ class TraceLine{
 		this.className = className;
 	}
 
-
-
 	public String objectName;
+
 	public String getClassNameSource() {
 		return classNameSource;
 	}
@@ -744,11 +754,9 @@ class TraceLine{
 		this.objectNameSource = objectNameSource;
 	}
 
-
-
 	public String classNameSource;
 	public String objectNameSource;
-	
+
 	public String getObjectName() {
 		return objectName;
 	}
@@ -757,55 +765,29 @@ class TraceLine{
 		this.objectName = objectName;
 	}
 
-	public boolean isReply(){
+	public boolean isReply() {
 		return isReply;
 	}
-	
-	public void setIsReply(boolean isReply){
+
+	public void setIsReply(boolean isReply) {
 		this.isReply = isReply;
 	}
-	
-	
-	
-	public String toString(){
+
+	public String toString() {
 		StringBuffer tmp = new StringBuffer();
-//		if(this.isAsynchronous)
-//			tmp.append("asynch_call(1, ");
-//		else if(isReply())
-//			tmp.append("synch_reply(1, ");
-//		else
-//			tmp.append("synch_call(1, ");
-//		
-//		tmp.append(getClassName()+", ");
-//		tmp.append(getObjectName()+", ");
-		
-//		if (isReply()){
-//			if(returnParams!=null){
-//				StringBuffer params = new StringBuffer(Arrays.toString(returnParams));
-//				params = new StringBuffer(params.substring(1));
-//				params = new StringBuffer(params.substring(0, params.length()-1));
-//				tmp.append(getMethodCall()+"_return"+"("+params+"))");
-//			}
-//			else
-//				tmp.append(getMethodCall()+"_return"+")");
-//		}
-//		else
-//		{
-			if(parameters!=null){
-				StringBuffer params = new StringBuffer(Arrays.toString(parameters));
-				params = new StringBuffer(params.substring(1));
-				params = new StringBuffer(params.substring(0, params.length()-1));
-				tmp.append(getMethodCall()+"("+params + ")");
 
-			}
-			else
-				tmp.append(getMethodCall());
+		if (parameters != null) {
+			StringBuffer params = new StringBuffer(Arrays.toString(parameters));
+			params = new StringBuffer(params.substring(1));
+			params = new StringBuffer(params.substring(0, params.length() - 1));
+			tmp.append(getMethodCall() + "(" + params + ")");
 
-//		}
-			
-		
+		} else
+			tmp.append(getMethodCall());
+
+		// }
+
 		return tmp.toString();
 	}
-	
-}
 
+}

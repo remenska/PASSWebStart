@@ -49,9 +49,7 @@ public class PASSWrapper extends ApplicationWindow {
 	private static FileHandler fh = null;
 	
 	public static Text modelFullPath;
-//	public static String fileName;
 	public static Label styledText;
-//	public static LinkedList<String> actions;
     public static Hashtable<String, ArrayList<String>> actionsDict = new Hashtable<String, ArrayList<String>>();
 
 	protected Control createContents(final Composite parent) {
@@ -78,15 +76,7 @@ public class PASSWrapper extends ApplicationWindow {
 		GridData gd = new GridData();
 		gd.horizontalSpan = 2;
 		styledText.setLayoutData(gd);		
-		
-////		layout.set
-//
-//		GridData gridData = new GridData();
-//		gridData.horizontalAlignment = GridData.BEGINNING;
-//		gridData.verticalAlignment = SWT.TOP;
-//
-//		gridData.heightHint = 550;
-//		gridData.widthHint = 650;
+
 		Button buttonModel = new Button(composite, SWT.PUSH);
 		buttonModel.setText("Browse...");
 		final Button button = new Button(composite, SWT.PUSH);
@@ -99,19 +89,15 @@ public class PASSWrapper extends ApplicationWindow {
 		    	SelectDataSetDialog.actionsDict.clear();
 		    	
 		    	FileDialog dlg = new FileDialog(parent.getShell());
-//		        dlg.setFilterPath(textDirectoryFormula.getText());
 
 		        dlg.setText("Please select the original mCRL2 model");
 
-		        // Customizable message displayed in the dialog
-//		        dlg.setMessage("Please select the original mCRL2 model.");
 
 		        // Calling open() will open and run the dialog.
 		        // It will return the selected directory, or
 		        // null if user cancels
 		        String dir = dlg.open();
 		        if (dir != null) {
-		          // Set the text box to the new selection
 		        	modelFullPath.setText(dir);
 		        	modelFullPath.pack();
 		        	
@@ -153,17 +139,14 @@ public class PASSWrapper extends ApplicationWindow {
 			        	parent.pack();
 			        	button.setEnabled(true);
 					}
-//					while(actionKeyEnum.hasMoreElements()){
-//						String act = actionKeyEnum.nextElement();
-//						actions.add(act + Mymcrl2Visitor.actionsDict.get(act));
-//					}
+
 					
 					SelectDataSetDialog.actionsDict =  Mymcrl2Visitor.actionsDict;
-//		        	actions.add("One");
-//		        	actions.add("Two");
-//		        	actions.add("Three");
+
 					} catch(org.antlr.v4.runtime.misc.ParseCancellationException e){
 			        	styledText.setText("This is not a syntactically correct mCRL2 model, got an error parsing it. Please try again.");
+			        	LOGGER.warning("This is not a syntactically correct mCRL2 model, got an error parsing it. Please try again.");
+			        	LOGGER.warning(e.getStackTrace().toString());
 			        	button.setEnabled(false);
 			        	styledText.pack();
 			        	composite.pack();
@@ -176,6 +159,7 @@ public class PASSWrapper extends ApplicationWindow {
 			        	styledText.pack();
 			        	composite.pack();
 			        	parent.pack();
+			        	LOGGER.warning("File not found: " + e.getStackTrace().toString());
 						e.printStackTrace();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -186,7 +170,6 @@ public class PASSWrapper extends ApplicationWindow {
 					}
 		        	
 		        } else {
-		        	// ERROR!!!
 		        }
 		      }
 		    });
@@ -198,7 +181,6 @@ public class PASSWrapper extends ApplicationWindow {
 
 		button.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
-//				ReservationWizard wizard = new ReservationWizard();
 				CapturePropertyWizard wizard = new CapturePropertyWizard();
 
 				WizardDialog dialog = new WizardDialog(getShell(), wizard);
@@ -216,8 +198,6 @@ public class PASSWrapper extends ApplicationWindow {
 
 	public PASSWrapper(Shell parentShell) {
 		super(parentShell);
-
-		
 	}
 
 	public static void main(String[] args) {
@@ -225,6 +205,5 @@ public class PASSWrapper extends ApplicationWindow {
 		reservation.setBlockOnOpen(true);
 		reservation.open();
 	}
-	
-	
+
 }

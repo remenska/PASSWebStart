@@ -77,7 +77,6 @@ public class SelectDataSetDialog extends Dialog {
 			this.arguments = arguments;
 		}
 
-		// public int counter;
 
 		public ModelAction(String nameAction) {
 			this.nameAction = nameAction;
