@@ -79,6 +79,9 @@ public class PASSWrapper extends ApplicationWindow {
 		
 		buttonModel.addSelectionListener(new SelectionAdapter() {
 		      public void widgetSelected(SelectionEvent event) {
+		    	// if Cancel has been hit, actions should be cleared
+		    	SelectDataSetDialog.actionsDict.clear();
+		    	
 		    	FileDialog dlg = new FileDialog(parent.getShell());
 //		        dlg.setFilterPath(textDirectoryFormula.getText());
 
