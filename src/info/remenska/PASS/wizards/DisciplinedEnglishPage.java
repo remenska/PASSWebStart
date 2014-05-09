@@ -47,7 +47,6 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		setTitle(pageName);
 		setDescription(description);
 		setPageComplete(false);
-
 	}
 	
 	public void fillScope(){
@@ -55,14 +54,14 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		 startEvent = QuestionTreePage.textStartEvent.getText() ;
 		 endEvent = QuestionTreePage.textEndEvent.getText();
 		scope.put("Globally", "The required behavior must hold throughout the entire system execution, i.e., from the start until the end of any event sequence.");
-		scope.put("After Q", "The behavior must hold in a restricted interval in the event sequence, and this interval has a starting delimiter " + startEvent + ". The behavior must hold from the first occurrence of " + startEvent + " until the end of the system execution. \nEven if " + startEvent + " occurs more than once before the end of the event sequence, only the first occurrence begins the restricted interval; later occurrences of "+  startEvent + " do not have an effect." );
-		scope.put("After QQQ variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has a starting delimiter " + startEvent + ". The behavior must hold from the last occurrence of " + startEvent + " until the end of the system execution. \nEven if " + startEvent + " occurs more than once before the end of the event sequence, only the last occurrence begins the restricted interval; previous occurrences of "+  startEvent + " do not have an effect." );
-		scope.put("Before R", "The behavior must hold in a restricted interval in the event sequence, and this interval has a ending delimiter " + endEvent + ". The behavior is required to hold from the start of the event sequence through to the first occurrence of " + endEvent+". " + endEvent +" is required to occur, and if it never occurs, then the behavior is not required to hold anywhere in the event sequence, i.e., system execution. ");
-		scope.put("Before RRR variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has a ending delimiter " + endEvent + ". The behavior is required to hold from the start of the event sequence through to the first occurrence of " + endEvent+", if it ever occurs. " + endEvent +" is not required to occur, and if it never occurs, then the behavior is required to hold throughout the entire system execution, i.e., until the end of the execution. ");
-		scope.put("After QQQ until R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + startEvent+ ", and an ending delimiter " + endEvent + ". The behavior must hold from the first occurrence of " + startEvent + ", if it ever occurs, throughout the first subsequent occurrence of " + endEvent + ", if it ever occurs. \nEven if " + startEvent + " occurs more than once before the first occurence of " + endEvent + ", only the first of those occurences of " + startEvent + " potentially  begins the restricted interval; later occurrences of "+  startEvent + " do not have an effect. If an occurrence of " + startEvent + " is not followed by occurrence of " + endEvent + ", then the behavior is required to hold until the end of the event sequence." );
-		scope.put("Between QQQ and R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + startEvent+ ", and an ending delimiter " + endEvent + ". The behavior must hold from the first occurrence of " + startEvent + ", if it ever occurs, throughout the first subsequent occurrence of " + endEvent + ", if it ever occurs. \nEven if " + startEvent + " occurs more than once before the first occurence of " + endEvent + ", only the first of those occurences of " + startEvent + " potentially  begins the restricted interval; later occurrences of "+  startEvent + " do not have an effect. If an occurrence of " + startEvent + " is never followed by occurrence of " + endEvent + ", then the behavior is not required to hold for the remainder of the event sequence." );
-		scope.put("After QQQ until RRR variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + startEvent+ ", and an ending delimiter " + endEvent + ". The behavior must hold from the last occurrence of " + startEvent + ", if it ever occurs, throughout the first subsequent occurrence of " + endEvent + ", if it ever occurs. \nEven if " + startEvent + " occurs more than once before the first occurence of " + endEvent + ", only the last occurrence begins the restricted interval; previous occurrences of "+  startEvent + " do not have an effect. If an occurrence of " + startEvent + " is not followed by occurrence of " + endEvent + ", then the behavior is required to hold until the end of the event sequence." );
-		scope.put("Between QQQ and RRR variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + startEvent+ ", and an ending delimiter " + endEvent + ". The behavior must hold from the last occurrence of " + startEvent + ", if it ever occurs, throughout the first subsequent occurrence of " + endEvent + ", if it ever occurs. \nEven if " + startEvent + " occurs more than once before the first occurence of " + endEvent + ", only the last occurrence begins the restricted interval; previous occurrences of "+  startEvent + " do not have an effect. If an occurrence of " + startEvent + " is never followed by occurrence of " + endEvent + ", then the behavior is not required to hold for the remainder of the event sequence." );
+		scope.put("After Q", "The behavior must hold in a restricted interval in the event sequence, and this interval has a starting delimiter " + "["+ startEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + " until the end of the system execution. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the end of the event sequence, only the first occurrence begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect." );
+		scope.put("After Q variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has a starting delimiter " + "["+ startEvent + "]" + ". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + " until the end of the system execution. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the end of the event sequence, only the last occurrence begins the restricted interval; previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect." );
+		scope.put("Before R", "The behavior must hold in a restricted interval in the event sequence, and this interval has a ending delimiter " + "["+ endEvent + "]" + ". The behavior is required to hold from the start of the event sequence through to the first occurrence of " + "["+ endEvent+ "]" +". " + "["+ endEvent + "]" +" is required to occur, and if it never occurs, then the behavior is not required to hold anywhere in the event sequence, i.e., system execution. ");
+		scope.put("Before R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has a ending delimiter " + "["+ endEvent + "]" + ". The behavior is required to hold from the start of the event sequence through to the first occurrence of " + "["+ endEvent+ "]" +", if it ever occurs. " + "["+ endEvent + "]" +" is not required to occur, and if it never occurs, then the behavior is required to hold throughout the entire system execution, i.e., until the end of the execution. ");
+		scope.put("After Q until R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the first of those occurences of " + "["+ startEvent + "]" + " potentially  begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is not followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is required to hold until the end of the event sequence." );
+		scope.put("Between Q and R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the first of those occurences of " + "["+ startEvent + "]" + " potentially  begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is never followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is not required to hold for the remainder of the event sequence." );
+		scope.put("After Q until R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the last occurrence begins the restricted interval; previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is not followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is required to hold until the end of the event sequence." );
+		scope.put("Between Q and R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the last occurrence begins the restricted interval; previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is never followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is not required to hold for the remainder of the event sequence." );
 		
 	}
 	
@@ -72,19 +71,19 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		 eventB = QuestionTreePage.textEventB.getText();
 		 eventC = QuestionTreePage.textEventC.getText();
 		 eventX = QuestionTreePage.textEventX.getText();
-		behavior.put("Absence", "The event of interest for the required behavior is " + eventA + ". " + eventA + " must never occur. ");
-		behavior.put("Existence", "The event of interest for the required behavior is " +  eventA + ". " + eventA + " is required to occur one or more times. ");
-		behavior.put("Bounded Existence", "The event of interest for the required behavior is " +  eventA + ". " + eventA + " is required at most one time. ");
-		behavior.put("Precedence", "The events of interest for the required behavior are " + eventA + " and " + eventB + ". " + eventB + " is not allowed to occur until after " + eventA + " occurs." + eventA + " is not required to occur and, if it does not occur, " + eventB + " is never allowed to occur.");
-		behavior.put("Precedence variant", "The events of interest for the required behavior are " + eventA + " and " + eventB + ". " + eventB + " is not allowed to occur until after " + eventA + " occurs." + eventA + " is required to occur whether or not B occurs.");
-		behavior.put("Response", "The events of interest for the required behavior are " + eventA + " and " + eventB + ". If " + eventA + " occurs, " + eventB +" is required to occur subsequently. Event " + eventA + " is not required to occur. ");
-		behavior.put("Response variant", "The events of interest for the required behavior are " + eventA + " and " + eventB + ". If " + eventA + " occurs, " + eventB +" is required to occur subsequently. Event " + eventA + " is required to occur. ");
-		behavior.put("Precedence Chain 1", "The events of interest for the required behavior are " + " " + eventA + ", " + eventB + " and " + eventC + ". Event " + eventC + " is not allowed to occur until after " + eventA +" followed by event " + eventB + " occurs. The event chain " + eventA+" followed by " + eventB + ", is not required to occur, and, if it does not occur, " + eventC + " is never allowed to occur.");
-		behavior.put("Precedence Chain 2", "The events of interest for the required behavior are " + " " + eventA + ", " + eventB + " and " + eventC + ". Event " + eventB + " followed by " + eventC + " is not allowed to occur, until " + eventA  + " occurs. The event  " + eventA+ " is not required to occur, and, if does not occur, " + " the event chain: " + eventB + " followed by " + eventC + ", is never allowed to occur.");
-		behavior.put("Response Chain 1", "The events of interest for the required behavior are " + " " + eventA + ", " + eventB + " and " + eventC + ". If " + eventA + " occurs, then " + eventB +" followed by " + eventC + " is required to occur subsequently. Event " + eventA + " is not required to occur. ");
-		behavior.put("Response Chain 2", "The events of interest for the required behavior are " + " " + eventA + ", " + eventB + " and " + eventC + ". If " + eventA + " followed by " + eventB + " occurs, then " + eventC + " is required to occur subsequently. The event chain " + eventA +" followed by " + eventB + " is not required to occur. ");
-		behavior.put("Constrained Response Chain 2", "The events of interest for the required behavior are " + " " + eventA + ", " + eventB + "," + eventC + ", and the exceptional event " + eventX +". If " + eventA + " followed by " + eventB + " occurs, without the event " + eventX + " occurring inbetween,  then " + eventC + "is required to occur subsequently. The event chain " + eventA +" followed by " + eventB + " is not required to occur. ");
-		behavior.put("Universality", "The event of interest for the required behavior is " + eventA + ". " + eventA + " must always be possible to occur, at every step of the execution. This is useful for checking if an object state always has a certain value. \nThe events in such case are often getter methods, querying the state value. ");
+		behavior.put("Absence", "The event of interest for the required behavior is " + "[" +eventA + "]" + ". " + "["+eventA+"]" + " must never occur. ");
+		behavior.put("Existence", "The event of interest for the required behavior is " + "["+ eventA + "]" + ". " + "["+eventA + "]" + " is required to occur one or more times. ");
+		behavior.put("Bounded Existence", "The event of interest for the required behavior is " + "["+ eventA + "]" + ". " + "["+eventA + "]" + " is required at most one time. ");
+		behavior.put("Precedence", "The events of interest for the required behavior are " + "["+ eventA + "]" + " and " + "[" +eventB + "]" + ". " + "["+ eventB + "]" + " is not allowed to occur until after " + "[" +eventA + "]" + " occurs." + "["+ eventA + "]" + " is not required to occur and, if it does not occur, " + "["+ eventB + "]" + " is never allowed to occur.");
+		behavior.put("Precedence variant", "The events of interest for the required behavior are " + "[" +eventA + "]" + " and " + "["+ eventB + "]" + ". " + "["+ eventB + "]" + " is not allowed to occur until after " + "["+eventA + "]" + " occurs." + "["+ eventA + "]" + " is required to occur whether or not " + "["+ eventB + "]" + " occurs.");
+		behavior.put("Response", "The events of interest for the required behavior are " + "["+ eventA + "]" + " and " + "["+ eventB + "]" + ". If " + "["+ eventA + "]" + " occurs, " + "["+ eventB + "]" +" is required to occur subsequently. Event " + "["+ eventA + "]" + " is not required to occur. ");
+		behavior.put("Response variant", "The events of interest for the required behavior are " + "["+ eventA + "]" + " and " + "["+ eventB + "]" + ". If " + "["+ eventA + "]" + " occurs, " + "["+ eventB + "]" +" is required to occur subsequently. Event " + "["+ eventA + "]" + " is required to occur. ");
+		behavior.put("Precedence Chain 1", "The events of interest for the required behavior are " + " " + "["+ eventA + "]" + ", " + "["+ eventB + "]" + " and " + "["+ eventC + "]" + ". Event " + "["+ eventC + "]" + " is not allowed to occur until after " + "["+ eventA + "]" +" followed by event " + "["+ eventB + "]" + " occurs. The event chain " + "["+ eventA+ "]" +" followed by " + "["+ eventB + "]" + ", is not required to occur, and, if it does not occur, " + "["+ eventC + "]" + " is never allowed to occur.");
+		behavior.put("Precedence Chain 2", "The events of interest for the required behavior are " + " " + "["+ eventA + "]" + ", " + "["+ eventB + "]" + " and " + "["+ eventC + "]" + ". Event " + "["+ eventB + "]" + " followed by " + "["+ eventC + "]" + " is not allowed to occur, until " + "["+ eventA  + "]" + " occurs. The event  " + "["+ eventA+ "]" + " is not required to occur, and, if does not occur, " + " the event chain: " + "["+ eventB + "]" + " followed by " + "["+ eventC + "]" + ", is never allowed to occur.");
+		behavior.put("Response Chain 1", "The events of interest for the required behavior are " + " " + "["+ eventA + "]" + ", " + "["+ eventB + "]" + " and " + "["+ eventC + "]" + ". If " + "["+ eventA + "]" + " occurs, then " + "["+ eventB + "]" +" followed by " + "["+ eventC + "]" + " is required to occur subsequently. Event " + "["+ eventA + "]" + " is not required to occur. ");
+		behavior.put("Response Chain 2", "The events of interest for the required behavior are " + " " + "["+ eventA + "]" + ", " + "["+ eventB + "]" + " and " + "["+ eventC + "]" + ". If " + "["+ eventA + "]" + " followed by " + "["+ eventB + "]" + " occurs, then " + "["+ eventC + "]" + " is required to occur subsequently. The event chain " + "["+ eventA + "]" +" followed by " + "["+ eventB + "]" + " is not required to occur. ");
+		behavior.put("Constrained Response Chain 2", "The events of interest for the required behavior are " + " " + "["+ eventA + "]" + ", " + "["+ eventB + "]" + "," + "["+ eventC + "]" + ", and the exceptional event " + "["+ eventX + "]" +". If " + "["+ eventA + "]" + " followed by " + "["+ eventB + "]" + " occurs, without the event " + "["+ eventX + "]" + " occurring inbetween,  then " + "["+ eventC + "]" + "is required to occur subsequently. The event chain " + "["+ eventA + "]" +" followed by " + "["+ eventB + "]" + " is not required to occur. ");
+		behavior.put("Universality", "The event of interest for the required behavior is " + "["+ eventA + "]" + ". " + "["+ eventA + "]" + " must always be possible to occur, at every step of the execution. This is useful for checking if an object state always has a certain value. \nThe events in such case are often getter methods, querying the state value. ");
 	}
 	
 	
@@ -94,6 +93,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 
 	    if (visible) {
 	        onEnterPage();
+//			setPageComplete(true);
 	    }
 	 }
 	
@@ -140,6 +140,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 	}
 	
 	public void createControl(Composite parent) {
+		setPageComplete(true);
 		final Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
@@ -163,12 +164,12 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		String pleaseReview = "\n\nClicking \"Finish\" will generate the Sequence Diagram, mu-calculus formula, as well as the monitoring process (when applicable) matching the elucidated property. ";
 		styledText.setText(fullText + pleaseReview);
 
-		boldify(fullText, startEvent, SWT.BOLD);
-		boldify(fullText, endEvent, SWT.BOLD);
-		boldify(fullText, eventA, SWT.BOLD);
-		boldify(fullText, eventB,SWT.BOLD);
-		boldify(fullText, eventC, SWT.BOLD);
-		boldify(fullText, eventX, SWT.BOLD);
+		boldify(fullText, "[" + startEvent +"]", SWT.BOLD);
+		boldify(fullText, "[" + endEvent + "]", SWT.BOLD);
+		boldify(fullText, "[" + eventA + "]", SWT.BOLD);
+		boldify(fullText, "[" + eventB + "]",SWT.BOLD);
+		boldify(fullText, "[" + eventC + "]", SWT.BOLD);
+		boldify(fullText, "[" + eventX + "]", SWT.BOLD);
 		boldify(fullText, "SCOPE", SWT.BOLD); boldify(fullText, "BEHAVIOR", SWT.BOLD);
 		boldify(fullText + pleaseReview, pleaseReview, SWT.ITALIC);
 
@@ -341,59 +342,59 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		      }	
 		    			StringBuffer modifiedBuffer = new StringBuffer();
 		    			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
+		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+		    			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
 
 		    			if (QuestionTreePage.behavior.equals("Precedence Chain 1")) {
 		    				modifiedBuffer = new StringBuffer();
 		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
 
 
 		    			} else if(QuestionTreePage.behavior.equals("Precedence Chain 2")){
 		    				
 		    				modifiedBuffer = new StringBuffer();
 		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
 
 		    			}	else if(QuestionTreePage.behavior.equals("Response Chain 1")) {
 		    				modifiedBuffer = new StringBuffer();
 		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
 
 		    			}	else if(QuestionTreePage.behavior.equals("Response Chain 2")){
 		    				modifiedBuffer = new StringBuffer();
 		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
 
 		    			}
 		    			else if(QuestionTreePage.behavior.equals("Constrained Response Chain 2")){
 		    				modifiedBuffer = new StringBuffer();
 		    				modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" ZZZ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventX).toString())+"  ");
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
+		    				modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Z#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventX).toString()));
 
 		    			}
 		    			modifiedBuffer = new StringBuffer(quantifiers + "" + modifiedBuffer);
@@ -440,59 +441,59 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
 		LOGGER.fine("OriginalFormula: " + modifiedBuffer);
 
-		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+" ");
-		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+" ");
-		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+" ");
-		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+ " ");
+		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+" ");
+		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+" ");
+		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+" ");
+		modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+ " ");
 
 		if (QuestionTreePage.behavior.equals("Precedence Chain 1")) {
 			modifiedBuffer = new StringBuffer();
 			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
 
 
 		} else if(QuestionTreePage.behavior.equals("Precedence Chain 2")){
 			
 			modifiedBuffer = new StringBuffer();
 			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
 
 		}	else if(QuestionTreePage.behavior.equals("Response Chain 1")) {
 			modifiedBuffer = new StringBuffer();
 			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
 
 		}	else if(QuestionTreePage.behavior.equals("Response Chain 2")){
 			modifiedBuffer = new StringBuffer();
 			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
 
 		}
 		else if(QuestionTreePage.behavior.equals("Constrained Response Chain 2")){
 			modifiedBuffer = new StringBuffer();
 			modifiedBuffer.append(PatternMuCalculusFormat.patterns.get(QuestionTreePage.scope).get(QuestionTreePage.behavior));
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" QQQ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" RRR ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" PPP ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" SSS ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" TTT ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString())+"  ");
-			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll(" ZZZ ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventX).toString())+"  ");
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Q#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textStartEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#R#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEndEvent).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#P# ", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventA).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#S#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventB).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#T#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventC).toString()));
+			modifiedBuffer = new StringBuffer(modifiedBuffer.toString().replaceAll("#Z#", " "+QuestionTreePage.traceLineMap.get(QuestionTreePage.textEventX).toString()));
 
 		}
 		
@@ -532,9 +533,16 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 			          // Set the text box to the new selection
 			        	textDirectoryFormula.setText(dir);
 			        	textDirectoryFormula.pack();
-			    		setPageComplete(true);
+			        	LOGGER.fine("Enabling Finish button...");
+			        	setPageComplete(true);
+			    		LOGGER.fine("Is page complete?:" + isPageComplete());
 			        	composite.pack();
 			    		
+			        } else{
+			        	LOGGER.fine("Disabling Finish button...");
+			    		setPageComplete(false);
+			    		LOGGER.fine("Is page complete?:" + isPageComplete());
+
 			        }
 			      }
 			    });

@@ -57,7 +57,7 @@ public class PASSWrapper extends ApplicationWindow {
 	protected Control createContents(final Composite parent) {
 		
 		try {
-			 fh=new FileHandler("/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/logger/loggerExample.log", false);
+			 fh=new FileHandler("./loggerExample.log", false);
 			 } catch (IOException e) {
 				 e.printStackTrace();
 			 }

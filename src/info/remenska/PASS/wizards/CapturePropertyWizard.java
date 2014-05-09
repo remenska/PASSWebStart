@@ -30,7 +30,7 @@ public class CapturePropertyWizard extends Wizard {
 				"Behavior Question Tree View",
 				"Please answer the following questions regarding the behavior of the property:",
 				Questionnaire.behaviorQuestionTree);
-		addPage(behaviorQuestionTreePage);
+		addPage(behaviorQuestionTreePage);		
 		// disciplinedEnglishPage = new
 		// DisciplinedEnglishPage("Disciplined English Summary: ",
 		// "Please review the collected information regarding the property.");
@@ -45,6 +45,14 @@ public class CapturePropertyWizard extends Wizard {
 		// this.getShell().pack();
 	}
 
+	public boolean canFinish(){
+		if(getContainer().getCurrentPage().getClass() == DisciplinedEnglishPage.class && 
+				getContainer().getCurrentPage().isPageComplete())
+			return true;
+		else
+			return false;
+	}
+	
 	@Override
 	public boolean performFinish() {
 		Main main = new Main();
