@@ -145,6 +145,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitListConsDataExpr(@NotNull mcrl2Parser.ListConsDataExprContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#IfThenProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfThenProcExpr(@NotNull mcrl2Parser.IfThenProcExprContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#bagEnumElt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -173,6 +180,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitMultActId(@NotNull mcrl2Parser.MultActIdContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#AllowOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAllowOperator(@NotNull mcrl2Parser.AllowOperatorContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#renExprSet}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -185,6 +199,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitProcDecl(@NotNull mcrl2Parser.ProcDeclContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#AtProcExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAtProcExpression(@NotNull mcrl2Parser.AtProcExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#actionRenameSpec}.
@@ -227,6 +248,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIdsDecl(@NotNull mcrl2Parser.IdsDeclContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#TauProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTauProcExpr(@NotNull mcrl2Parser.TauProcExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#eqnSpec}.
@@ -327,6 +355,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitSmallerEqualDataExpr(@NotNull mcrl2Parser.SmallerEqualDataExprContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#ParallelProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParallelProcExpr(@NotNull mcrl2Parser.ParallelProcExprContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#projDeclList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -355,6 +390,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitExistentialQuantifierStateFrm(@NotNull mcrl2Parser.ExistentialQuantifierStateFrmContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#DeltaProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeltaProcExpr(@NotNull mcrl2Parser.DeltaProcExprContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#EqnmCRL2SpecElt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -381,6 +423,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFixedPointOperator(@NotNull mcrl2Parser.FixedPointOperatorContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#BracketsProcExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBracketsProcExpression(@NotNull mcrl2Parser.BracketsProcExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#besInit}.
@@ -495,6 +544,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitProcSpec(@NotNull mcrl2Parser.ProcSpecContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#UntilOperatorProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUntilOperatorProcExpr(@NotNull mcrl2Parser.UntilOperatorProcExprContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#EqualityDataExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -537,18 +593,18 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitDelayOpStateFrm(@NotNull mcrl2Parser.DelayOpStateFrmContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link mcrl2Parser#ActmCRL2SpecElt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitActmCRL2SpecElt(@NotNull mcrl2Parser.ActmCRL2SpecEltContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#IdentifierDataExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIdentifierDataExpr(@NotNull mcrl2Parser.IdentifierDataExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#ActmCRL2SpecElt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitActmCRL2SpecElt(@NotNull mcrl2Parser.ActmCRL2SpecEltContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#ifThen}.
@@ -600,11 +656,32 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitSortSpec(@NotNull mcrl2Parser.SortSpecContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#SumProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSumProcExpr(@NotNull mcrl2Parser.SumProcExprContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#ProcmCRL2SpecElt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitProcmCRL2SpecElt(@NotNull mcrl2Parser.ProcmCRL2SpecEltContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#LeftMergeProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeftMergeProcExpr(@NotNull mcrl2Parser.LeftMergeProcExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#RenameOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRenameOperator(@NotNull mcrl2Parser.RenameOperatorContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#YaledOpStateFrm}.
@@ -654,6 +731,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionUpdateDataExpr(@NotNull mcrl2Parser.FunctionUpdateDataExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#ChoiceProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitChoiceProcExpr(@NotNull mcrl2Parser.ChoiceProcExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#PositiveSort}.
@@ -726,6 +810,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitFBagSort(@NotNull mcrl2Parser.FBagSortContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#BlockOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlockOperator(@NotNull mcrl2Parser.BlockOperatorContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#NegationActionFrm}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -780,6 +871,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStateVarAssignment(@NotNull mcrl2Parser.StateVarAssignmentContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#SequentialCompositionProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSequentialCompositionProcExpr(@NotNull mcrl2Parser.SequentialCompositionProcExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#ListSizeDataExpr}.
@@ -838,6 +936,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitConjunctionDataExpr(@NotNull mcrl2Parser.ConjunctionDataExprContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#CommMerge}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommMerge(@NotNull mcrl2Parser.CommMergeContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#DisjunctionDataExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -850,6 +955,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSequentialCompositionRegForm(@NotNull mcrl2Parser.SequentialCompositionRegFormContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#ActionProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitActionProcExpr(@NotNull mcrl2Parser.ActionProcExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#TrueActionFrm}.
@@ -957,13 +1069,6 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitBesSpec(@NotNull mcrl2Parser.BesSpecContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link mcrl2Parser#SortmCRL2SpecElt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSortmCRL2SpecElt(@NotNull mcrl2Parser.SortmCRL2SpecEltContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#IntegerSort}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -971,11 +1076,25 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitIntegerSort(@NotNull mcrl2Parser.IntegerSortContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#SortmCRL2SpecElt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSortmCRL2SpecElt(@NotNull mcrl2Parser.SortmCRL2SpecEltContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#AdditionDataExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAdditionDataExpr(@NotNull mcrl2Parser.AdditionDataExprContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#IDAssignmentProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIDAssignmentProcExpr(@NotNull mcrl2Parser.IDAssignmentProcExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#actSpec}.
@@ -1013,6 +1132,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitListEnumerationDataExpr(@NotNull mcrl2Parser.ListEnumerationDataExprContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#HideOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHideOperator(@NotNull mcrl2Parser.HideOperatorContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#BagEnumerationDataExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1025,6 +1151,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDisjunctionStateFmr(@NotNull mcrl2Parser.DisjunctionStateFmrContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#IfThenElseProcExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfThenElseProcExpr(@NotNull mcrl2Parser.IfThenElseProcExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#commExprSet}.
@@ -1097,6 +1230,13 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	T visitPbesEqnDecl(@NotNull mcrl2Parser.PbesEqnDeclContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link mcrl2Parser#CommOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommOperator(@NotNull mcrl2Parser.CommOperatorContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#stateVarDecl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1137,13 +1277,6 @@ public interface mcrl2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMultActIdList(@NotNull mcrl2Parser.MultActIdListContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link mcrl2Parser#procExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitProcExpr(@NotNull mcrl2Parser.ProcExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link mcrl2Parser#MemberShipSetBagDataExpr}.

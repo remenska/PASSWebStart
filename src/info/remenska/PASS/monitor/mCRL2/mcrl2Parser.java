@@ -36,7 +36,7 @@ public class mcrl2Parser extends Parser {
 		"'in'", "','", "'-'", "'('", "':'", "'var'", "'?'", "'comm'", "'{'", "'sum'", 
 		"'init'", "'sort'", "'|>'", "'true'", "'delta'", "'++'", "'struct'", "'<|'", 
 		"'Set'", "'.'", "'=>'", "'tau'", "'+'", "'glob'", "'<>'", "'forall'", 
-		"';'", "'&&'", "'delay'", "'nu'", "'||'", "'exists'", "'>'", "'Real'", 
+		"';'", "'&&'", "'delay'", "'nu'", "'||'", "'>'", "'exists'", "'Real'", 
 		"'FBag'", "'/'", "'=='", "'#'", "'>='", "'end'", "'allow'", "'mu'", "ID", 
 		"INT", "WS", "LINE_COMMENT"
 	};
@@ -127,8 +127,10 @@ public class mcrl2Parser extends Parser {
 			setState(156); mCRL2Spec();
 			}
 		}
-		catch (RecognitionException e) {
-			 throw e; 
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
 		}
 		finally {
 			exitRule();
@@ -496,6 +498,57 @@ public class mcrl2Parser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class BooleanSortContext extends SimpleSortExprContext {
+		public BooleanSortContext(SimpleSortExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterBooleanSort(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitBooleanSort(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitBooleanSort(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ListSortContext extends SimpleSortExprContext {
+		public SortExprContext sortExpr() {
+			return getRuleContext(SortExprContext.class,0);
+		}
+		public ListSortContext(SimpleSortExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterListSort(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitListSort(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitListSort(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class IntegerSortContext extends SimpleSortExprContext {
+		public IntegerSortContext(SimpleSortExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterIntegerSort(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitIntegerSort(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitIntegerSort(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class PositiveSortContext extends SimpleSortExprContext {
 		public PositiveSortContext(SimpleSortExprContext ctx) { copyFrom(ctx); }
 		@Override
@@ -564,22 +617,6 @@ public class mcrl2Parser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class BooleanSortContext extends SimpleSortExprContext {
-		public BooleanSortContext(SimpleSortExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterBooleanSort(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitBooleanSort(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitBooleanSort(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class StructuredSortContext extends SimpleSortExprContext {
 		public ConstrDeclListContext constrDeclList() {
 			return getRuleContext(ConstrDeclListContext.class,0);
@@ -615,41 +652,6 @@ public class mcrl2Parser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitFBagSort(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ListSortContext extends SimpleSortExprContext {
-		public SortExprContext sortExpr() {
-			return getRuleContext(SortExprContext.class,0);
-		}
-		public ListSortContext(SimpleSortExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterListSort(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitListSort(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitListSort(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class IntegerSortContext extends SimpleSortExprContext {
-		public IntegerSortContext(SimpleSortExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterIntegerSort(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitIntegerSort(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitIntegerSort(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1729,7 +1731,7 @@ public class mcrl2Parser extends Parser {
 				setState(336); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 4) | (1L << 7) | (1L << 37) | (1L << 40) | (1L << 43) | (1L << 44) | (1L << 49) | (1L << 54))) != 0) || ((((_la - 66)) & ~0x3f) == 0 && ((1L << (_la - 66)) & ((1L << (66 - 66)) | (1L << (72 - 66)) | (1L << (78 - 66)) | (1L << (ID - 66)) | (1L << (INT - 66)))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 4) | (1L << 7) | (1L << 37) | (1L << 40) | (1L << 43) | (1L << 44) | (1L << 49) | (1L << 54))) != 0) || ((((_la - 66)) & ~0x3f) == 0 && ((1L << (_la - 66)) & ((1L << (66 - 66)) | (1L << (73 - 66)) | (1L << (78 - 66)) | (1L << (ID - 66)) | (1L << (INT - 66)))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -2015,28 +2017,6 @@ public class mcrl2Parser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class LambdaDataExprContext extends DataExprContext {
-		public VarsDeclListContext varsDeclList() {
-			return getRuleContext(VarsDeclListContext.class,0);
-		}
-		public DataExprContext dataExpr() {
-			return getRuleContext(DataExprContext.class,0);
-		}
-		public LambdaDataExprContext(DataExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterLambdaDataExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitLambdaDataExpr(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitLambdaDataExpr(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class AdditionDataExprContext extends DataExprContext {
 		public List<DataExprContext> dataExpr() {
 			return getRuleContexts(DataExprContext.class);
@@ -2056,6 +2036,28 @@ public class mcrl2Parser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitAdditionDataExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class LambdaDataExprContext extends DataExprContext {
+		public VarsDeclListContext varsDeclList() {
+			return getRuleContext(VarsDeclListContext.class,0);
+		}
+		public DataExprContext dataExpr() {
+			return getRuleContext(DataExprContext.class,0);
+		}
+		public LambdaDataExprContext(DataExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterLambdaDataExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitLambdaDataExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitLambdaDataExpr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2207,22 +2209,6 @@ public class mcrl2Parser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class EmptyBagDataExprContext extends DataExprContext {
-		public EmptyBagDataExprContext(DataExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterEmptyBagDataExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitEmptyBagDataExpr(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitEmptyBagDataExpr(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class BagEnumerationDataExprContext extends DataExprContext {
 		public BagEnumEltListContext bagEnumEltList() {
 			return getRuleContext(BagEnumEltListContext.class,0);
@@ -2239,6 +2225,22 @@ public class mcrl2Parser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitBagEnumerationDataExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class EmptyBagDataExprContext extends DataExprContext {
+		public EmptyBagDataExprContext(DataExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterEmptyBagDataExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitEmptyBagDataExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitEmptyBagDataExpr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2874,7 +2876,7 @@ public class mcrl2Parser extends Parser {
 				_localctx = new ExistentialQuantifierDataExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(376); match(72);
+				setState(376); match(73);
 				setState(377); varsDeclList();
 				setState(378); match(60);
 				setState(379); dataExpr(23);
@@ -3155,7 +3157,7 @@ public class mcrl2Parser extends Parser {
 						pushNewRecursionContext(_localctx, _startState, RULE_dataExpr);
 						setState(454);
 						if (!(10 >= _localctx._p)) throw new FailedPredicateException(this, "10 >= $_p");
-						setState(455); match(73);
+						setState(455); match(72);
 						setState(456); dataExpr(11);
 						}
 						break;
@@ -4259,57 +4261,439 @@ public class mcrl2Parser extends Parser {
 
 	public static class ProcExprContext extends ParserRuleContext {
 		public int _p;
-		public ActIdSetContext actIdSet() {
-			return getRuleContext(ActIdSetContext.class,0);
-		}
-		public VarsDeclListContext varsDeclList() {
-			return getRuleContext(VarsDeclListContext.class,0);
-		}
-		public ProcExprContext procExpr(int i) {
-			return getRuleContext(ProcExprContext.class,i);
-		}
-		public List<ProcExprContext> procExpr() {
-			return getRuleContexts(ProcExprContext.class);
-		}
-		public MultActIdSetContext multActIdSet() {
-			return getRuleContext(MultActIdSetContext.class,0);
-		}
-		public DataExprUnitContext dataExprUnit() {
-			return getRuleContext(DataExprUnitContext.class,0);
-		}
-		public AssignmentListContext assignmentList() {
-			return getRuleContext(AssignmentListContext.class,0);
-		}
-		public TerminalNode ID() { return getToken(mcrl2Parser.ID, 0); }
-		public CommExprSetContext commExprSet() {
-			return getRuleContext(CommExprSetContext.class,0);
-		}
-		public ActionContext action() {
-			return getRuleContext(ActionContext.class,0);
-		}
-		public RenExprSetContext renExprSet() {
-			return getRuleContext(RenExprSetContext.class,0);
-		}
-		public IfThenContext ifThen() {
-			return getRuleContext(IfThenContext.class,0);
-		}
 		public ProcExprContext(ParserRuleContext parent, int invokingState) { super(parent, invokingState); }
 		public ProcExprContext(ParserRuleContext parent, int invokingState, int _p) {
 			super(parent, invokingState);
 			this._p = _p;
 		}
 		@Override public int getRuleIndex() { return RULE_procExpr; }
+	 
+		public ProcExprContext() { }
+		public void copyFrom(ProcExprContext ctx) {
+			super.copyFrom(ctx);
+			this._p = ctx._p;
+		}
+	}
+	public static class SumProcExprContext extends ProcExprContext {
+		public VarsDeclListContext varsDeclList() {
+			return getRuleContext(VarsDeclListContext.class,0);
+		}
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public SumProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterProcExpr(this);
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterSumProcExpr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitProcExpr(this);
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitSumProcExpr(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitProcExpr(this);
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitSumProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class LeftMergeProcExprContext extends ProcExprContext {
+		public ProcExprContext procExpr(int i) {
+			return getRuleContext(ProcExprContext.class,i);
+		}
+		public List<ProcExprContext> procExpr() {
+			return getRuleContexts(ProcExprContext.class);
+		}
+		public LeftMergeProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterLeftMergeProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitLeftMergeProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitLeftMergeProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class DeltaProcExprContext extends ProcExprContext {
+		public DeltaProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterDeltaProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitDeltaProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitDeltaProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class RenameOperatorContext extends ProcExprContext {
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public RenExprSetContext renExprSet() {
+			return getRuleContext(RenExprSetContext.class,0);
+		}
+		public RenameOperatorContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterRenameOperator(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitRenameOperator(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitRenameOperator(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class AllowOperatorContext extends ProcExprContext {
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public MultActIdSetContext multActIdSet() {
+			return getRuleContext(MultActIdSetContext.class,0);
+		}
+		public AllowOperatorContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterAllowOperator(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitAllowOperator(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitAllowOperator(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class SequentialCompositionProcExprContext extends ProcExprContext {
+		public ProcExprContext procExpr(int i) {
+			return getRuleContext(ProcExprContext.class,i);
+		}
+		public List<ProcExprContext> procExpr() {
+			return getRuleContexts(ProcExprContext.class);
+		}
+		public SequentialCompositionProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterSequentialCompositionProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitSequentialCompositionProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitSequentialCompositionProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class AtProcExpressionContext extends ProcExprContext {
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public DataExprUnitContext dataExprUnit() {
+			return getRuleContext(DataExprUnitContext.class,0);
+		}
+		public AtProcExpressionContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterAtProcExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitAtProcExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitAtProcExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class IDAssignmentProcExprContext extends ProcExprContext {
+		public AssignmentListContext assignmentList() {
+			return getRuleContext(AssignmentListContext.class,0);
+		}
+		public TerminalNode ID() { return getToken(mcrl2Parser.ID, 0); }
+		public IDAssignmentProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterIDAssignmentProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitIDAssignmentProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitIDAssignmentProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class CommOperatorContext extends ProcExprContext {
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public CommExprSetContext commExprSet() {
+			return getRuleContext(CommExprSetContext.class,0);
+		}
+		public CommOperatorContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterCommOperator(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitCommOperator(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitCommOperator(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class UntilOperatorProcExprContext extends ProcExprContext {
+		public ProcExprContext procExpr(int i) {
+			return getRuleContext(ProcExprContext.class,i);
+		}
+		public List<ProcExprContext> procExpr() {
+			return getRuleContexts(ProcExprContext.class);
+		}
+		public UntilOperatorProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterUntilOperatorProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitUntilOperatorProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitUntilOperatorProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class BracketsProcExpressionContext extends ProcExprContext {
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public BracketsProcExpressionContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterBracketsProcExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitBracketsProcExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitBracketsProcExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ChoiceProcExprContext extends ProcExprContext {
+		public ProcExprContext procExpr(int i) {
+			return getRuleContext(ProcExprContext.class,i);
+		}
+		public List<ProcExprContext> procExpr() {
+			return getRuleContexts(ProcExprContext.class);
+		}
+		public ChoiceProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterChoiceProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitChoiceProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitChoiceProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class TauProcExprContext extends ProcExprContext {
+		public TauProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterTauProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitTauProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitTauProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class HideOperatorContext extends ProcExprContext {
+		public ActIdSetContext actIdSet() {
+			return getRuleContext(ActIdSetContext.class,0);
+		}
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public HideOperatorContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterHideOperator(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitHideOperator(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitHideOperator(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class IfThenElseProcExprContext extends ProcExprContext {
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public DataExprUnitContext dataExprUnit() {
+			return getRuleContext(DataExprUnitContext.class,0);
+		}
+		public IfThenContext ifThen() {
+			return getRuleContext(IfThenContext.class,0);
+		}
+		public IfThenElseProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterIfThenElseProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitIfThenElseProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitIfThenElseProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class CommMergeContext extends ProcExprContext {
+		public ProcExprContext procExpr(int i) {
+			return getRuleContext(ProcExprContext.class,i);
+		}
+		public List<ProcExprContext> procExpr() {
+			return getRuleContexts(ProcExprContext.class);
+		}
+		public CommMergeContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterCommMerge(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitCommMerge(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitCommMerge(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class IfThenProcExprContext extends ProcExprContext {
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public DataExprUnitContext dataExprUnit() {
+			return getRuleContext(DataExprUnitContext.class,0);
+		}
+		public IfThenProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterIfThenProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitIfThenProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitIfThenProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ActionProcExprContext extends ProcExprContext {
+		public ActionContext action() {
+			return getRuleContext(ActionContext.class,0);
+		}
+		public ActionProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterActionProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitActionProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitActionProcExpr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class BlockOperatorContext extends ProcExprContext {
+		public ActIdSetContext actIdSet() {
+			return getRuleContext(ActIdSetContext.class,0);
+		}
+		public ProcExprContext procExpr() {
+			return getRuleContext(ProcExprContext.class,0);
+		}
+		public BlockOperatorContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterBlockOperator(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitBlockOperator(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitBlockOperator(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ParallelProcExprContext extends ProcExprContext {
+		public ProcExprContext procExpr(int i) {
+			return getRuleContext(ProcExprContext.class,i);
+		}
+		public List<ProcExprContext> procExpr() {
+			return getRuleContexts(ProcExprContext.class);
+		}
+		public ParallelProcExprContext(ProcExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).enterParallelProcExpr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof mcrl2Listener ) ((mcrl2Listener)listener).exitParallelProcExpr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof mcrl2Visitor ) return ((mcrl2Visitor<? extends T>)visitor).visitParallelProcExpr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -4330,6 +4714,10 @@ public class mcrl2Parser extends Parser {
 			switch ( getInterpreter().adaptivePredict(_input,38,_ctx) ) {
 			case 1:
 				{
+				_localctx = new IfThenElseProcExprContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+
 				{
 				setState(627); dataExprUnit(0);
 				setState(628); ifThen();
@@ -4340,6 +4728,9 @@ public class mcrl2Parser extends Parser {
 
 			case 2:
 				{
+				_localctx = new IfThenProcExprContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				{
 				setState(632); dataExprUnit(0);
 				setState(633); match(18);
@@ -4350,6 +4741,9 @@ public class mcrl2Parser extends Parser {
 
 			case 3:
 				{
+				_localctx = new SumProcExprContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(637); match(50);
 				setState(638); varsDeclList();
 				setState(639); match(60);
@@ -4359,12 +4753,18 @@ public class mcrl2Parser extends Parser {
 
 			case 4:
 				{
+				_localctx = new ActionProcExprContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(642); action();
 				}
 				break;
 
 			case 5:
 				{
+				_localctx = new IDAssignmentProcExprContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(643); match(ID);
 				setState(644); match(44);
 				setState(646);
@@ -4381,18 +4781,27 @@ public class mcrl2Parser extends Parser {
 
 			case 6:
 				{
+				_localctx = new DeltaProcExprContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(649); match(55);
 				}
 				break;
 
 			case 7:
 				{
+				_localctx = new TauProcExprContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(650); match(62);
 				}
 				break;
 
 			case 8:
 				{
+				_localctx = new BlockOperatorContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(651); match(14);
 				setState(652); match(44);
 				setState(653); actIdSet();
@@ -4404,6 +4813,9 @@ public class mcrl2Parser extends Parser {
 
 			case 9:
 				{
+				_localctx = new AllowOperatorContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(658); match(81);
 				setState(659); match(44);
 				setState(660); multActIdSet();
@@ -4415,6 +4827,9 @@ public class mcrl2Parser extends Parser {
 
 			case 10:
 				{
+				_localctx = new HideOperatorContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(665); match(39);
 				setState(666); match(44);
 				setState(667); actIdSet();
@@ -4426,6 +4841,9 @@ public class mcrl2Parser extends Parser {
 
 			case 11:
 				{
+				_localctx = new RenameOperatorContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(672); match(13);
 				setState(673); match(44);
 				setState(674); renExprSet();
@@ -4437,6 +4855,9 @@ public class mcrl2Parser extends Parser {
 
 			case 12:
 				{
+				_localctx = new CommOperatorContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(679); match(48);
 				setState(680); match(44);
 				setState(681); commExprSet();
@@ -4448,6 +4869,9 @@ public class mcrl2Parser extends Parser {
 
 			case 13:
 				{
+				_localctx = new BracketsProcExpressionContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
 				setState(686); match(44);
 				setState(687); procExpr(0);
 				setState(688); match(19);
@@ -4467,7 +4891,7 @@ public class mcrl2Parser extends Parser {
 					switch ( getInterpreter().adaptivePredict(_input,39,_ctx) ) {
 					case 1:
 						{
-						_localctx = new ProcExprContext(_parentctx, _parentState, _p);
+						_localctx = new CommMergeContext(new ProcExprContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_procExpr);
 						setState(692);
 						if (!(10 >= _localctx._p)) throw new FailedPredicateException(this, "10 >= $_p");
@@ -4480,7 +4904,7 @@ public class mcrl2Parser extends Parser {
 
 					case 2:
 						{
-						_localctx = new ProcExprContext(_parentctx, _parentState, _p);
+						_localctx = new SequentialCompositionProcExprContext(new ProcExprContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_procExpr);
 						setState(695);
 						if (!(8 >= _localctx._p)) throw new FailedPredicateException(this, "8 >= $_p");
@@ -4493,7 +4917,7 @@ public class mcrl2Parser extends Parser {
 
 					case 3:
 						{
-						_localctx = new ProcExprContext(_parentctx, _parentState, _p);
+						_localctx = new UntilOperatorProcExprContext(new ProcExprContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_procExpr);
 						setState(698);
 						if (!(7 >= _localctx._p)) throw new FailedPredicateException(this, "7 >= $_p");
@@ -4506,7 +4930,7 @@ public class mcrl2Parser extends Parser {
 
 					case 4:
 						{
-						_localctx = new ProcExprContext(_parentctx, _parentState, _p);
+						_localctx = new LeftMergeProcExprContext(new ProcExprContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_procExpr);
 						setState(701);
 						if (!(4 >= _localctx._p)) throw new FailedPredicateException(this, "4 >= $_p");
@@ -4519,7 +4943,7 @@ public class mcrl2Parser extends Parser {
 
 					case 5:
 						{
-						_localctx = new ProcExprContext(_parentctx, _parentState, _p);
+						_localctx = new ParallelProcExprContext(new ProcExprContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_procExpr);
 						setState(704);
 						if (!(3 >= _localctx._p)) throw new FailedPredicateException(this, "3 >= $_p");
@@ -4532,7 +4956,7 @@ public class mcrl2Parser extends Parser {
 
 					case 6:
 						{
-						_localctx = new ProcExprContext(_parentctx, _parentState, _p);
+						_localctx = new ChoiceProcExprContext(new ProcExprContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_procExpr);
 						setState(707);
 						if (!(1 >= _localctx._p)) throw new FailedPredicateException(this, "1 >= $_p");
@@ -4545,7 +4969,7 @@ public class mcrl2Parser extends Parser {
 
 					case 7:
 						{
-						_localctx = new ProcExprContext(_parentctx, _parentState, _p);
+						_localctx = new AtProcExpressionContext(new ProcExprContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_procExpr);
 						setState(710);
 						if (!(9 >= _localctx._p)) throw new FailedPredicateException(this, "9 >= $_p");
@@ -4587,11 +5011,11 @@ public class mcrl2Parser extends Parser {
 			return getRuleContext(DataExprUnitContext.class,0);
 		}
 		public TerminalNode ID() { return getToken(mcrl2Parser.ID, 0); }
-		public CommExprSetContext commExprSet() {
-			return getRuleContext(CommExprSetContext.class,0);
-		}
 		public ActionContext action() {
 			return getRuleContext(ActionContext.class,0);
+		}
+		public CommExprSetContext commExprSet() {
+			return getRuleContext(CommExprSetContext.class,0);
 		}
 		public VarsDeclListContext varsDeclList() {
 			return getRuleContext(VarsDeclListContext.class,0);
@@ -6364,9 +6788,9 @@ public class mcrl2Parser extends Parser {
 				setState(965); pbesExpr(6);
 				}
 				break;
-			case 72:
+			case 73:
 				{
-				setState(966); match(72);
+				setState(966); match(73);
 				setState(967); varsDeclList();
 				setState(968); match(60);
 				setState(969); pbesExpr(2);
@@ -6769,12 +7193,12 @@ public class mcrl2Parser extends Parser {
 				setState(1006); actFrm(2);
 				}
 				break;
-			case 72:
+			case 73:
 				{
 				_localctx = new ExistentialQuantifierActionFrmContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(1008); match(72);
+				setState(1008); match(73);
 				setState(1009); varsDeclList();
 				setState(1010); match(60);
 				setState(1011); actFrm(1);
@@ -7570,16 +7994,16 @@ public class mcrl2Parser extends Parser {
 				_prevctx = _localctx;
 				setState(1072); match(6);
 				setState(1073); regFrm(0);
-				setState(1074); match(73);
+				setState(1074); match(72);
 				setState(1075); stateFrm(11);
 				}
 				break;
-			case 72:
+			case 73:
 				{
 				_localctx = new ExistentialQuantifierStateFrmContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(1077); match(72);
+				setState(1077); match(73);
 				setState(1078); varsDeclList();
 				setState(1079); match(60);
 				setState(1080); stateFrm(4);
@@ -8118,7 +8542,7 @@ public class mcrl2Parser extends Parser {
 				setState(1175); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 4) | (1L << 7) | (1L << 37) | (1L << 40) | (1L << 43) | (1L << 44) | (1L << 49) | (1L << 54))) != 0) || ((((_la - 66)) & ~0x3f) == 0 && ((1L << (_la - 66)) & ((1L << (66 - 66)) | (1L << (72 - 66)) | (1L << (78 - 66)) | (1L << (ID - 66)) | (1L << (INT - 66)))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 4) | (1L << 7) | (1L << 37) | (1L << 40) | (1L << 43) | (1L << 44) | (1L << 49) | (1L << 54))) != 0) || ((((_la - 66)) & ~0x3f) == 0 && ((1L << (_la - 66)) & ((1L << (66 - 66)) | (1L << (73 - 66)) | (1L << (78 - 66)) | (1L << (ID - 66)) | (1L << (INT - 66)))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -8654,7 +9078,7 @@ public class mcrl2Parser extends Parser {
 		"\u016f\u0170\7\'\2\2\u0170\u01a6\5\60\31\2\u0171\u0172\7-\2\2\u0172\u01a6"+
 		"\5\60\31\2\u0173\u0174\7P\2\2\u0174\u01a6\5\60\31\2\u0175\u0176\7D\2\2"+
 		"\u0176\u0177\5.\30\2\u0177\u0178\7>\2\2\u0178\u0179\5\60\31\2\u0179\u01a6"+
-		"\3\2\2\2\u017a\u017b\7J\2\2\u017b\u017c\5.\30\2\u017c\u017d\7>\2\2\u017d"+
+		"\3\2\2\2\u017a\u017b\7K\2\2\u017b\u017c\5.\30\2\u017c\u017d\7>\2\2\u017d"+
 		"\u017e\5\60\31\2\u017e\u01a6\3\2\2\2\u017f\u0180\7*\2\2\u0180\u0181\5"+
 		".\30\2\u0181\u0182\7>\2\2\u0182\u0183\5\60\31\2\u0183\u01a6\3\2\2\2\u0184"+
 		"\u01a6\7U\2\2\u0185\u01a6\7V\2\2\u0186\u01a6\78\2\2\u0187\u01a6\7\t\2"+
@@ -8681,7 +9105,7 @@ public class mcrl2Parser extends Parser {
 		"\31\t\3\u01bd\u01be\7:\2\2\u01be\u01f5\5\60\31\2\u01bf\u01c0\6\31\n\3"+
 		"\u01c0\u01c1\7<\2\2\u01c1\u01f5\5\60\31\2\u01c2\u01c3\6\31\13\3\u01c3"+
 		"\u01c4\7\67\2\2\u01c4\u01f5\5\60\31\2\u01c5\u01c6\6\31\f\3\u01c6\u01c7"+
-		"\7+\2\2\u01c7\u01f5\5\60\31\2\u01c8\u01c9\6\31\r\3\u01c9\u01ca\7K\2\2"+
+		"\7+\2\2\u01c7\u01f5\5\60\31\2\u01c8\u01c9\6\31\r\3\u01c9\u01ca\7J\2\2"+
 		"\u01ca\u01f5\5\60\31\2\u01cb\u01cc\6\31\16\3\u01cc\u01cd\7Q\2\2\u01cd"+
 		"\u01f5\5\60\31\2\u01ce\u01cf\6\31\17\3\u01cf\u01d0\7\13\2\2\u01d0\u01f5"+
 		"\5\60\31\2\u01d1\u01d2\6\31\20\3\u01d2\u01d3\7\b\2\2\u01d3\u01f5\5\60"+
@@ -8851,7 +9275,7 @@ public class mcrl2Parser extends Parser {
 		"\u03bd\u03be\5\u0080A\2\u03be\u03bf\7E\2\2\u03bf\u0083\3\2\2\2\u03c0\u03c1"+
 		"\7$\2\2\u03c1\u03c2\7.\2\2\u03c2\u03c3\5\60\31\2\u03c3\u03c4\7\25\2\2"+
 		"\u03c4\u0085\3\2\2\2\u03c5\u03c6\bD\1\2\u03c6\u03c7\7\'\2\2\u03c7\u03db"+
-		"\5\u0086D\2\u03c8\u03c9\7J\2\2\u03c9\u03ca\5.\30\2\u03ca\u03cb\7>\2\2"+
+		"\5\u0086D\2\u03c8\u03c9\7K\2\2\u03c9\u03ca\5.\30\2\u03ca\u03cb\7>\2\2"+
 		"\u03cb\u03cc\5\u0086D\2\u03cc\u03db\3\2\2\2\u03cd\u03ce\7D\2\2\u03ce\u03cf"+
 		"\5.\30\2\u03cf\u03d0\7>\2\2\u03d0\u03d1\5\u0086D\2\u03d1\u03db\3\2\2\2"+
 		"\u03d2\u03db\5\u0084C\2\u03d3\u03db\78\2\2\u03d4\u03db\7\t\2\2\u03d5\u03d6"+
@@ -8866,7 +9290,7 @@ public class mcrl2Parser extends Parser {
 		"\u03e8\3\2\2\2\u03e8\u0087\3\2\2\2\u03e9\u03e7\3\2\2\2\u03ea\u03eb\bE"+
 		"\1\2\u03eb\u03ec\7\'\2\2\u03ec\u0400\5\u0088E\2\u03ed\u03ee\7D\2\2\u03ee"+
 		"\u03ef\5.\30\2\u03ef\u03f0\7>\2\2\u03f0\u03f1\5\u0088E\2\u03f1\u0400\3"+
-		"\2\2\2\u03f2\u03f3\7J\2\2\u03f3\u03f4\5.\30\2\u03f4\u03f5\7>\2\2\u03f5"+
+		"\2\2\2\u03f2\u03f3\7K\2\2\u03f3\u03f4\5.\30\2\u03f4\u03f5\7>\2\2\u03f5"+
 		"\u03f6\5\u0088E\2\u03f6\u0400\3\2\2\2\u03f7\u0400\5\u0084C\2\u03f8\u03f9"+
 		"\7.\2\2\u03f9\u03fa\5\u0088E\2\u03fa\u03fb\7\25\2\2\u03fb\u0400\3\2\2"+
 		"\2\u03fc\u0400\5^\60\2\u03fd\u0400\78\2\2\u03fe\u0400\7\t\2\2\u03ff\u03ea"+
@@ -8890,8 +9314,8 @@ public class mcrl2Parser extends Parser {
 		"\u042b\bG\1\2\u042b\u042c\7\'\2\2\u042c\u0464\5\u008cG\2\u042d\u042e\7"+
 		"\6\2\2\u042e\u042f\5\u008aF\2\u042f\u0430\7(\2\2\u0430\u0431\5\u008cG"+
 		"\2\u0431\u0464\3\2\2\2\u0432\u0433\7\b\2\2\u0433\u0434\5\u008aF\2\u0434"+
-		"\u0435\7K\2\2\u0435\u0436\5\u008cG\2\u0436\u0464\3\2\2\2\u0437\u0438\7"+
-		"J\2\2\u0438\u0439\5.\30\2\u0439\u043a\7>\2\2\u043a\u043b\5\u008cG\2\u043b"+
+		"\u0435\7J\2\2\u0435\u0436\5\u008cG\2\u0436\u0464\3\2\2\2\u0437\u0438\7"+
+		"K\2\2\u0438\u0439\5.\30\2\u0439\u043a\7>\2\2\u043a\u043b\5\u008cG\2\u043b"+
 		"\u0464\3\2\2\2\u043c\u043d\7D\2\2\u043d\u043e\5.\30\2\u043e\u043f\7>\2"+
 		"\2\u043f\u0440\5\u008cG\2\u0440\u0464\3\2\2\2\u0441\u0442\7T\2\2\u0442"+
 		"\u0443\5\u008eH\2\u0443\u0444\7>\2\2\u0444\u0445\5\u008cG\2\u0445\u0464"+
