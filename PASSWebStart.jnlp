@@ -18,31 +18,44 @@
 	<!-- SWT and JFace library and supports -->
 	
 		
-	<resources os="Linux" arch="x86_64">
-		<j2se version="1.5+" />	
-		<jar href="~danielar/PASSWebStart/PASSWebStart64.jar" main="true" />
+	<resources  os="Linux" arch="x86_64">
+	<j2se version="1.5+" />	
+	<jar href="~danielar/PASSWebStart/lib/swt-64.jar"    />
+	<jar href="~danielar/PASSWebStart/PASSWebStart.jar" main="true" />
 	</resources>
 	
-	<resources os="Linux" arch="amd64">
+	<resources  os="Linux" arch="amd64">
 		<j2se version="1.5+" />	
-		<jar href="~danielar/PASSWebStart/PASSWebStart64.jar" main="true" />
-	</resources>
-	
-	
-		<resources os="Linux" arch="amd64">	
-				<jar href="~danielar/PASSWebStart/lib/swt-64.jar"    />
-	</resources>
-	
-		<resources>
-		<j2se version="1.5+" />	
+		<jar href="~danielar/PASSWebStart/lib/swt-64.jar"    />
 		<jar href="~danielar/PASSWebStart/PASSWebStart.jar" main="true" />
 	</resources>
 
-	
-	<resources os="Linux" arch="x86_64">
-				<jar href="~danielar/PASSWebStart/lib/swt-64.jar"    />
+	<resources os="Windows" arch="x86">
+		<jar href="~danielar/PASSWebStart/lib/swt-win86.jar" />
+		<jar href="~danielar/PASSWebStart/PASSWebStart.jar" main="true" />
+	</resources>
+
+	<resources os="Windows" arch="x86_64">
+		<jar href="~danielar/PASSWebStart/lib/swt-win64.jar" />
+		<jar href="~danielar/PASSWebStart/PASSWebStart.jar" main="true" />
+	</resources>
+	<resources os="Windows" arch="amd64">
+		<jar href="~danielar/PASSWebStart/lib/swt-win64.jar" />
+		<jar href="~danielar/PASSWebStart/PASSWebStart.jar" main="true" />
+	</resources>
+	<resources os="Linux" arch="i386">
+		<jar href="~danielar/PASSWebStart/lib/org.eclipse.swt.gtk.linux.x86-4.3.jar"    />
+		<jar href="~danielar/PASSWebStart/PASSWebStart.jar" main="true" />
+	</resources>
+		<resources os="Linux" arch="i686">
+		<jar href="~danielar/PASSWebStart/lib/org.eclipse.swt.gtk.linux.x86-4.3.jar"    />
+		<jar href="~danielar/PASSWebStart/PASSWebStart.jar" main="true" />
 	</resources>
 	
+	<resources os="Linux" arch="x86">
+		<jar href="~danielar/PASSWebStart/lib/org.eclipse.swt.gtk.linux.x86-4.3.jar"    />
+		<jar href="~danielar/PASSWebStart/PASSWebStart.jar" main="true" />
+	</resources>	
 	<resources>
 		<j2se version="1.5+" />		
 		<jar href="~danielar/PASSWebStart/lib/antlr-4.1-complete.jar"    />
@@ -60,7 +73,7 @@
 		<jar href="~danielar/PASSWebStart/lib/org.eclipse.osgi_3.6.50.R36x_v20120315-1500.jar"    />
 		<jar href="~danielar/PASSWebStart/lib/org.eclipse.ui.workbench_3.6.2.M20120227.jar"    />
 		<jar href="~danielar/PASSWebStart/lib/org.osgi.core-4.3.0.jar"    />
-		<jar href="~danielar/PASSWebStart/lib/org.eclipse.swt.gtk.linux.x86-4.3.jar"    />
+
 	</resources>
 
 	<application-desc main-class="PASSWrapper" />
