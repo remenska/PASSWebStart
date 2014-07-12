@@ -189,14 +189,26 @@ public class SelectDataSetDialog extends Dialog {
 	}
 
 	private ModelAction[] createModel() {
-		ModelAction[] elements = new ModelAction[actionsDict.keySet().size()];
+		ArrayList<String> allowedActions = Mymcrl2Visitor.allowedActionsList;
+
+		ModelAction[] elements = null;
+		if(allowedActions==null){		
+			elements = new ModelAction[actionsDict.keySet().size()];
+			// if there is no allow({..}) then all actions are allowed
+			allowedActions = new ArrayList<String> (actionsDict.keySet()); 
+		}
+		else
+			elements = new ModelAction[allowedActions.size()];
+		
 		Enumeration<String> actionKeyEnum = Mymcrl2Visitor.actionsDict.keys();
 		int i = 0;
 		while (actionKeyEnum.hasMoreElements()) {
 			String act = actionKeyEnum.nextElement();
-			elements[i] = new ModelAction(act);
-			elements[i].setArguments(actionsDict.get(act));
-			i++;
+			if(allowedActions.contains(act)){
+				elements[i] = new ModelAction(act);
+				elements[i].setArguments(actionsDict.get(act));
+				i++;		
+			}
 			// show some mesasge that the model has no actions; Disable PASS
 			// button
 		}

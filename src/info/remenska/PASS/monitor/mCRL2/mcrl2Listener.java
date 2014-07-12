@@ -218,6 +218,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitListConsDataExpr(@NotNull mcrl2Parser.ListConsDataExprContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#IfThenProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfThenProcExpr(@NotNull mcrl2Parser.IfThenProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#IfThenProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfThenProcExpr(@NotNull mcrl2Parser.IfThenProcExprContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#bagEnumElt}.
 	 * @param ctx the parse tree
 	 */
@@ -262,6 +273,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitMultActId(@NotNull mcrl2Parser.MultActIdContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#AllowOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterAllowOperator(@NotNull mcrl2Parser.AllowOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#AllowOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitAllowOperator(@NotNull mcrl2Parser.AllowOperatorContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#renExprSet}.
 	 * @param ctx the parse tree
 	 */
@@ -282,6 +304,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProcDecl(@NotNull mcrl2Parser.ProcDeclContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#AtProcExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAtProcExpression(@NotNull mcrl2Parser.AtProcExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#AtProcExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAtProcExpression(@NotNull mcrl2Parser.AtProcExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#actionRenameSpec}.
@@ -348,6 +381,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIdsDecl(@NotNull mcrl2Parser.IdsDeclContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#TauProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterTauProcExpr(@NotNull mcrl2Parser.TauProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#TauProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitTauProcExpr(@NotNull mcrl2Parser.TauProcExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#eqnSpec}.
@@ -504,6 +548,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitSmallerEqualDataExpr(@NotNull mcrl2Parser.SmallerEqualDataExprContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#ParallelProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterParallelProcExpr(@NotNull mcrl2Parser.ParallelProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#ParallelProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitParallelProcExpr(@NotNull mcrl2Parser.ParallelProcExprContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#projDeclList}.
 	 * @param ctx the parse tree
 	 */
@@ -548,6 +603,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitExistentialQuantifierStateFrm(@NotNull mcrl2Parser.ExistentialQuantifierStateFrmContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#DeltaProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeltaProcExpr(@NotNull mcrl2Parser.DeltaProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#DeltaProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeltaProcExpr(@NotNull mcrl2Parser.DeltaProcExprContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#EqnmCRL2SpecElt}.
 	 * @param ctx the parse tree
 	 */
@@ -590,6 +656,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFixedPointOperator(@NotNull mcrl2Parser.FixedPointOperatorContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#BracketsProcExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBracketsProcExpression(@NotNull mcrl2Parser.BracketsProcExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#BracketsProcExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBracketsProcExpression(@NotNull mcrl2Parser.BracketsProcExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#besInit}.
@@ -768,6 +845,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitProcSpec(@NotNull mcrl2Parser.ProcSpecContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#UntilOperatorProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterUntilOperatorProcExpr(@NotNull mcrl2Parser.UntilOperatorProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#UntilOperatorProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitUntilOperatorProcExpr(@NotNull mcrl2Parser.UntilOperatorProcExprContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#EqualityDataExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -834,17 +922,6 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitDelayOpStateFrm(@NotNull mcrl2Parser.DelayOpStateFrmContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link mcrl2Parser#ActmCRL2SpecElt}.
-	 * @param ctx the parse tree
-	 */
-	void enterActmCRL2SpecElt(@NotNull mcrl2Parser.ActmCRL2SpecEltContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link mcrl2Parser#ActmCRL2SpecElt}.
-	 * @param ctx the parse tree
-	 */
-	void exitActmCRL2SpecElt(@NotNull mcrl2Parser.ActmCRL2SpecEltContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#IdentifierDataExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -854,6 +931,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIdentifierDataExpr(@NotNull mcrl2Parser.IdentifierDataExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#ActmCRL2SpecElt}.
+	 * @param ctx the parse tree
+	 */
+	void enterActmCRL2SpecElt(@NotNull mcrl2Parser.ActmCRL2SpecEltContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#ActmCRL2SpecElt}.
+	 * @param ctx the parse tree
+	 */
+	void exitActmCRL2SpecElt(@NotNull mcrl2Parser.ActmCRL2SpecEltContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#ifThen}.
@@ -933,6 +1021,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitSortSpec(@NotNull mcrl2Parser.SortSpecContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#SumProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSumProcExpr(@NotNull mcrl2Parser.SumProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#SumProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSumProcExpr(@NotNull mcrl2Parser.SumProcExprContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#ProcmCRL2SpecElt}.
 	 * @param ctx the parse tree
 	 */
@@ -942,6 +1041,28 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProcmCRL2SpecElt(@NotNull mcrl2Parser.ProcmCRL2SpecEltContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#LeftMergeProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeftMergeProcExpr(@NotNull mcrl2Parser.LeftMergeProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#LeftMergeProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeftMergeProcExpr(@NotNull mcrl2Parser.LeftMergeProcExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#RenameOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterRenameOperator(@NotNull mcrl2Parser.RenameOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#RenameOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitRenameOperator(@NotNull mcrl2Parser.RenameOperatorContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#YaledOpStateFrm}.
@@ -1019,6 +1140,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionUpdateDataExpr(@NotNull mcrl2Parser.FunctionUpdateDataExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#ChoiceProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterChoiceProcExpr(@NotNull mcrl2Parser.ChoiceProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#ChoiceProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitChoiceProcExpr(@NotNull mcrl2Parser.ChoiceProcExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#PositiveSort}.
@@ -1131,6 +1263,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitFBagSort(@NotNull mcrl2Parser.FBagSortContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#BlockOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlockOperator(@NotNull mcrl2Parser.BlockOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#BlockOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlockOperator(@NotNull mcrl2Parser.BlockOperatorContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#NegationActionFrm}.
 	 * @param ctx the parse tree
 	 */
@@ -1217,6 +1360,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStateVarAssignment(@NotNull mcrl2Parser.StateVarAssignmentContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#SequentialCompositionProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSequentialCompositionProcExpr(@NotNull mcrl2Parser.SequentialCompositionProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#SequentialCompositionProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSequentialCompositionProcExpr(@NotNull mcrl2Parser.SequentialCompositionProcExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#ListSizeDataExpr}.
@@ -1307,6 +1461,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitConjunctionDataExpr(@NotNull mcrl2Parser.ConjunctionDataExprContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#CommMerge}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommMerge(@NotNull mcrl2Parser.CommMergeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#CommMerge}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommMerge(@NotNull mcrl2Parser.CommMergeContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#DisjunctionDataExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -1327,6 +1492,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSequentialCompositionRegForm(@NotNull mcrl2Parser.SequentialCompositionRegFormContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#ActionProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterActionProcExpr(@NotNull mcrl2Parser.ActionProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#ActionProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitActionProcExpr(@NotNull mcrl2Parser.ActionProcExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#TrueActionFrm}.
@@ -1494,17 +1670,6 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitBesSpec(@NotNull mcrl2Parser.BesSpecContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link mcrl2Parser#SortmCRL2SpecElt}.
-	 * @param ctx the parse tree
-	 */
-	void enterSortmCRL2SpecElt(@NotNull mcrl2Parser.SortmCRL2SpecEltContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link mcrl2Parser#SortmCRL2SpecElt}.
-	 * @param ctx the parse tree
-	 */
-	void exitSortmCRL2SpecElt(@NotNull mcrl2Parser.SortmCRL2SpecEltContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#IntegerSort}.
 	 * @param ctx the parse tree
 	 */
@@ -1516,6 +1681,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitIntegerSort(@NotNull mcrl2Parser.IntegerSortContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#SortmCRL2SpecElt}.
+	 * @param ctx the parse tree
+	 */
+	void enterSortmCRL2SpecElt(@NotNull mcrl2Parser.SortmCRL2SpecEltContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#SortmCRL2SpecElt}.
+	 * @param ctx the parse tree
+	 */
+	void exitSortmCRL2SpecElt(@NotNull mcrl2Parser.SortmCRL2SpecEltContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#AdditionDataExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -1525,6 +1701,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAdditionDataExpr(@NotNull mcrl2Parser.AdditionDataExprContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#IDAssignmentProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIDAssignmentProcExpr(@NotNull mcrl2Parser.IDAssignmentProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#IDAssignmentProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIDAssignmentProcExpr(@NotNull mcrl2Parser.IDAssignmentProcExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#actSpec}.
@@ -1582,6 +1769,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitListEnumerationDataExpr(@NotNull mcrl2Parser.ListEnumerationDataExprContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#HideOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterHideOperator(@NotNull mcrl2Parser.HideOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#HideOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitHideOperator(@NotNull mcrl2Parser.HideOperatorContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#BagEnumerationDataExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -1602,6 +1800,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDisjunctionStateFmr(@NotNull mcrl2Parser.DisjunctionStateFmrContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#IfThenElseProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfThenElseProcExpr(@NotNull mcrl2Parser.IfThenElseProcExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#IfThenElseProcExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfThenElseProcExpr(@NotNull mcrl2Parser.IfThenElseProcExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#commExprSet}.
@@ -1714,6 +1923,17 @@ public interface mcrl2Listener extends ParseTreeListener {
 	void exitPbesEqnDecl(@NotNull mcrl2Parser.PbesEqnDeclContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link mcrl2Parser#CommOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommOperator(@NotNull mcrl2Parser.CommOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link mcrl2Parser#CommOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommOperator(@NotNull mcrl2Parser.CommOperatorContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#stateVarDecl}.
 	 * @param ctx the parse tree
 	 */
@@ -1778,17 +1998,6 @@ public interface mcrl2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMultActIdList(@NotNull mcrl2Parser.MultActIdListContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link mcrl2Parser#procExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterProcExpr(@NotNull mcrl2Parser.ProcExprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link mcrl2Parser#procExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitProcExpr(@NotNull mcrl2Parser.ProcExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link mcrl2Parser#MemberShipSetBagDataExpr}.

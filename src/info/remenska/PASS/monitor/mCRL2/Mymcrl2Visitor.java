@@ -20,7 +20,7 @@ public class Mymcrl2Visitor extends mcrl2BaseVisitor<String>  {
     public static Hashtable<String, ArrayList<String>> actionsDict = new Hashtable<String, ArrayList<String>>();
     public static String afterInit = new String();
     public static Hashtable<String,String> varDeclarations = new Hashtable<String,String>();
-
+    public static ArrayList<String> allowedActionsList = null;
     public Mymcrl2Visitor(BufferedTokenStream tokens) {
 		Mymcrl2Visitor.tokens = tokens;
 		rewriter = new TokenStreamRewriter(tokens);
@@ -118,10 +118,20 @@ public class Mymcrl2Visitor extends mcrl2BaseVisitor<String>  {
 
 	@Override public String visitInit(@NotNull mcrl2Parser.InitContext ctx) {
 		afterInit = ctx.procExpr().getText();
-		return null;
-//		return visitChildren(ctx); 
+//		return null;
+		return visitChildren(ctx); 
+	}
+	
+	@Override public String  visitAllowOperator(@NotNull mcrl2Parser.AllowOperatorContext ctx) { 
+		return visitChildren(ctx); 
 	}
 
+
+	@Override public String visitMultActIdList(@NotNull mcrl2Parser.MultActIdListContext ctx) { 
+		String ids = ctx.getText();
+        allowedActionsList = new ArrayList<String>(Arrays.asList(ids.replaceAll("\\s","").split(",")));
+		return null;
+	}
 
 }
 
