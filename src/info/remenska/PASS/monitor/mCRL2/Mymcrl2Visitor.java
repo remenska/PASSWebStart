@@ -122,9 +122,9 @@ public class Mymcrl2Visitor extends mcrl2BaseVisitor<String>  {
 		return visitChildren(ctx); 
 	}
 	
-	@Override public String  visitAllowOperator(@NotNull mcrl2Parser.AllowOperatorContext ctx) { 
-		return visitChildren(ctx); 
-	}
+//	@Override public String  visitAllowOperator(@NotNull mcrl2Parser.AllowOperatorContext ctx) { 
+//		return visitChildren(ctx); 
+//	}
 
 
 	@Override public String visitMultActIdList(@NotNull mcrl2Parser.MultActIdListContext ctx) { 

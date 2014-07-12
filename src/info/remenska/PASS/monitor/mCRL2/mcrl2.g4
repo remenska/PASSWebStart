@@ -241,7 +241,9 @@ actionList: action ( '|' action )* ;                             // List of acti
 
 //--- Process and initial state declaration
 
-procDecl: ID ( '(' varsDeclList ')' )? '=' procExpr';' ;        // Process declaration
+procDecl: ID ( '(' varsDeclList ')' )? '=' process_ignore ';' ;        // Process declaration
+//procDecl: ID ( '(' varsDeclList ')' )? '=' procExpr';' ;        // Process declaration
+
 
 procSpec: 'proc' procDecl+ ;                                     // Process specification
 
@@ -385,6 +387,7 @@ actionRenameRuleRHS
   ;
 
 //--- Identifiers
+process_ignore: (~';')+  ;
 
 idList: ID ( ',' ID )* ;                                         // List of identifiers
 

@@ -163,7 +163,7 @@ public class PASSWrapper extends ApplicationWindow {
 						styledText.pack();
 						composite.pack();
 						parent.pack();
-						// e.printStackTrace();
+						 e.printStackTrace();
 
 					} catch (FileNotFoundException e) {
 
