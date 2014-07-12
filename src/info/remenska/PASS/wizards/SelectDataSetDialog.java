@@ -116,7 +116,10 @@ public class SelectDataSetDialog extends Dialog {
 		result = null;
 		this.close();
 	}
-
+	
+	protected boolean isResizable() {
+	    return true;
+	}
 	protected Control createDialogArea(Composite parent) {
 
 		Composite top = (Composite) super.createDialogArea(parent);
