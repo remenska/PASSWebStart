@@ -52,6 +52,17 @@ public class Main {
 			// we're using this visitor just to collect action && argument types
 			Mymcrl2Visitor visitormcrl2 = new Mymcrl2Visitor(tokensmcrl2);
 			visitormcrl2.visit(treemcrl2);
+			
+			// remove those actions not in allowed (but only if there is allowed(...) segment
+			if(Mymcrl2Visitor.allowedActionsList!=null){
+				Enumeration<String> actEn = Mymcrl2Visitor.actionsDict.keys();
+				while(actEn.hasMoreElements()){
+					String key = actEn.nextElement();
+					if(!Mymcrl2Visitor.allowedActionsList.contains(key))
+						Mymcrl2Visitor.actionsDict.remove(key);
+				}
+			}
+			
 			actionSort = createActionSort(visitormcrl2);
 			actionFormula = createActionFormulaSort();
 			mappings = createMappings(visitormcrl2);
@@ -298,33 +309,35 @@ public class Main {
 		result.append("sort Action = struct ");
 		StringBuffer actions = new StringBuffer();
 		Hashtable<String, ArrayList<String>> actionsDict = visitor.actionsDict;
-		Enumeration<String> keys = actionsDict.keys();
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
-			ArrayList<String> dataTypes = actionsDict.get(key);
-			result.append(key + "_mon");
-			actions.append("act " + key + "_mon," + key + "_found");
-			if (dataTypes.size() > 0) {
-				result.append("(");
-				actions.append(":");
-				int counter = 1;
-				Iterator<String> iter = dataTypes.iterator();
-				while (iter.hasNext()) {
-					String dt = iter.next();
-					result.append(key + "_" + "arg" + counter++ + ":" + dt);
-					actions.append(dt);
-					if (iter.hasNext()) {
-						result.append(",");
-						actions.append("#");
+
+			Enumeration<String> keys = actionsDict.keys();
+			while (keys.hasMoreElements()) {
+				String key = keys.nextElement();
+				ArrayList<String> dataTypes = actionsDict.get(key);
+				result.append(key + "_mon");
+				actions.append("act " + key + "_mon," + key + "_found");
+				if (dataTypes.size() > 0) {
+					result.append("(");
+					actions.append(":");
+					int counter = 1;
+					Iterator<String> iter = dataTypes.iterator();
+					while (iter.hasNext()) {
+						String dt = iter.next();
+						result.append(key + "_" + "arg" + counter++ + ":" + dt);
+						actions.append(dt);
+						if (iter.hasNext()) {
+							result.append(",");
+							actions.append("#");
+						}
 					}
+					result.append(")");
 				}
-				result.append(")");
-			}
-			if (keys.hasMoreElements()) {
-				result.append("\n | ");
-			}
-			actions.append(";\n");
-		}
+				if (keys.hasMoreElements()) {
+					result.append("\n | ");
+				}
+				actions.append(";\n");
+			}	
+
 		result.append(";\n");
 		result.append("\n" + actions);
 		return result.toString();
@@ -361,26 +374,27 @@ public class Main {
 	public static String createInit() {
 		StringBuffer result = new StringBuffer();
 		result.append("init hide ({synch_internal}, allow({error, synch_internal,");
-		Enumeration<String> actions = Mymcrl2Visitor.actionsDict.keys();
-		while (actions.hasMoreElements()) {
-			result.append(actions.nextElement() + "_found");
-			if (actions.hasMoreElements())
-				result.append(",");
-		}
-		result.append("}, \n comm({");
-		result.append("internal | internal_mon -> synch_internal, \n");
-		actions = Mymcrl2Visitor.actionsDict.keys();
-		while (actions.hasMoreElements()) {
-			String action = actions.nextElement();
-			result.append("\t " + action + " | " + action + "_mon -> " + action
-					+ "_found");
-			if (actions.hasMoreElements())
-				result.append(",\n");
-		}
-		result.append("\n},\n Monitor ");
+			Enumeration<String> actions = Mymcrl2Visitor.actionsDict.keys();
+			while (actions.hasMoreElements()) {
+				result.append(actions.nextElement() + "_found");
+				if (actions.hasMoreElements())
+					result.append(",");
+			}
+			result.append("}, \n comm({");
+			result.append("internal | internal_mon -> synch_internal, \n");
+			actions = Mymcrl2Visitor.actionsDict.keys();
+			while (actions.hasMoreElements()) {
+				String action = actions.nextElement();
+				result.append("\t " + action + " | " + action + "_mon -> " + action
+						+ "_found");
+				if (actions.hasMoreElements())
+					result.append(",\n");
+			}
+			result.append("\n},\n Monitor ");
 
-		result.append(" || " + Mymcrl2Visitor.afterInit);
-		result.append(")));");
+			result.append(" || " + Mymcrl2Visitor.afterInit);
+			result.append(")));");
+
 		return result.toString();
 	}
 }
