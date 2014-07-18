@@ -391,10 +391,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + ";");
-			
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-					+ varList + ";\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)		
+				finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+						+ varList + ";  % just removing backets\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
@@ -403,7 +403,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
 				finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
 						+ prepend_UniversalQuantifierStateFrm + " = "
-						+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";% just removing backets\n\n");
 		}
 		
 		String result = new String("" + visit(ctx.stateFrm()) + "");
@@ -496,10 +496,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + ";");
-			
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-					+ varList + ";\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)		
+				finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+						+ varList + ";% just removing backets\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
@@ -509,7 +509,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
 				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 						+ prepend_UniversalQuantifierStateFrm + " = "
-						+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";% just removing backets\n\n");
 		}
 		
 		String result = new String("" + visit(ctx.regFrm()) + "");
@@ -528,10 +528,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "internal_mon ;");
-			
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "internal_mon ;\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)		
+				finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "internal_mon ;\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
@@ -565,10 +565,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + " + " + monProc2 + varList + ";");
-			
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-					+ varList + " + " + monProc2 + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)		
+				finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+						+ varList + " + " + monProc2 + varList + ";\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
@@ -597,9 +597,9 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		if (humanReadable){
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = error;");
-			
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = error;\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)			
+				finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = error;\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
@@ -640,10 +640,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc + " = sum "
 					+ ctx.varsDeclList().getText() + ". " + monProc2 + varList
 					+ ";");
-			
-			finalResult.append("proc " + monProc + " = sum "
-					+ ctx.varsDeclList().getText() + ". " + monProc2 + varList
-					+ ";\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)			
+				finalResult.append("proc " + monProc + " = sum "
+						+ ctx.varsDeclList().getText() + ". " + monProc2 + varList
+						+ ";\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)

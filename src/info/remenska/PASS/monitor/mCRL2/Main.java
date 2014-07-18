@@ -375,7 +375,7 @@ public class Main {
 
 	public static String createActionSort(Mymcrl2Visitor visitor) {
 		StringBuffer result = new StringBuffer();
-		result.append("act error, internal_mon, synch_internal ;\n");
+		result.append("act error ;\n");
 		result.append("sort Action = struct ");
 		StringBuffer actions = new StringBuffer();
 		Hashtable<String, ArrayList<String>> actionsDict = visitor.actionsDict;
