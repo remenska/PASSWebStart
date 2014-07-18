@@ -3,9 +3,13 @@ package info.remenska.PASS.wizards;
 import info.remenska.PASS.monitor.mCRL2.Mymcrl2Visitor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -56,7 +60,7 @@ public class SelectDataSetDialog extends Dialog {
 		}
 	}
 
-	public class ModelAction {
+	public class ModelAction implements Comparable<ModelAction>{
 		private String nameAction;
 		private ArrayList<String> arguments;
 
@@ -93,6 +97,12 @@ public class SelectDataSetDialog extends Dialog {
 		// public String toString(){
 		// return nameAction + arguments.toString();
 		// }
+
+		public int compareTo(ModelAction o) {
+			int lastCmp = nameAction.compareTo(o.nameAction);
+			// TODO Auto-generated method stub
+			return lastCmp;
+		}
 	}
 
 	protected TableViewer tableViewer;
@@ -212,10 +222,18 @@ public class SelectDataSetDialog extends Dialog {
 				elements[i].setArguments(actionsDict.get(act));
 				i++;		
 			}
+			
+			
 			// show some mesasge that the model has no actions; Disable PASS
 			// button
 		}
+		// let's sort the damn list of actions!
+		List<ModelAction> listElements = Arrays.asList(elements);
+		Collections.sort(listElements);
+		elements = new ModelAction[listElements.size()];
+		listElements.toArray(elements);
 		return elements;
+		// end_sort
 	}
 
 	protected Point getInitialSize() {

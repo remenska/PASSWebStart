@@ -74,7 +74,6 @@ public class Main {
 
 			LOGGER.fine("----------------------------------------");
 			LOGGER.fine("Original formula : " + finalString);
-
 			mucalculusLexer lexer = new mucalculusLexer(
 					(CharStream) new ANTLRInputStream(finalString));
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -89,9 +88,79 @@ public class Main {
 
 			finalString = preprocess(MyMuCalculusVisitorSilent.rewriter
 					.getText());
+			String currentFormula = finalString;
+			String prevFormula = "";
+			while(!currentFormula.equals(prevFormula)){
+				prevFormula = currentFormula;
+				lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
+						currentFormula));
+				tokens = new CommonTokenStream(lexer);
+				parser = new mucalculusParser(tokens);
+				parser.setErrorHandler(new BailErrorStrategy());
+				tree = parser.start();
+				MyMuCalculusVisitorTransform visitor2 = new MyMuCalculusVisitorTransform(tokens);
+				 visitor2.visit(tree);
+				currentFormula = preprocess(MyMuCalculusVisitorTransform.rewriter.getText());
+			}
+			
+//			System.out.println("Let's test:");
+//			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
+//					finalString));
+//			tokens = new CommonTokenStream(lexer);
+//			parser = new mucalculusParser(tokens);
+//			parser.setErrorHandler(new BailErrorStrategy());
+//			tree = parser.start();
+//			MyMuCalculusVisitorTransform visitor2 = new MyMuCalculusVisitorTransform(tokens);
+//			 visitor2.visit(tree);
+//			System.out.println("YESSS: " + preprocess(MyMuCalculusVisitorTransform.rewriter.getText()));
+//			System.out.println("END test");
+//
+//			// second time:
+//			finalString = preprocess(MyMuCalculusVisitorTransform.rewriter.getText());
+//			System.out.println("Let's test2:");
+//			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
+//					finalString));
+//			tokens = new CommonTokenStream(lexer);
+//			parser = new mucalculusParser(tokens);
+//			parser.setErrorHandler(new BailErrorStrategy());
+//			tree = parser.start();
+//			visitor2 = new MyMuCalculusVisitorTransform(tokens);
+//			 visitor2.visit(tree);
+//			System.out.println("YESSS: " + preprocess(MyMuCalculusVisitorTransform.rewriter.getText()));
+//			System.out.println("END test2");
+//			//third time:
+//			
+//			finalString = preprocess(MyMuCalculusVisitorTransform.rewriter.getText());
+//			System.out.println("Let's test3:");
+//			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
+//					finalString));
+//			tokens = new CommonTokenStream(lexer);
+//			parser = new mucalculusParser(tokens);
+//			parser.setErrorHandler(new BailErrorStrategy());
+//			tree = parser.start();
+//			visitor2 = new MyMuCalculusVisitorTransform(tokens);
+//			 visitor2.visit(tree);
+//			System.out.println("YESSS: " + preprocess(MyMuCalculusVisitorTransform.rewriter.getText()));
+//			System.out.println("END test3");
+//			finalString = preprocess(MyMuCalculusVisitorTransform.rewriter.getText());
+//			System.out.println("Let's test4:");
+//			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
+//					finalString));
+//			tokens = new CommonTokenStream(lexer);
+//			parser = new mucalculusParser(tokens);
+//			parser.setErrorHandler(new BailErrorStrategy());
+//			tree = parser.start();
+//			visitor2 = new MyMuCalculusVisitorTransform(tokens);
+//			 visitor2.visit(tree);
+//			System.out.println("YESSS: " + preprocess(MyMuCalculusVisitorTransform.rewriter.getText()));
+//			System.out.println("END test4");
+			
 
+
+			// end test
+			
 			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
-					finalString));
+					currentFormula));
 			tokens = new CommonTokenStream(lexer);
 			parser = new mucalculusParser(tokens);
 			parser.setErrorHandler(new BailErrorStrategy());
@@ -118,7 +187,7 @@ public class Main {
 
 			visitor1.visit(tree);
 			StringBuffer outputModel = new StringBuffer();
-			outputModel.append("% Original formula:" + finalString + "\n");
+			outputModel.append("% Original formula:" + currentFormula + "\n");
 			outputModel.append("% ============================\n");
 			outputModel.append("% Modified formula:" + finalStringModified
 					+ "\n");
@@ -299,6 +368,7 @@ public class Main {
 				"false "));
 		buffer = new StringBuffer(buffer.toString().replaceAll("nil", "nil "));
 		buffer = new StringBuffer(buffer.toString().replaceAll("!", "! "));
+		buffer = new StringBuffer(buffer.toString().replaceAll("&&", "&& "));
 
 		return buffer.toString();
 	}
@@ -378,7 +448,7 @@ public class Main {
 			while (actions.hasMoreElements()) {
 				result.append(actions.nextElement() + "_found");
 				if (actions.hasMoreElements())
-					result.append(",");
+					result.append(",\n");
 			}
 			result.append("}, \n comm({");
 			result.append("internal | internal_mon -> synch_internal, \n");
@@ -386,7 +456,7 @@ public class Main {
 			while (actions.hasMoreElements()) {
 				String action = actions.nextElement();
 				result.append("\t " + action + " | " + action + "_mon -> " + action
-						+ "_found");
+						+ "_found\n");
 				if (actions.hasMoreElements())
 					result.append(",\n");
 			}

@@ -56,13 +56,15 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			monitorProcesses.put(monProc, new Integer(counter++));
 
 		if (humanReadable){
+			if(finalResult.indexOf("proc Monitor =")==-1)
 			finalResult.append("proc Monitor = " + monProc + "; \n\n");
 			LOGGER.finest("proc Monitor = " + monProc + ";");
 					
 		}
 		else{
-			finalResult.append("proc Monitor = "
-					+ "Mon_" + monitorProcesses.get(monProc) + ";\n\n");
+			if(finalResult.indexOf("proc Monitor =")==-1)
+				finalResult.append("proc Monitor = "
+						+ "Mon_" + monitorProcesses.get(monProc) + ";\n\n");
 			LOGGER.finest("proc Monitor = "
 					+ monitorProcesses.get(monProc));
 			
@@ -150,7 +152,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			if (keys.hasMoreElements())
 				sumOverAllActions.append(" + ");
 			else
-				sumOverAllActions.append(" + internal_mon;\n");
+				sumOverAllActions.append(" + internal_mon");
 		}
 		
 
@@ -158,20 +160,20 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ sumOverAllActions + ";");
-					
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ sumOverAllActions + ";\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)		
+				finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ sumOverAllActions + ";\n\n");
 		}
 		else{
 			
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ sumOverAllActions + ";");
-			
-			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ sumOverAllActions + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ sumOverAllActions + ";\n\n");
 			
 		}
 		return result;
@@ -191,20 +193,21 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + ". " + monProc + varList + ";");
-			
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-					+ varList + ". " + monProc + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)		
+				finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+						+ varList + ". " + monProc + varList + ";\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ monitorProcesses.get(monProc1) + varList + ". "
 					+ monitorProcesses.get(monProc) + varList + ";");
-			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "Mon_" + monitorProcesses.get(monProc1) + varList + ". "
-					+ "Mon_" + monitorProcesses.get(monProc) + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + ". "
+						+ "Mon_" + monitorProcesses.get(monProc) + varList + ";\n\n");
 		}
 			
 		return visitChildren(ctx);
@@ -222,12 +225,12 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 		Token t2 = (Token) ctx.regFrm(0).stop;
 
 
-		if (tokens.get(t2.getTokenIndex() + 1).getText().equals(".")) {
-			// transformation
-			rewriter.delete(t2.getTokenIndex() + 1);
-			rewriter.insertAfter(t2.getTokenIndex(), "][");
-			// we're ready
-		}
+//		if (tokens.get(t2.getTokenIndex() + 1).getText().equals(".")) {
+//			// transformation
+//			rewriter.delete(t2.getTokenIndex() + 1);
+//			rewriter.insertAfter(t2.getTokenIndex(), "][");
+//			// we're ready
+//		}
 
 		if (monitorProcesses.get(monProc) == null)
 			monitorProcesses.put(monProc, new Integer(counter++));
@@ -239,20 +242,22 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + "." + monProc2 + varList + ";");
-			
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-					+ varList + "." + monProc2 + varList + ";\n\n");
+
+			if(finalResult.indexOf("proc " + monProc)==-1)			
+				finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+						+ varList + "." + monProc2 + varList + ";\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ monitorProcesses.get(monProc1) + varList + "."
 					+ monitorProcesses.get(monProc2) + varList + ";");
-			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "Mon_" + monitorProcesses.get(monProc1) + varList + "."
-					+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + "."
+						+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
 		}
 		
 		return visitChildren(ctx);
@@ -288,34 +293,36 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + " . " + monProc2 + varList + ";");
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-					+ varList + " . " + monProc2 + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)		
+					finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+						+ varList + " . " + monProc2 + varList + ";\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ monitorProcesses.get(monProc1) + varList + " . "
 					+ monitorProcesses.get(monProc2) + varList + ";");
-			finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "Mon_" + monitorProcesses.get(monProc1) + varList + " . "
-					+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + " . "
+						+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
 		}
 		
-		if (ctx.regFrm() instanceof mucalculusParser.IterationRegFormContext) {
-
-			mucalculusParser.RegFrmContext child1 = ctx.regFrm();
-
-			mucalculusParser.RegFrmContext child1modified = (RegFrmContext) ctx
-					.regFrm().getChild(0);
-			Token t1 = (Token) child1.start;
-			Token t2 = (Token) child1.stop;
-			rewriter.insertAfter(t2.getTokenIndex(), "(nil" + " + "
-					+ child1modified.getText() + "+" + ")");
-			rewriter.delete(t1.getTokenIndex(), t2.getTokenIndex());
-
-		}
+//		if (ctx.regFrm() instanceof mucalculusParser.IterationRegFormContext) {
+//
+//			mucalculusParser.RegFrmContext child1 = ctx.regFrm();
+//
+//			mucalculusParser.RegFrmContext child1modified = (RegFrmContext) ctx
+//					.regFrm().getChild(0);
+//			Token t1 = (Token) child1.start;
+//			Token t2 = (Token) child1.stop;
+//			rewriter.insertAfter(t2.getTokenIndex(), "(nil" + " + "
+//					+ child1modified.getText() + "+" + ")");
+//			rewriter.delete(t1.getTokenIndex(), t2.getTokenIndex());
+//
+//		}
 		return visitChildren(ctx);
 
 	}
@@ -338,19 +345,21 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monProc
 					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
 					+ varList + " + " + monProc2 + varList + ";");
-			finalResult.append("proc " + monProc
-					+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-					+ varList + " + " + monProc2 + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + monProc)==-1)		
+					finalResult.append("proc " + monProc
+						+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
+						+ varList + " + " + monProc2 + varList + ";\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ monitorProcesses.get(monProc1) + varList + " + "
 					+ monitorProcesses.get(monProc2) + varList + ";");
-			finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "Mon_" + monitorProcesses.get(monProc1) + varList + " + "
-					+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + " + "
+						+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
 		}
 		
 		return visitChildren(ctx);
@@ -391,10 +400,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ monitorProcesses.get(monProc1) + varList + ";");
-			
-			finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc "+ "Mon_"  + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
 		}
 		
 		String result = new String("" + visit(ctx.stateFrm()) + "");
@@ -497,9 +506,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ monitorProcesses.get(monProc1) + varList + ";");
 			
-			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
 		}
 		
 		String result = new String("" + visit(ctx.regFrm()) + "");
@@ -527,10 +537,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = "
 					+ "internal_mon ;");
-			
-			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "internal_mon ;\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "internal_mon ;\n\n");
 		}
 		
 		return visitChildren(ctx);
@@ -566,10 +576,11 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 					+ monitorProcesses.get(monProc1) + varList + " + "
 					+ monitorProcesses.get(monProc2) + varList + ";");
 			
-			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = "
-					+ "Mon_" + monitorProcesses.get(monProc1) + varList + " + "
-					+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = "
+						+ "Mon_" + monitorProcesses.get(monProc1) + varList + " + "
+						+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
 		}
 		
 		return visitChildren(ctx);
@@ -594,8 +605,9 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
 					+ prepend_UniversalQuantifierStateFrm + " = error;");
 			
-			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
-					+ prepend_UniversalQuantifierStateFrm + " = error;\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
+						+ prepend_UniversalQuantifierStateFrm + " = error;\n\n");
 		}
 		
 		return visitChildren(ctx);
@@ -638,9 +650,10 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 					+ " = sum " + ctx.varsDeclList().getText() + ". "
 					+ monitorProcesses.get(monProc2) + varList + ";");
 			
-			finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
-					+ " = sum " + ctx.varsDeclList().getText() + ". "
-					+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
+			if(finalResult.indexOf("proc " + "Mon_" + monitorProcesses.get(monProc))==-1)
+				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
+						+ " = sum " + ctx.varsDeclList().getText() + ". "
+						+ "Mon_" + monitorProcesses.get(monProc2) + varList + ";\n\n");
 		}
 		
 		// here get the list of variables

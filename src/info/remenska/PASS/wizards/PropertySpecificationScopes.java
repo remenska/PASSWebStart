@@ -96,16 +96,16 @@ public class PropertySpecificationScopes extends WizardPage {
 
 		// TODO: Change
 		// for testing
-//		Image scopesGraphical = new Image(
-//				Display.getCurrent(),
-//				"/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/scopes.gif");
+		Image scopesGraphical = new Image(
+				Display.getCurrent(),
+				"/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/scopes.gif");
 		// for testing
 
 		// Create icons
 		// for deployment
 		ClassLoader cl = this.getClass().getClassLoader();
-		 Image scopesGraphical = new Image(Display.getCurrent(),
-		 cl.getResourceAsStream("images/scopes.gif"));
+		// Image scopesGraphical = new Image(Display.getCurrent(),
+		// cl.getResourceAsStream("images/scopes.gif"));
 		// for deployment
 
 		imageHolder.setImage(scopesGraphical);
