@@ -152,7 +152,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			if (keys.hasMoreElements())
 				sumOverAllActions.append(" + ");
 			else
-				sumOverAllActions.append(" + internal_mon");
+				sumOverAllActions.append("");
 		}
 		
 
@@ -196,7 +196,8 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			if(finalResult.indexOf("proc " + monProc)==-1)		
 				finalResult.append("proc " + monProc
 						+ prepend_UniversalQuantifierStateFrm + " = " + monProc1
-						+ varList + ". " + monProc + varList + ";\n\n");
+						+ varList + ". " + monProc + varList + " + " + monProc1
+						+ varList + ";\n\n");
 		}
 		else{
 			LOGGER.finest("proc " + monitorProcesses.get(monProc)
@@ -207,7 +208,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 				finalResult.append("proc " + "Mon_" + monitorProcesses.get(monProc)
 						+ prepend_UniversalQuantifierStateFrm + " = "
 						+ "Mon_" + monitorProcesses.get(monProc1) + varList + ". "
-						+ "Mon_" + monitorProcesses.get(monProc) + varList + ";\n\n");
+						+ "Mon_" + monitorProcesses.get(monProc) + varList + " + " +  "Mon_" + monitorProcesses.get(monProc1) + varList + ";\n\n");
 		}
 			
 		return visitChildren(ctx);

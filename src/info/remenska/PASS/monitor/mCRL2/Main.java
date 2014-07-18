@@ -443,7 +443,7 @@ public class Main {
 
 	public static String createInit() {
 		StringBuffer result = new StringBuffer();
-		result.append("init hide ({synch_internal}, allow({error, synch_internal,");
+		result.append("init allow({error,");
 			Enumeration<String> actions = Mymcrl2Visitor.actionsDict.keys();
 			while (actions.hasMoreElements()) {
 				result.append(actions.nextElement() + "_found");
@@ -451,7 +451,6 @@ public class Main {
 					result.append(",\n");
 			}
 			result.append("}, \n comm({");
-			result.append("internal | internal_mon -> synch_internal, \n");
 			actions = Mymcrl2Visitor.actionsDict.keys();
 			while (actions.hasMoreElements()) {
 				String action = actions.nextElement();
@@ -463,7 +462,7 @@ public class Main {
 			result.append("\n},\n Monitor ");
 
 			result.append(" || " + Mymcrl2Visitor.afterInit);
-			result.append(")));");
+			result.append("));");
 
 		return result.toString();
 	}
