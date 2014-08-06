@@ -36,6 +36,7 @@ public class Main {
 			String actionSort = new String();
 			String actionFormula = new String();
 			String mappings = new String();
+			StringBuffer outputModel = new StringBuffer();
 
 			InputStream ismcrl2 = new FileInputStream(args[0]);
 			// full mCRL2 grammar
@@ -71,6 +72,7 @@ public class Main {
 			// types
 
 			String finalString = args[1];
+			outputModel.append("% Original formula:" + finalString + "\n");
 
 			LOGGER.fine("----------------------------------------");
 			LOGGER.fine("Original formula : " + finalString);
@@ -186,8 +188,6 @@ public class Main {
 						Mymcrl2Visitor.actionsDict, false);
 
 			visitor1.visit(tree);
-			StringBuffer outputModel = new StringBuffer();
-			outputModel.append("% Original formula:" + currentFormula + "\n");
 			outputModel.append("% ============================\n");
 			outputModel.append("% Modified formula:" + finalStringModified
 					+ "\n");
@@ -231,124 +231,124 @@ public class Main {
 
 	}
 
-	public static void main(String[] args) throws Exception {
-		if (args.length < 2) {
-			LOGGER.warning("Usage: java info.remenska.PASS.monitor.mCRL2.Main <mCRL2ModelFile> <muCalculusFile> <humanReadable>");
-			LOGGER.warning("\t\t<humanReadable> is optional boolean switch, and if set to true, \n\t\tyields to process names that are not parsable by mCRL2. ");
-			LOGGER.warning("\t\tIt should be used this way only for inspecting the translation. Default value is false.");
-			System.exit(1);
-		}
-		try {
-			String actionSort = new String();
-			String actionFormula = new String();
-			String mappings = new String();
-
-			InputStream ismcrl2 = new FileInputStream(args[0]);
-			// full mCRL2 grammar
-			String initialStringmcrl2 = IOUtils.toString(ismcrl2);
-			String[] splitModel = initialStringmcrl2.split("init ");
-
-			mcrl2Lexer lexermcrl2 = new mcrl2Lexer(
-					(CharStream) new ANTLRInputStream(initialStringmcrl2));
-			CommonTokenStream tokensmcrl2 = new CommonTokenStream(lexermcrl2);
-			mcrl2Parser parsermcrl2 = new mcrl2Parser(tokensmcrl2);
-			ParseTree treemcrl2 = parsermcrl2.start();
-
-			// we're using this visitor just to collect action && argument types
-			Mymcrl2Visitor visitormcrl2 = new Mymcrl2Visitor(tokensmcrl2);
-			visitormcrl2.visit(treemcrl2);
-			actionSort = createActionSort(visitormcrl2);
-			actionFormula = createActionFormulaSort();
-			mappings = createMappings(visitormcrl2);
-			// END we're using this visitor just to collect action && argument
-			// types
-			
-			InputStream is = new FileInputStream(args[1]);
-			// full mCRL2 grammar
-			String initialString = IOUtils.toString(is);
-			String finalString = initialString;
-			LOGGER.fine("----------------------------------------");
-			LOGGER.fine("Original formula : " + finalString);
-
-			mucalculusLexer lexer = new mucalculusLexer(
-					(CharStream) new ANTLRInputStream(finalString));
-			CommonTokenStream tokens = new CommonTokenStream(lexer);
-			mucalculusParser parser = new mucalculusParser(tokens);
-			ParseTree tree = parser.start();
-
-			MyMuCalculusVisitorSilent visitor = new MyMuCalculusVisitorSilent(
-					tokens);
-			visitor.visit(tree);
-
-			String finalStringModified = preprocess(MyMuCalculusVisitorSilent.rewriter
-					.getText());
-
-			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
-					finalStringModified));
-			tokens = new CommonTokenStream(lexer);
-			parser = new mucalculusParser(tokens);
-			tree = parser.start();
-			visitor = new MyMuCalculusVisitorSilent(tokens);
-			visitor.visit(tree);
-			finalStringModified = preprocess(MyMuCalculusVisitorSilent.rewriter
-					.getText());
-			LOGGER.fine("----------------------------------------");
-			LOGGER.fine("Modified formula : " + finalStringModified);
-			LOGGER.fine("----------------------------------------");
-			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
-					finalStringModified));
-			tokens = new CommonTokenStream(lexer);
-			parser = new mucalculusParser(tokens);
-			tree = parser.start();
-			MyMuCalculusVisitor visitor1 = null;
-			if (args.length == 3)
-				visitor1 = new MyMuCalculusVisitor(tokens,
-						Mymcrl2Visitor.actionsDict,
-						Boolean.parseBoolean(args[2]));
-			else
-				visitor1 = new MyMuCalculusVisitor(tokens,
-						Mymcrl2Visitor.actionsDict, false);
-
-			visitor1.visit(tree);
-			StringBuffer outputModel = new StringBuffer();
-			outputModel.append("% Original formula:" + finalString + "\n");
-			outputModel.append("% ============================\n");
-			outputModel.append("% Modified formula:" + finalStringModified
-					+ "\n");
-			outputModel.append("% ============================\n");
-
-			outputModel.append(actionSort);
-			outputModel.append(actionFormula);
-			outputModel.append(mappings);
-			outputModel.append(MyMuCalculusVisitor.finalResult.toString());
-			outputModel.append(createInit());
-
-			BufferedOutputStream os = new BufferedOutputStream(
-					new FileOutputStream(args[0] + "_mod.mcrl2"));
-			for (int i = 0; i < (splitModel.length - 1); i++)
-				os.write(splitModel[i].getBytes());
-			String generated = "\n%====== MONITOR PART GENERATED ==============\n";
-			os.write(generated.getBytes());
-			os.write(outputModel.toString().getBytes());
-			os.flush();
-			LOGGER.info("The new model has been written at: \n"
-					+ args[0] + "_mod.crl2" + "\n");
-
-		} catch (java.io.FileNotFoundException e) {
-			LOGGER.severe("PROBLEM! File does not exist or permission denied:"
-							+ e.getMessage());
-			System.exit(1);
-		}
-
-		catch (java.lang.NullPointerException e) {
-			LOGGER.severe("Mu-calculus formula or mCRL2 is not well formed. ");
-			System.exit(1);
-		} catch (RuntimeException e) {
-			LOGGER.severe("Something went terribly wrong. Check for syntax errors in model or formula");
-			System.exit(1);
-		}
-
-	}
+//	public static void main(String[] args) throws Exception {
+//		if (args.length < 2) {
+//			LOGGER.warning("Usage: java info.remenska.PASS.monitor.mCRL2.Main <mCRL2ModelFile> <muCalculusFile> <humanReadable>");
+//			LOGGER.warning("\t\t<humanReadable> is optional boolean switch, and if set to true, \n\t\tyields to process names that are not parsable by mCRL2. ");
+//			LOGGER.warning("\t\tIt should be used this way only for inspecting the translation. Default value is false.");
+//			System.exit(1);
+//		}
+//		try {
+//			String actionSort = new String();
+//			String actionFormula = new String();
+//			String mappings = new String();
+//
+//			InputStream ismcrl2 = new FileInputStream(args[0]);
+//			// full mCRL2 grammar
+//			String initialStringmcrl2 = IOUtils.toString(ismcrl2);
+//			String[] splitModel = initialStringmcrl2.split("init ");
+//
+//			mcrl2Lexer lexermcrl2 = new mcrl2Lexer(
+//					(CharStream) new ANTLRInputStream(initialStringmcrl2));
+//			CommonTokenStream tokensmcrl2 = new CommonTokenStream(lexermcrl2);
+//			mcrl2Parser parsermcrl2 = new mcrl2Parser(tokensmcrl2);
+//			ParseTree treemcrl2 = parsermcrl2.start();
+//
+//			// we're using this visitor just to collect action && argument types
+//			Mymcrl2Visitor visitormcrl2 = new Mymcrl2Visitor(tokensmcrl2);
+//			visitormcrl2.visit(treemcrl2);
+//			actionSort = createActionSort(visitormcrl2);
+//			actionFormula = createActionFormulaSort();
+//			mappings = createMappings(visitormcrl2);
+//			// END we're using this visitor just to collect action && argument
+//			// types
+//			
+//			InputStream is = new FileInputStream(args[1]);
+//			// full mCRL2 grammar
+//			String initialString = IOUtils.toString(is);
+//			String finalString = initialString;
+//			LOGGER.fine("----------------------------------------");
+//			LOGGER.fine("Original formula : " + finalString);
+//
+//			mucalculusLexer lexer = new mucalculusLexer(
+//					(CharStream) new ANTLRInputStream(finalString));
+//			CommonTokenStream tokens = new CommonTokenStream(lexer);
+//			mucalculusParser parser = new mucalculusParser(tokens);
+//			ParseTree tree = parser.start();
+//
+//			MyMuCalculusVisitorSilent visitor = new MyMuCalculusVisitorSilent(
+//					tokens);
+//			visitor.visit(tree);
+//
+//			String finalStringModified = preprocess(MyMuCalculusVisitorSilent.rewriter
+//					.getText());
+//
+//			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
+//					finalStringModified));
+//			tokens = new CommonTokenStream(lexer);
+//			parser = new mucalculusParser(tokens);
+//			tree = parser.start();
+//			visitor = new MyMuCalculusVisitorSilent(tokens);
+//			visitor.visit(tree);
+//			finalStringModified = preprocess(MyMuCalculusVisitorSilent.rewriter
+//					.getText());
+//			LOGGER.fine("----------------------------------------");
+//			LOGGER.fine("Modified formula : " + finalStringModified);
+//			LOGGER.fine("----------------------------------------");
+//			lexer = new mucalculusLexer((CharStream) new ANTLRInputStream(
+//					finalStringModified));
+//			tokens = new CommonTokenStream(lexer);
+//			parser = new mucalculusParser(tokens);
+//			tree = parser.start();
+//			MyMuCalculusVisitor visitor1 = null;
+//			if (args.length == 3)
+//				visitor1 = new MyMuCalculusVisitor(tokens,
+//						Mymcrl2Visitor.actionsDict,
+//						Boolean.parseBoolean(args[2]));
+//			else
+//				visitor1 = new MyMuCalculusVisitor(tokens,
+//						Mymcrl2Visitor.actionsDict, false);
+//
+//			visitor1.visit(tree);
+//			StringBuffer outputModel = new StringBuffer();
+//			outputModel.append("% Original formula:" + finalString + "\n");
+//			outputModel.append("% ============================\n");
+//			outputModel.append("% Modified formula:" + finalStringModified
+//					+ "\n");
+//			outputModel.append("% ============================\n");
+//
+//			outputModel.append(actionSort);
+//			outputModel.append(actionFormula);
+//			outputModel.append(mappings);
+//			outputModel.append(MyMuCalculusVisitor.finalResult.toString());
+//			outputModel.append(createInit());
+//
+//			BufferedOutputStream os = new BufferedOutputStream(
+//					new FileOutputStream(args[0] + "_mod.mcrl2"));
+//			for (int i = 0; i < (splitModel.length - 1); i++)
+//				os.write(splitModel[i].getBytes());
+//			String generated = "\n%====== MONITOR PART GENERATED ==============\n";
+//			os.write(generated.getBytes());
+//			os.write(outputModel.toString().getBytes());
+//			os.flush();
+//			LOGGER.info("The new model has been written at: \n"
+//					+ args[0] + "_mod.crl2" + "\n");
+//
+//		} catch (java.io.FileNotFoundException e) {
+//			LOGGER.severe("PROBLEM! File does not exist or permission denied:"
+//							+ e.getMessage());
+//			System.exit(1);
+//		}
+//
+//		catch (java.lang.NullPointerException e) {
+//			LOGGER.severe("Mu-calculus formula or mCRL2 is not well formed. ");
+//			System.exit(1);
+//		} catch (RuntimeException e) {
+//			LOGGER.severe("Something went terribly wrong. Check for syntax errors in model or formula");
+//			System.exit(1);
+//		}
+//
+//	}
 
 	public static String preprocess(String input) {
 		StringBuffer buffer = new StringBuffer(input);
