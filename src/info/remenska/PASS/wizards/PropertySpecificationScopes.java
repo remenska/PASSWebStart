@@ -103,9 +103,9 @@ public class PropertySpecificationScopes extends WizardPage {
 
 		// Create icons
 		// for deployment
-		ClassLoader cl = this.getClass().getClassLoader();
-		// Image scopesGraphical = new Image(Display.getCurrent(),
-		// cl.getResourceAsStream("images/scopes.gif"));
+//		ClassLoader cl = this.getClass().getClassLoader();
+//		 Image scopesGraphical = new Image(Display.getCurrent(),
+//		 cl.getResourceAsStream("images/scopes.gif"));
 		// for deployment
 
 		imageHolder.setImage(scopesGraphical);

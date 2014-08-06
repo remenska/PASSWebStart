@@ -104,9 +104,9 @@ public class QuestionTreePage extends WizardPage {
 
 					labelGraphicsHolder.setVisible(true);
 					// TODO:
-					// scopeGraphical = new Image(Display.getCurrent(),
-					// this.getClass().getClassLoader().getResourceAsStream("images/ScopeTimelineView"
-					// + scopeImage.get(staticNode)));
+//					 scopeGraphical = new Image(Display.getCurrent(),
+//					 this.getClass().getClassLoader().getResourceAsStream("images/ScopeTimelineView"
+//					 + scopeImage.get(staticNode)));
 					scopeGraphical = new Image(Display.getCurrent(),
 							scopeImage.get(staticNode));
 
@@ -326,7 +326,7 @@ public class QuestionTreePage extends WizardPage {
 
 		// TODO:
 		String path = "/home/daniela/IBM/rationalsdp/workspace1/info.remenska.PASSWebStart/images/ScopeTimelineView/";
-		// String path = "/";
+//		 String path = "/";
 
 		scopeImage.put(Questionnaire.answ12, path + "1.png");
 		scopeImage.put(Questionnaire.answ11, null);
