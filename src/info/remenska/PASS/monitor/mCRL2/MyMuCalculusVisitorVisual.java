@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
+public class MyMuCalculusVisitorVisual extends mucalculusBaseVisitor<String> {
 	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS");
 	
 	public static BufferedTokenStream tokens;
@@ -37,11 +37,11 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 	public boolean humanReadable = false;
 	public static StringBuffer finalResult = new StringBuffer();
 
-	public MyMuCalculusVisitor(BufferedTokenStream tokens,
+	public MyMuCalculusVisitorVisual(BufferedTokenStream tokens,
 			Hashtable<String, ArrayList<String>> actionsDict,
 			boolean humanReadable) {
-		MyMuCalculusVisitor.tokens = tokens;
-		MyMuCalculusVisitor.actionsDict = actionsDict;
+		MyMuCalculusVisitorVisual.tokens = tokens;
+		MyMuCalculusVisitorVisual.actionsDict = actionsDict;
 		rewriter = new TokenStreamRewriter(tokens);
 		this.humanReadable = humanReadable;
 	}
@@ -122,7 +122,7 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			StringBuffer sumOverDataTypes = new StringBuffer();
 			String key = keys.nextElement();
 			modifiedKey = new StringBuffer(key);
-			modifiedKey.append("_mon");
+//			modifiedKey.append("_mon");
 			ArrayList<String> dataTypes = actionsDict.get(key);
 			if (dataTypes.size() > 0) {
 				modifiedKey.append("(");
@@ -271,9 +271,9 @@ public class MyMuCalculusVisitor extends mucalculusBaseVisitor<String> {
 			actions.add(ctx.getText());
 		visitChildren(ctx);
 		if(ctx.dataExprList()!=null)
-			return new String("action(" + ctx.ID() +"_mon" + "(" + ctx.dataExprList().getText() +")" + ")");
+			return new String("action(" + ctx.ID() + "(" + ctx.dataExprList().getText() +")" + ")");
 		else
-			return new String("action(" + ctx.ID() +"_mon"  + ")");
+			return new String("action(" + ctx.ID() + ")");
 
 	}
 
