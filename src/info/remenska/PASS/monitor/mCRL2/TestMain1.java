@@ -7,25 +7,25 @@ import info.remenska.PASS.monitor.mCRL2.Main;
 
 import info.remenska.PASS.wizards.DisciplinedEnglishPage;
 
-public class TestMain {
+public class TestMain1 {
 	public static void main(String args[]) throws FileNotFoundException, NullPointerException, NotMonitorableException, Exception{
 		String resultModel = new String();
 		Main main = new Main();
 //		String formula = "[(! StorageManagementDB_removeTasks([tasks(1,Staged,1)]))*.JobDB_setJobStatus(1,Staging).(! (JobDB_setJobStatus(1,Done) || StorageManagementDB_removeTasks([tasks(1,Staged,1)])))*.StorageManagementDB_removeTasks([tasks(1,Staged,1)])]false";
 //		String formula = "[(! ready)*][coin]false";
 		String formula = "[(!R )*. P . (! ( S || R ))*. R ] false";
-//		resultModel = main.generateMonitor(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",
+		resultModel = main.generateMonitor(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/SimpleExample.mcrl2",
+				formula,
+				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/SimpleExample.mcrl2"
+				, "false"});
+		
+//		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",
 //				formula,
 //				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2"
 //				, "false"});
-		
-		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",
-				formula,
-				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2"
-				, "false"});
 		System.out.println("resulting model in: " + resultModel);
 
-		
+		/*
 		
 		 String[] cmd_mcrl22lps = { "mcrl22lps", "-v", resultModel, resultModel + ".lps" };
 		 String[] cmd_lps2lts = { "lps2lts", "-v", resultModel + ".lps", resultModel + ".lts" };
@@ -94,7 +94,8 @@ public class TestMain {
 		 	      err.printStackTrace();
 		    }
 	        //----
-	
+		 	
+	*/
 	}
 
 }

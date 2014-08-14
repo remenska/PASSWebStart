@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -148,7 +150,9 @@ public class Main {
 			for (int i = 0; i < (splitModel.length - 1); i++)
 				os.write(splitModel[i].getBytes());
 			os.flush();
-			String generated = "\n%====== MONITOR PART GENERATED ==============\n";
+			Calendar calendar = Calendar.getInstance();
+			Timestamp currentTimestamp = new java.sql.Timestamp(calendar.getTime().getTime());
+			String generated = "\n% created: " + currentTimestamp + "\n"+ "\n%====== MONITOR PART GENERATED ==============\n";
 			os.write(generated.getBytes());
 			os.write(outputModel.toString().getBytes());
 			os.flush();
