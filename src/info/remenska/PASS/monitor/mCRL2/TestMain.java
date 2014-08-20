@@ -12,11 +12,11 @@ public class TestMain {
 		String resultModel = new String();
 		Main main = new Main();
 //		String formula = "[(! StorageManagementDB_removeTasks([tasks(1,Staged,1)]))*.JobDB_setJobStatus(1,Staging).(! (JobDB_setJobStatus(1,Done) || StorageManagementDB_removeTasks([tasks(1,Staged,1)])))*.StorageManagementDB_removeTasks([tasks(1,Staged,1)])]false";
-//		String formula = "[(! ready)*][coin]false";
-		String formula = "[(!R )*. P . (! ( S || R ))*. R ] false";
-//		resultModel = main.generateMonitor(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",
+//		String formula = "[(! ready)*][coin]false"; // ready must happen before coin
+		String formula = "[(!R )*. P . (! ( S || R ))*. R ] false"; // S must respond to P, before R happens
+//		resultModel = main.generateMonitor(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/modelFlattened.mcrl2",
 //				formula,
-//				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2"
+//				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/modelFlattened.mcrl2"
 //				, "false"});
 		
 		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",
@@ -29,9 +29,12 @@ public class TestMain {
 		
 		 String[] cmd_mcrl22lps = { "mcrl22lps", "-v", resultModel, resultModel + ".lps" };
 		 String[] cmd_lps2lts = { "lps2lts", "-v", resultModel + ".lps", resultModel + ".lts" };
-		 String[] cmd_ltsgraph = { "ltsgraph", "-v", resultModel + ".lts" };
+		 String[] cmd_ltsconvert = { "ltsconvert", "-v", resultModel +".lts", resultModel + ".dot" };
+		 String[] cmd_dot = { "dot", "-Tps", resultModel +".dot","-o", resultModel + ".ps" };
+//		 String[] cmd_gs = { "gs",  resultModel + ".ps" };
 
 		 	try{
+
 		    //----
 			    System.out.println("-----------");
 		    System.out.println("running mcrl22lps:");
@@ -70,31 +73,71 @@ public class TestMain {
 	            System.out.println(s_lps2lts);
 	        }
 		    System.out.println("-----------");
-		    System.out.println("running ltsview:");
+		    System.out.println("converting to a GraphViz format:");
 		    System.out.println("-----------");
-	        Process p_ltsgraph = Runtime.getRuntime().exec(cmd_ltsgraph);
-	        p_lps2lts.waitFor();
+	        Process p_ltsconvert = Runtime.getRuntime().exec(cmd_ltsconvert);
+	        p_ltsconvert.waitFor();
 	        
-	        BufferedReader stdInput_ltsgraph = new BufferedReader(new 
-	                InputStreamReader(p_ltsgraph.getInputStream()));
-	        BufferedReader stdError_ltsgraph = new BufferedReader(new 
-	                InputStreamReader(p_ltsgraph.getErrorStream()));
+	        BufferedReader stdInput_ltsconvert = new BufferedReader(new 
+	                InputStreamReader(p_ltsconvert.getInputStream()));
+	        BufferedReader stdError_ltsconvert = new BufferedReader(new 
+	                InputStreamReader(p_ltsconvert.getErrorStream()));
 	        
-	        String s_ltsgraph = null;
-	        while ((s_ltsgraph = stdInput_ltsgraph.readLine()) != null) {
-	            System.out.println(s_ltsgraph);
+	        String s_ltsconvert = null;
+	        while ((s_ltsconvert = stdInput_ltsconvert.readLine()) != null) {
+	            System.out.println(s_ltsconvert);
 	        }
-	        while ((s_ltsgraph = stdError_ltsgraph.readLine()) != null) {
-	            System.out.println(s_ltsgraph);
+	        while ((s_ltsconvert = stdError_ltsconvert.readLine()) != null) {
+	            System.out.println(s_ltsconvert);
 	        }
 	        
-	        //----
+		    System.out.println("-----------");
+		    System.out.println("The monitor is saved at:" + resultModel + ".dot");
+		    System.out.println("-----------");
+		    System.out.println("Attempting to convert it to PostScript with dot...(GraphViz should be installed!)");
 
+	        Process p_dot = Runtime.getRuntime().exec(cmd_dot);
+	        p_dot.waitFor();
+	        
+	        BufferedReader stdInput_dot = new BufferedReader(new 
+	                InputStreamReader(p_dot.getInputStream()));
+	        BufferedReader stdError_dot = new BufferedReader(new 
+	                InputStreamReader(p_dot.getErrorStream()));
+	        String s_dot = null;
+	        while ((s_dot = stdInput_dot.readLine()) != null) {
+	            System.out.println(s_dot);
+	        }
+		    boolean error = false;
+	        while ((s_dot = stdError_dot.readLine()) != null) {
+	            System.out.println(s_dot);
+	            error = true;
+	        }
+	        //----
+	        if(!error){
+	        	System.out.println("The monitor in PostScript format is saved at:" + resultModel + ".ps");
+			    System.out.println("-----------");
+//	        	System.out.println("Attempting to open it with GhostScript, if it doesn't work, use your favorite viewer");
+//	        	
+//		        Process p_gs = Runtime.getRuntime().exec(cmd_gs);
+//		        p_gs.waitFor();
+//		        
+//		        BufferedReader stdInput_gs = new BufferedReader(new 
+//		                InputStreamReader(p_gs.getInputStream()));
+//		        BufferedReader stdError_gs = new BufferedReader(new 
+//		                InputStreamReader(p_gs.getErrorStream()));
+//		        String s_gs = null;
+//		        while ((s_gs = stdInput_gs.readLine()) != null) {
+//		            System.out.println(s_gs);
+//		        }
+//		        while ((s_gs = stdError_gs.readLine()) != null) {
+//		            System.out.println(s_gs);
+//		        }
+	        }
 		 	} catch (Exception err) {
 		 	      err.printStackTrace();
 		    }
 	        //----
-	
+		
 	}
 
 }
