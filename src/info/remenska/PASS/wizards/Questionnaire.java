@@ -35,7 +35,7 @@ public class Questionnaire {
 			public static 		TreeNode<String> aansw1111 = qquest111.addChild("A is never allowed to occur", false); // ABSENCE
 			public static 		TreeNode<String> aansw1112 = qquest111.addChild("A must eventually occur at least once.", false);	// EXISTENCE			
 			public static 		TreeNode<String> aansw1113 = qquest111.addChild("A is allowed to occur at most once.", false); // BOUNDED EXISTENCE 
-			public static 		TreeNode<String> aansw1114 = qquest111.addChild("A must always be possible to occur. This is useful for checking if an object state always has a certain value. \nThe events in such case are getter methods for querying the state. ", false); // NEW ONE!
+			public static 		TreeNode<String> aansw1114 = qquest111.addChild("A always carries the same parameter value(s). This is useful for checking if an object state remains the same. \nThe events in such case are getter methods for querying the state. ", false); // NEW ONE!
 					
 			public static TreeNode<String> aansw12 = behaviorQuestionTree.addChild("Two events.", false);
 			public static 	TreeNode<String> qquest121 = aansw12.addChild("Which of the following best describes how A and B interact?", true);

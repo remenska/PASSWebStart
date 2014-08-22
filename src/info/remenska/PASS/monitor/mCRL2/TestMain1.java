@@ -13,10 +13,10 @@ public class TestMain1 {
 		Main main = new Main();
 //		String formula = "[(! StorageManagementDB_removeTasks([tasks(1,Staged,1)]))*.JobDB_setJobStatus(1,Staging).(! (JobDB_setJobStatus(1,Done) || StorageManagementDB_removeTasks([tasks(1,Staged,1)])))*.StorageManagementDB_removeTasks([tasks(1,Staged,1)])]false";
 //		String formula = "[(! ready)*][coin]false";
-		String formula = "[(!R )*. P . (! ( S || R ))*. R ] false";
-		resultModel = main.generateMonitor(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/SimpleExample.mcrl2",
+		String formula = " [true*.  __prListLock_release . (!  __prListLock_acquire )*.  __pendingQueuePut(task(1,false)) ] false";
+		resultModel = main.generateMonitor(new String[] {"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolReductions.mcrl2",
 				formula,
-				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/SimpleExample.mcrl2"
+				"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolReductions.mcrl2"
 				, "false"});
 		
 //		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",

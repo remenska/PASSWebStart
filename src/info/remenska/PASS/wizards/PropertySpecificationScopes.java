@@ -46,23 +46,25 @@ public class PropertySpecificationScopes extends WizardPage {
 
 				"\nThe scope is the extent of the program execution "
 				+ "over which the pattern must hold. There are five basic kinds of scopes: global (the entire program execution), "
-				+ "before (the execution up to a given state/event), after (the execution after a given state/event), "
-				+ "between (any part of the execution from one given state/event to another given state/event) "
-				+ "and after-until (like between but the designated part of the execution continues even if the second state/event does not occur). "
-				+ "The scope is determined by specifying a starting and an ending state/event for the pattern: "
-				+ "the scope consists of all states/events beginning with the starting state/event and up to but not including the ending state/event."
+				+ "before (the execution up to a given event), after (the execution after a given event), "
+				+ "between (any part of the execution from one given state/event to another given event) "
+				+ "and after-until (like between but the designated part of the execution continues even if the second event does not occur). "
+				+ "The scope is determined by specifying a starting and an ending event for the pattern: "
+				+ "the scope consists of all events beginning with the starting event and up to but not including the ending event."
 				+ "\n\n"
 				+ "The figure illustrates the portions of an execution that are designated by the different kinds of scopes. "
 				+ "We note that a scope itself should be interpreted as optional; if the scope delimiters are not present in an execution "
 				+ "then the specification will be true."
-				+ "\n\n"
+				+ "\n\n" 
+				
+				+ "Note that the <after> scopes for the patterns can be interpreted relative to the first or the last occurrence of the designated event." ;
 
-				+ "Before and after scopes for our patterns are interpreted relative to the first occurrence of the designated "
-				+ "state/event. We have done this because it matches our experience with real specifications. Note, however, that we could just "
-				+ "as easily interpret these scopes relative to the last occurrence of the designated state/event "
-				+ "(the mappings given in the patterns are easily transformed to match this interpretation). At present we do not "
-				+ "see the need for supporting both first and last occurrence scopes, but as we gain experience applying the patterns "
-				+ "we may wish to extend scopes in this way. ";
+//				+ "Before and after scopes for our patterns are interpreted relative to the first occurrence of the designated "
+//				+ "state/event. We have done this because it matches our experience with real specifications. Note, however, that we could just "
+//				+ "as easily interpret these scopes relative to the last occurrence of the designated state/event "
+//				+ "(the mappings given in the patterns are easily transformed to match this interpretation). At present we do not "
+//				+ "see the need for supporting both first and last occurrence scopes, but as we gain experience applying the patterns "
+//				+ "we may wish to extend scopes in this way. ";
 
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
