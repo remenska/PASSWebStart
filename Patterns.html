@@ -1,0 +1,1014 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<HTML>
+<HEAD>
+	
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 3.5  (Linux)">
+	<META NAME="AUTHOR" CONTENT="Daniela Remenska">
+	<META NAME="CREATED" CONTENT="20140204;14533500">
+	<META NAME="CHANGEDBY" CONTENT="Daniela Remenska">
+	<META NAME="CHANGED" CONTENT="20140204;16164000">
+	
+	<STYLE>
+		<!-- 
+		BODY,DIV,TABLE,THEAD,TBODY,TFOOT,TR,TH,TD,P { font-family:"Arial"; font-size:x-small }
+		 -->
+	</STYLE>
+	
+</HEAD>
+
+<BODY TEXT="#000000">
+<TABLE CELLSPACING="0" COLS="3" BORDER="0">
+	<COLGROUP WIDTH="237"></COLGROUP>
+	<COLGROUP WIDTH="24"></COLGROUP>
+	<COLGROUP WIDTH="1110"></COLGROUP>
+	<TR>
+		<TD COLSPAN=3 HEIGHT="48" ALIGN="CENTER" VALIGN=MIDDLE><B><FONT SIZE=4>Property Pattern Mappings for mu-calculus</FONT></B></TD>
+		</TR>
+	<TR>
+		<TD COLSPAN=3 HEIGHT="85" ALIGN="LEFT" VALIGN=MIDDLE><FONT SIZE=3>These Property Pattern mappings for mu-calculus are an extension of the original mappings available at the <A HREF="http://www.inrialpes.fr/vasy/cadp/resources/evaluator/rafmc.html">CADP webpage</A>. The extensions are marked in green. There are 4 scope and 2 behavior variations leading to more than 100 unique patterns to be chosen from.<BR>Below is a brief explanation on the extensions and their usefulness in particular situations. 
+<BR> <BR> For certain properties (liveness), alternatives are given with and without a <B>fairness assumption</B>: it is the assumption that the system scheduling is fair, i.e., a process cannot continously ask to make progress without being allowed to, eventually.
+<BR><BR>We advise using <A HREF="https://github.com/remenska/PASS">PASS</A> to automatically obtain the correct formula for a property, from this pattern system.</FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" HEIGHT="61" ALIGN="LEFT" VALIGN=MIDDLE><B><FONT SIZE=3>Before R variant:</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>If R does not occur until the end of the event sequence, the behavior is required to hold throughout the entire event sequence. ("Until R")</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" HEIGHT="61" ALIGN="LEFT" VALIGN=MIDDLE><B><FONT SIZE=3>After Q variant:</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>If there are multiple occurrences of Q before the end of the event sequence, only the last occurrence starts the restricted interval; each consecutive occurrence of Q resets the beginning of the restricted interval.</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" HEIGHT="61" ALIGN="LEFT" VALIGN=MIDDLE><B><FONT SIZE=3>Between Q and R variant:</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>If there are multiple occurrences of Q before the end of the event sequence, only the last occurrence starts the restricted interval; each consecutive occurrence of Q resets the beginning of the restricted interval. If R does not occur until the end of the event sequence, the behavior is not required to hold anywhere in the event sequence.</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" HEIGHT="61" ALIGN="LEFT" VALIGN=MIDDLE><B><FONT SIZE=3>After Q until R variant:</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>If there are multiple occurrences of Q before the end of the event sequence, only the last occurrence starts the restricted interval; each consecutive occurrence of Q resets the beginning of the restricted interval. If R does not occur until the end of the event sequence, the behavior is required to hold throughout the entire event sequence.</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" HEIGHT="61" ALIGN="LEFT" VALIGN=MIDDLE><B><FONT SIZE=3>Precedence variant:</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>S is not allowed to occur until P has occurred. In other words, P must precede S. In addition, S is required to occur, whether or not P eventually occurs.</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" HEIGHT="61" ALIGN="LEFT" VALIGN=MIDDLE><B><FONT SIZE=3>Response variant:</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>If P occurs, then S is required to occur subsequently. In other words, S must respond to P. In addition, P is required to occur throughout the execution sequence. </FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="61" ALIGN="LEFT" VALIGN=MIDDLE><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=MIDDLE><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="25" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Absence: P is never allowed to occur.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. P] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not R)*. P. (not R)*. R] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not R)*. P] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q)*. Q. true*. P] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q](([true*. Q]false) =&gt; [true*. (P + Q)]false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q. (not R)*. P. (not R)*. R] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [(not R )*. P . (not R )*. R ] false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [(not R )*. P ] false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Existence: P must eventually occur at least once.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>mu X. &lt;true&gt; true and [not P ] X</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not P )*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>mu X. ( [not P ]X and [ R ]false and &lt;true&gt;true)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q ] mu X. (&lt;true&gt; true and [not P ] X)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ] false) =&gt; mu X. ([not P ]X and &lt;true&gt;true) and [ Q ]false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( P or R ))*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ] false) =&gt; [(not ( P or R ))*. R ] false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q ] mu X. &lt;true&gt; true and [ R ] false and [not P ] X</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ] false) =&gt; mu X. &lt;true&gt; true and [ R ] false and [not P ] X) </FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+
+
+
+
+
+
+
+
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Existence: P must eventually occur at least once. (Under Fairness assumption) </FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[ (not P )*] &lt;true*. P&gt; true </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not P )*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3> [  (not (P or R ))*] &lt;true*. P&gt; true </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q. (not P)*] &lt;true*. P&gt; true  </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ] false) =&gt; [ (not P)*] &lt;true*. P&gt; true)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( P or R ))*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ] false) =&gt; [(not ( P or R ))*. R ] false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q. (not (P or R))*] &lt;true*. P&gt; true </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ] false) =&gt; [ (not (P or R))*] &lt;true*. P&gt; true)  </FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+
+
+
+
+
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Universality: P always carries the same parameter value(s). </FONT></B></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>For event-based systems, this pattern is useful for checking if an event always carries the same data value.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>forall d:D.val(d != value) =&gt; [true*. P ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>forall d:D.val(d != value) =&gt; [(not R )*. P . (not R )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>forall d:D.val(d != value) =&gt; [(not R )*. P ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>forall d:D.val(d != value) =&gt; [(not Q )*. Q . true*. P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>forall d:D.val(d != value) =&gt; [true*. Q . (not R )*. P . (not R )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>forall d:D.val(d != value) =&gt; [true*. Q . (not R )*. P . (not R )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>forall d:D.val(d != value) =&gt; ( [true*. Q ](([true*. Q ]false) =&gt; [true*. ( P + Q )]false ) )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>forall d:D.val(d != value) =&gt; [true*. Q . (not R )*. P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>forall d:D.val(d != value) =&gt; ([true*. Q ](([true*. Q ]false ) =&gt; [(not R )*. P . (not R )*. R ] false) )</FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Precedence:S is not allowed to occur until after P occurs.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not P )*. S ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not ( P or R ))*. S . (not R )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[ (not ( P or R ))*. S ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . (not P )*. S ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [(not P )*. S ] false) </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( P or R ))*. S . (not R )*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [(not ( P or R ))*. S . (not R )*. R ] false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( P or R ))*. S ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [(not ( P or R ))*. S ] false )</FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Precedence variant: S is not allowed to occur until after P occurs. In addition, P must eventually occur.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>mu X. ([not P ] X and &lt;true&gt;true and [ S ]false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>mu X.[not ( P or R )]X and &lt;true&gt;true and [ S . (not R ). R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>mu X.[not ( P or R )]X and &lt;true&gt;true and [ S ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not Q )*. Q ] mu X. ([not P ] X and &lt;true&gt;true and [ S ]false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; mu X. ([not P ] X and &lt;true&gt;true and [ S ]false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not Q )*. Q ] mu X.[not ( P or R )]X and &lt;true&gt;true and [ S. (not R ). R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; mu X.[not ( P or R )]X and &lt;true&gt;true and [ S . (not R ). R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not Q )*. Q ] mu X. ([not ( P or R )] X and &lt;true&gt;true and [ S ]false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; mu X.[not ( P or R )]X and &lt;true&gt;true and [ S ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Response: If P occurs, S is required to occur eventually subsequently</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. P ] mu X. &lt;true&gt; true and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not R )*. P . (not ( S or R ))*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not R )*. P ] mu X. &lt;true&gt; true and [ R ]false and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . true*. P ] mu X. &lt;true&gt; true and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [true*. P ] (mu X. &lt;true&gt;true and [not S ] X ) )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P. (not ( S or R ))*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R )*. P . (not ( S or R ))*. R ] false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P ] mu X. &lt;true&gt; true and [ R ] false and [not S ] X</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R )*. P ] (mu X. &lt;true&gt; true and [ R ] false and [not S ] X)) </FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+
+
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Response: If P occurs, S is required to occur eventually subsequently (Under Fairness assumption)</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. P. (not S)* ] &lt;true*. S&gt; true</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not R )*. P . (not ( S or R ))*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not R )*. P. (not (S or R))* ] &lt;true*. S&gt; true</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . true*. P. (not S)*] &lt;true*. S&gt; true</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [true*. P. (not S)*] &lt;true*. S&gt; true) </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P. (not ( S or R ))*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R)*. P. (not(S or R))*. R] false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P. (not (S or R))* ] &lt;true*. S&gt; true</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R )*. P. (not (S or R))*] &lt;true*. S&gt; true ) </FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+
+
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Response variant: If P occurs, S is required to occur eventually subsequently. In addition, P must eventually occur.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>mu X.( [not P ]X and &lt;true&gt;true and [true*. P ](mu Y. [not S ]Y and &lt;true&gt;true))</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>((mu X. [not ( R or P )]X and &lt;true&gt;true) and [true*. P . (not ( R or S ))*. R ]false )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>mu X. ( [not P ]X and &lt;true&gt;true and [true*. P ](mu Y.&lt;true&gt; true and [ R ]false and [not S ] Y))</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q ]( (mu X. [not P ]X and &lt;true&gt;true) and [true*. P ](mu Y. &lt;true&gt;true and [not S ] Y) )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; ( mu X.( [not P ]X and &lt;true&gt;true and [true*. P ](mu Y. [not S ]Y and &lt;true&gt;true)))</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q ]((mu X. [not ( P or R )]X and &lt;true&gt;true) and [true*. P . (not ( R or S ))*. R ]false )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; ((mu X. [not ( P or R )]X and &lt;true&gt;true) and [true*. P . (not ( R or S ))*. R ]false ))</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q ]( mu X. ( [not ( P or R )]X and &lt;true&gt;true and [true*. P ](mu Y.&lt;true&gt; true and [ R ]false and [not S ] Y)) )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; mu X. ( [not ( P or R )]X and &lt;true&gt;true and [true*. P ](mu Y.&lt;true&gt; true and [ R ]false and [not S ] Y)))</FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+
+
+
+
+
+
+<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Response variant: If P occurs, S is required to occur eventually subsequently. In addition, P must eventually occur. (Under Fairness assumption)</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3> [(not P)*]&lt;true*. P&gt;true and [true*. P. (not S)*] &lt;true*. S&gt; true </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3> [ (not (R or P))*] &lt;true*. P&gt; true and [true*. P. (not (R or S))*. R] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3> [(not P)*] &lt;true*. P&gt; true and [true*. P. (not (R or S))*] &lt;true*. S&gt; true</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q. (not P)*] &lt;true*. P&gt; true and [true*. P. (not S)*] &lt;true*. S&gt; true</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; ([ (not P)*] &lt;true*. P&gt; true and [true*. P. (not S)*] &lt;true*. S&gt; true))</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q. (not (P or R))*] &lt;true*. P&gt; true and [true*. P. (not (R or S))*. R] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; 
+([(not (P or R))*] &lt;true*. P&gt; true and [true*. P. (not (R or S))*. R]false ))
+</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+[true*. #Q# . (!( #P# || #R# ))*]<true*. #P# >true && [true*. #P# . (!( #R# || #S# ))*]<true*. #S# > true
+
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q. (not (P or R))*] &lt;true*. P&gt; true and [true*. P. (not (R or S))*] &lt;true*. S&gt; true </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; ([ (not (P or R))*] &lt;true*. P&gt; true and 
+[true*. P. (not (R or S))*]  &lt;true*. S&gt; true))
+</FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Precedence Chain 1: P is not allowed to occur until S, followed by T, occurs.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Globally</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not S )*. (nil | ( S . (not T )*)). P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Before R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not ( S or R ))*. (nil | ( S . (not ( T or R ))*)). P . (not R )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Before R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not ( S or R ))*. (nil | ( S . (not ( T or R ))*)). P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . (not S )*. (nil | (S . (not T )*)). P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not S )*. (nil | (S . (not T )*)). P ] false) </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( S or R ))*. (nil | ( S . (not ( T or R ))*)). P .(not R )*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>Between Q and R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*.Q ](([true*. Q ]false) =&gt;[(not ( S or R ))*. (nil | ( S . (not ( T or R ))*)). P .(not R )*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( S or R ))*. (nil | ( S . (not ( T or R ))*)). P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q until R variant</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [(not ( S or R ))*. (nil | ( S . (not ( T or R ))*)). P ] false ) </FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Precedence Chain 2: S followed by T is not allowed to occur, until P occurs</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Globally</FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not P )*. S . (not T )*. T ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Before R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not ( P or R ))*. S . (not ( T or R ))*. T . (not R )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Before R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[ (not ( P or R ))*. S . (not ( T or R ))*. T ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . (not P )*. S . (not T )*. T ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [ (not P )*. S . (not T )*. T ] false) </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Between Q and R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( P or R ))*. S . (not ( T or R ))*. T . (not R )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Between Q and R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not ( P or R ))*. S . (not ( T or R ))*. T . (not R )*. R ] false ) </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q until R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( P or R ))*. S . (not ( T or R ))*. T ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q until R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not ( P or R ))*. S . (not ( T or R ))*. T ] false )</FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Response Chain 1: If S occurs followed by T, then P is required to occur subsequently.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Globally</FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. S . (not T )*. T ] mu X. &lt;true&gt; true and [not P ] X</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Before R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. S . (not T )*. T . (not P )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Before R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not ( S or R ))*. S . (not ( T or R ))*. T ] mu X. &lt;true&gt; true and [ R ] false and [not P ] X&quot;</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . true*. S . (not T )*. T ] mu X. &lt;true&gt; true and [not P ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [ true*. S . (not T )*. T ] (mu X. &lt;true&gt; true and [not P ] X)) </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Between Q and R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( S or R ))*. S . (not ( T or R ))*. T .(not ( P or R ))*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Between Q and R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [(not ( S or R ))*. S . (not ( T or R ))*. T .(not ( P or R ))*. R ] false)</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q until R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not ( S or R ))*. S . (not ( T or R ))*. T ] mu X. &lt;true&gt; true and [ R ] false and [not P ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q until R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ](([true*. Q ]false) =&gt; [(not ( S or R ))*. S . (not ( T or R ))*. T ] mu X. &lt;true&gt; true and [ R ] false and [not P ] X )</FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Response Chain 2: If P occurs, then S followed by T is required to occur subsequently.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Globally</FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. P ] mu X. &lt;true&gt; true and [ S ] mu Y. (&lt;true&gt; true and [not T ] Y) and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Before R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not R )*. P . (not ( S or R ))*. (nil | (S . (not ( T or R ))*)). R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Before R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not R )*. P ] mu X. &lt;true&gt; true and [ R ] false and [ S ] mu Y. (&lt;true&gt; true and [ R ] false and [not T ] Y) and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . true*. P ] mu X. &lt;true&gt; true and [ S ] mu Y. (&lt;true&gt; true and [not T ] Y) and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [true*. P ] (mu X. &lt;true&gt; true and [ S ] mu Y. (&lt;true&gt; true and [not T ] Y) and [not S ] X)) </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Between Q and R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P . (not ( S or R ))*. (nil | ( S . (not ( T or R ))*)). R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Between Q and R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R )*. P . (not ( S or R ))*. (nil | ( S . (not ( T or R ))*)). R ] false )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q until R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P ] mu X. &lt;true&gt; true and [ R ] false and [ S ] mu Y. (&lt;true&gt; true and [ R ] false and [not T ] Y) and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="55" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q until R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q]( ([true*. Q]false) =&gt; [(not R)*. P] mu X. &lt;true&gt; true and [R] false and [S] mu Y. (&lt;true&gt; true and [R] false and [not T] Y) and [not S] X) </FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Constrained Response Chain 2:  If P occurs, then S followed by T is required to occur subsequently. In addition, the event Z must not happen between S and T.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Globally</FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. P ] mu X . &lt;true&gt; true and [ S ] mu Y. (&lt;true&gt; true and [ Z ] false and [not T ] Y) and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Before R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not R )*. P . (not ( S or R ))*. (nil | ( S . (nil | ((not ( T or R ))*. Z )). (not ( T or R ))*)). R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Before R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not R )*. P ] mu X. &lt;true&gt; true and [ R ] false and [ S ] mu Y. (&lt;true&gt; true and [ Z or R ] false and [not T ] Y) and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . true*. P ] mu X. &lt;true&gt; true and [ S ] mu Y. (&lt;true&gt; true and [ Z ] false and [not T ] Y) and [not S ] X</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [true*. P ]( mu X. &lt;true&gt; true and [ S ] mu Y. (&lt;true&gt; true and [ Z ] false and [not T ] Y) and [not S ] X))</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Between Q and R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P . (not ( S or R ))*. (nil | ( S . (nil | ((not ( T or R ))*. Z )). (not ( T or R ))*)). R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Between Q and R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R )*. P . (not ( S or R ))*. (nil | ( S . (nil | ((not ( T or R ))*. Z )). (not ( T or R ))*)). R] false )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q until R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P ] mu X. &lt;true&gt; true and [ R ] false and [ S ] mu Y. (&lt;true&gt; true and [ Z or R ] false and [not T ] Y) and [not S ] X </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q until R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R )*. P ] mu X. &lt;true&gt; true and [ R ] false and [ S ] mu Y. (&lt;true&gt; true and [ Z or R ] false and [not T ] Y) and [not S ] X) </FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD ALIGN="LEFT" VALIGN=TOP><B><FONT SIZE=3>Bounded Existence: P is allowed to occur at most once.</FONT></B></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Globally</FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not P )*. P . (not P )*. P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Before R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not R )*. P . (not R )*. P . (not R )*. R ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Before R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[(not R )*. P . (not R )*. P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[(not Q )*. Q . (not P )*. P . (not P )*. P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not P )*. P . (not P )*. P ] false )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>Between Q and R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P . (not R )*. P . (not R )*. R ] false</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>Between Q and R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R )*. P . (not R )*. P . (not R )*. R ] false )</FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><FONT SIZE=3>After Q until R</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q . (not R )*. P . (not R )*. P ] false </FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>After Q until R variant</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3><BR></FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q ]( ([true*. Q ]false) =&gt; [(not R )*. P . (not R )*. P ] false ) </FONT></TD>
+	</TR>
+</TABLE>
+<!-- ************************************************************************** -->
+</BODY>
+
+</HTML>

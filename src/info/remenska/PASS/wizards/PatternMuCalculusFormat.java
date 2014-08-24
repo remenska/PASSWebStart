@@ -53,17 +53,27 @@ public class PatternMuCalculusFormat {
 	   addPattern("After Q until R", "Absence", "[true*. #Q# . (! #R# )*. #P# ] false");
 	   addPattern("After Q until R variant", "Absence", "[true*. #Q# ](([true*. #Q# ]false) => [(! #R# )*. #P# ] false)");
 
-	   addPattern("Globally", "Existence","mu X. <true> true && [! #P# ] X" );
-	   addPattern("Before R", "Existence", "[(! #P# )*. #R# ] false");
-	   addPattern("Before R variant", "Existence", "mu X. ( [! #P# ]X && [ #R# ]false && <true>true)");
-	   addPattern("After Q", "Existence", "[(! #Q# )*. #Q# ] mu X. (<true> true && [! #P# ] X)");
-//	   addPattern("After Q variant", "Existence", "[true*. Q](([true*. Q] false) => mu X. ([! P]X && <true>true)");
-	   addPattern("After Q variant", "Existence", "[true*. #Q# ](([true*. #Q# ] false) => mu X. ([! #P# ]X && <true>true) && [ #Q# ]false)");
-	   addPattern("Between Q and R", "Existence", "[true*. #Q# . (! ( #P# || #R# ))*. #R# ] false");
-	   addPattern("Between Q and R variant","Existence", "[true*. #Q# ](([true*. #Q# ] false) => [(! ( #P# || #R# ))*. #R# ] false)");
-	   addPattern("After Q until R", "Existence", "[true*. #Q# ] mu X. <true> true && [ #R# ] false && [! #P# ] X");
-	   addPattern("After Q until R variant", "Existence", "[true*. #Q# ](([true*. #Q# ] false) =>  mu X. <true> true && [ #R# ] false && [! #P# ] X) ");
-	   	   
+	   addPattern("Globally", "ExistenceUnfair","mu X. <true> true && [! #P# ] X" );
+	   addPattern("Before R", "ExistenceUnfair", "[(! #P# )*. #R# ] false");
+	   addPattern("Before R variant", "ExistenceUnfair", "mu X. ( [! #P# ]X && [ #R# ]false && <true>true)");
+	   addPattern("After Q", "ExistenceUnfair", "[(! #Q# )*. #Q# ] mu X. (<true> true && [! #P# ] X)");
+	   addPattern("After Q variant", "ExistenceUnfair", "[true*. #Q# ](([true*. #Q# ] false) => mu X. ([! #P# ]X && <true>true) && [ #Q# ]false)");
+	   addPattern("Between Q and R", "ExistenceUnfair", "[true*. #Q# . (! ( #P# || #R# ))*. #R# ] false");
+	   addPattern("Between Q and R variant","ExistenceUnfair", "[true*. #Q# ](([true*. #Q# ] false) => [(! ( #P# || #R# ))*. #R# ] false)");
+	   addPattern("After Q until R", "ExistenceUnfair", "[true*. #Q# ] mu X. <true> true && [ #R# ] false && [! #P# ] X");
+	   addPattern("After Q until R variant", "ExistenceUnfair", "[true*. #Q# ](([true*. #Q# ] false) =>  mu X. <true> true && [ #R# ] false && [! #P# ] X) ");
+	   
+	   // NEW NEW NEW
+	   addPattern("Globally", "ExistenceFair", "[ (! #P# )* ] <true*. #P# >true" ); 
+	   addPattern("Before R", "ExistenceFair", "[(! #P# )*. #R# ] false"); 
+	   addPattern("Before R variant", "ExistenceFair", "[ (! ( #P# || #R# ))* ) ] <true*. #P# > true"); 
+	   addPattern("After Q", "ExistenceFair", "[(! #Q# )*. #Q# . (! #P# )*]<true*. #P#> true"); 
+	   addPattern("After Q variant", "ExistenceFair", "[true*. #Q# ](([true*. #Q# ] false) => [ (! #P# )* ] <true*. #P# >true)"); 
+	   addPattern("Between Q and R", "ExistenceFair", "[true*. #Q# . (! ( #P# || #R# ))*. #R# ] false"); //ok
+	   addPattern("Between Q and R variant","ExistenceFair", "[true*. #Q# ](([true*. #Q# ] false) => [(! ( #P# || #R# ))*. #R# ] false)");
+	   addPattern("After Q until R", "ExistenceFair", "[true*. #Q# . (!( #P# || #R# ))*] <true*. #P# >true "); // ok
+	   addPattern("After Q until R variant", "ExistenceFair", "[true*. #Q# ](([true*. #Q# ] false) => [ (!( #P# || #R# ))*] <true*. #P# >true  ) "); 
+	   
 	   addPattern("Globally", "Universality", "[true*. #P# ] false ");
 	   addPattern("Before R", "Universality", "[(! #R# )*. #P# . (! #R# )*. #R# ] false ");
 	   addPattern("Before R variant", "Universality", "[(! #R# )*. #P# ] false "); 
@@ -93,25 +103,48 @@ public class PatternMuCalculusFormat {
 	   addPattern("After Q until R", "Precedence variant" , "[(! #Q# )*. #Q# ] mu X. ([! ( #P# || #R# )] X && <true>true && [ #S# ]false)" );
 	   addPattern("After Q until R variant", "Precedence variant" , "[true*. #Q# ](([true*. #Q# ]false) => mu X.[! ( #P# || #R# )]X && <true>true && [ #S# ] false" );
 	   
-	   addPattern("Globally", "Response", "[true*. #P# ] mu X. <true> true && [! #S# ] X ");
-	   addPattern("Before R", "Response", "[(! #R# )*. #P# . (! ( #S# || #R# ))*. #R# ] false ");
-	   addPattern("Before R variant", "Response", "[(! #R# )*. #P# ] mu X. <true> true && [ #R# ]false && [! #S# ] X ");
-	   addPattern("After Q", "Response", "[(! #Q# )*. #Q# . true*. #P# ] mu X. <true> true && [! #S# ] X " );
-	   addPattern("After Q variant", "Response", "[true*. #Q# ]( ([true*. #Q# ]false) => [true*. #P# ] (mu X. <true>true && [! #S# ] X ) ) " );
-	   addPattern("Between Q and R", "Response", "[true*. #Q# . (! #R# )*. #P#. (! ( #S# || #R# ))*. #R# ] false");
-	   addPattern("Between Q and R variant", "Response", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# . (! ( #S# || #R# ))*. #R# ] false)");
-	   addPattern("After Q until R", "Response", "[true*. #Q# . (! #R# )*. #P# ] mu X. <true> true && [ #R# ] false && [! #S# ] X");
-	   addPattern("After Q until R variant", "Response", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# ] (mu X. <true> true && [ #R# ] false && [! #S# ] X)) ");
+	   addPattern("Globally", "ResponseUnfair", "[true*. #P# ] mu X. <true> true && [! #S# ] X ");
+	   addPattern("Before R", "ResponseUnfair", "[(! #R# )*. #P# . (! ( #S# || #R# ))*. #R# ] false ");
+	   addPattern("Before R variant", "ResponseUnfair", "[(! #R# )*. #P# ] mu X. <true> true && [ #R# ]false && [! #S# ] X ");
+	   addPattern("After Q", "ResponseUnfair", "[(! #Q# )*. #Q# . true*. #P# ] mu X. <true> true && [! #S# ] X " );
+	   addPattern("After Q variant", "ResponseUnfair", "[true*. #Q# ]( ([true*. #Q# ]false) => [true*. #P# ] (mu X. <true>true && [! #S# ] X ) ) " );
+	   addPattern("Between Q and R", "ResponseUnfair", "[true*. #Q# . (! #R# )*. #P#. (! ( #S# || #R# ))*. #R# ] false");
+	   addPattern("Between Q and R variant", "ResponseUnfair", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# . (! ( #S# || #R# ))*. #R# ] false)");
+	   addPattern("After Q until R", "ResponseUnfair", "[true*. #Q# . (! #R# )*. #P# ] mu X. <true> true && [ #R# ] false && [! #S# ] X");
+	   addPattern("After Q until R variant", "ResponseUnfair", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# ] (mu X. <true> true && [ #R# ] false && [! #S# ] X)) ");
 	   
-	   addPattern("Globally", "Response variant", "mu X.( [! #P# ]X && <true>true && [true*. #P# ](mu Y. [! #S# ]Y && <true>true))");
-	   addPattern("Before R", "Response variant", "((mu X. [! ( #R# || #P# )]X && <true>true) && [true*. #P# . (! ( #R# || #S# ))*. #R# ]false )");
-	   addPattern("Before R variant", "Response variant", "mu X. ( [! #P# ]X && <true>true && [true*. #P# ](mu Y.<true> true && [ #R# ]false && [! #S# ] Y))");
-	   addPattern("After Q", "Response variant", "[(! #Q# )*. #Q# ]( (mu X. [! #P# ]X && <true>true) && [true*. #P# ](mu Y. <true>true && [! #S# ] Y) )");
-	   addPattern("After Q variant", "Response variant", "[true*. #Q# ]( ([true*. #Q# ]false) => ( mu X.( [! #P# ]X && <true>true && [true*. #P# ](mu Y. [! #S# ]Y && <true>true)))");
-	   addPattern("Between Q and R", "Response variant", "[(! #Q# )*. #Q# ]((mu X. [! ( #P# || #R# )]X && <true>true) && [true*. #P# . (! ( #R# || #S# ))*. #R# ]false )");
-	   addPattern("Between Q and R variant", "Response variant", "[true*. #Q# ](([true*. #Q# ]false) => ((mu X. [! ( #P# || #R# )]X && <true>true) && [true*. #P# . (! ( #R# || #S# ))*. #R# ]false ))");
-	   addPattern("After Q until R", "Response variant", "[true*. #Q# ]( mu X. ( [! ( #P# || #R# )]X && <true>true && [true*. #P# ](mu Y.<true> true && [ #R# ]false && [! #S# ] Y)) )");
-	   addPattern("After Q until R variant", "Response variant", "[true*. #Q# ](([true*. #Q# ]false) =>  mu X. ( [! ( #P# || #R# )]X && <true>true && [true*. #P# ](mu Y.<true> true && [ #R# ]false && [! #S# ] Y)))");
+	   // NEW NEW NEW
+	   addPattern("Globally", "ResponseFair", "[true*. #P# . (! #S# )*] <true*. #S# > true");
+	   addPattern("Before R", "ResponseFair", "[(! #R# )*. #P# . (! ( #S# || #R# ))*. #R# ] false ");
+	   addPattern("Before R variant", "ResponseFair", "[(! #R# )*. #P# . (! ( #S# || #R# ))*] <true*. #S# > true"); 
+	   addPattern("After Q", "ResponseFair", "[(! #Q# )*. #Q# . true*. #P# . (! #S )*] <true*. #S# > true" );
+	   addPattern("After Q variant", "ResponseFair", "[true*. #Q# ]( ([true*. #Q# ]false) => [true*. #P# . (! #S# )*] <true*. #S# > true ) " ); 
+	   addPattern("Between Q and R", "ResponseFair", "[true*. #Q# . (! #R# )*. #P#. (! ( #S# || #R# ))*. #R# ] false");
+	   addPattern("Between Q and R variant", "ResponseFair", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# . (! ( #S# || #R# ))*. #R# ] false)"); 
+	   addPattern("After Q until R", "ResponseFair", "[true*. #Q# . (! #R# )*. #P# . (! ( #S# || #R# ))*] <true*.  #S# > true");                           
+	   addPattern("After Q until R variant", "ResponseFair", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# .(! ( #S# || #R# ))* ]<true*. #S# > true) ");
+	   
+	   addPattern("Globally", "Response variant Unfair", "mu X.( [! #P# ]X && <true>true && [true*. #P# ](mu Y. [! #S# ]Y && <true>true))");
+	   addPattern("Before R", "Response variant Unfair", "((mu X. [! ( #R# || #P# )]X && <true>true) && [true*. #P# . (! ( #R# || #S# ))*. #R# ]false )");
+	   addPattern("Before R variant", "Response variant Unfair", "mu X. ( [! #P# ]X && <true>true && [true*. #P# ](mu Y.<true> true && [ #R# ]false && [! #S# ] Y))");
+	   addPattern("After Q", "Response variant Unfair", "[(! #Q# )*. #Q# ]( (mu X. [! #P# ]X && <true>true) && [true*. #P# ](mu Y. <true>true && [! #S# ] Y) )");
+	   addPattern("After Q variant", "Response variant Unfair", "[true*. #Q# ]( ([true*. #Q# ]false) => ( mu X.( [! #P# ]X && <true>true && [true*. #P# ](mu Y. [! #S# ]Y && <true>true)))");
+	   addPattern("Between Q and R", "Response variant Unfair", "[(! #Q# )*. #Q# ]((mu X. [! ( #P# || #R# )]X && <true>true) && [true*. #P# . (! ( #R# || #S# ))*. #R# ]false )");
+	   addPattern("Between Q and R variant", "Response variant Unfair", "[true*. #Q# ](([true*. #Q# ]false) => ((mu X. [! ( #P# || #R# )]X && <true>true) && [true*. #P# . (! ( #R# || #S# ))*. #R# ]false ))");
+	   addPattern("After Q until R", "Response variant Unfair", "[true*. #Q# ]( mu X. ( [! ( #P# || #R# )]X && <true>true && [true*. #P# ](mu Y.<true> true && [ #R# ]false && [! #S# ] Y)) )");
+	   addPattern("After Q until R variant", "Response variant Unfair", "[true*. #Q# ](([true*. #Q# ]false) =>  mu X. ( [! ( #P# || #R# )]X && <true>true && [true*. #P# ](mu Y.<true> true && [ #R# ]false && [! #S# ] Y)))");
+	  
+	   // NEW NEW NEW
+	   addPattern("Globally", "Response variant Fair", "[(! #P# )* ]<true*. #P# >true && [true*. #P# . (! #S# )*]<true*. #S# >true");
+	   addPattern("Before R", "Response variant Fair", "[ (! ( #R# || #P# ))*] <true*. #P# > true && [true*. #P# . (!( #R# || #S# ))*. #R# ] false");
+	   addPattern("Before R variant", "Response variant Fair", "[(! #P# )*] <true*. #P# > true && [true*. #P# . (!( #R || #S#))*]<true*. #S# >true");
+	   addPattern("After Q", "Response variant Fair", "[(! #Q# )*. #Q# . (! #P# )*]<true*. #P# > true && [true*. #P#. (! #S# )*]<true*. #S# >true");
+	   addPattern("After Q variant", "Response variant Fair", "[true*. #Q# ]( ([true*. #Q# ]false) => ([ (! #P# )*]<true*. #P# >true && [true*. #P# . (! #S# )*]<true*. #S# > true))");	   
+	   addPattern("Between Q and R", "Response variant Fair", "[(! #Q# )*. #Q# . (!( #P# || #R# ))*]<true*. #P# > && [true*. #P#. (! (#R# || #S#))*. #R# ]false");
+	   addPattern("Between Q and R variant", "Response variant Fair", "[true*. #Q# ](([true*. #Q# ]false) => ([(!(#P# || #R#))*]<true*. #P#>true && [true*. #P# . (!( #R# || #S#))* . #R# ]false))");
+	   addPattern("After Q until R", "Response variant Fair", "[true*. #Q# . (!( #P# || #R# ))*]<true*. #P# >true && [true*. #P# . (!( #R# || #S# ))*]<true*. #S# > true");
+	   addPattern("After Q until R variant", "Response variant Fair", "[true*. #Q# ](([true*. #Q# ]false) => ([ (!( #P# || #R#))*]<true*. #P# >true && [true*. #P# . (!( #R# || #S# ))*]<true*. #S# > true))");
+	
 	   
 	   addPattern("Globally", "Precedence Chain 1", "[(! #S# )*. (nil | ( #S# . (! #T# )*)). #P# ] false " );
 	   addPattern("Before R", "Precedence Chain 1", " [(! ( #S# || #R# ))*. (nil | ( #S# . (! ( #T# || #R# ))*)). #P# . (! #R# )*. #R# ] false ");
@@ -187,15 +220,27 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q until R","Absence", Boolean.TRUE );
 	   addPatternMonitorable("After Q until R variant","Absence", Boolean.FALSE ); //TODO
 	   
-	   addPatternMonitorable("Globally", "Existence",Boolean.FALSE );
-	   addPatternMonitorable("Before R", "Existence", Boolean.TRUE );
-	   addPatternMonitorable("Before R variant", "Existence", Boolean.FALSE );
-	   addPatternMonitorable("After Q", "Existence", Boolean.FALSE );
-	   addPatternMonitorable("After Q variant", "Existence", Boolean.FALSE );//TODO: check After #Q# variants if they are monitorable, they have implication sign! 
-	   addPatternMonitorable("Between Q and R", "Existence", Boolean.TRUE );
-	   addPatternMonitorable("Between Q and R variant", "Existence", Boolean.FALSE ); //TODO
-	   addPatternMonitorable("After Q until R", "Existence", Boolean.FALSE );
-	   addPatternMonitorable("After Q until R variant", "Existence", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("Globally", "ExistenceUnfair",Boolean.FALSE );
+	   addPatternMonitorable("Before R", "ExistenceUnfair", Boolean.TRUE );
+	   addPatternMonitorable("Before R variant", "ExistenceUnfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q", "ExistenceUnfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q variant", "ExistenceUnfair", Boolean.FALSE );//TODO: check After #Q# variants if they are monitorable, they have implication sign! 
+	   addPatternMonitorable("Between Q and R", "ExistenceUnfair", Boolean.TRUE );
+	   addPatternMonitorable("Between Q and R variant", "ExistenceUnfair", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("After Q until R", "ExistenceUnfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q until R variant", "ExistenceUnfair", Boolean.FALSE ); //TODO
+	   
+	   // NEW NEW NEW 
+	   addPatternMonitorable("Globally", "ExistenceFair",Boolean.FALSE );
+	   addPatternMonitorable("Before R", "ExistenceFair", Boolean.TRUE );
+	   addPatternMonitorable("Before R variant", "ExistenceFair", Boolean.FALSE );
+	   addPatternMonitorable("After Q", "ExistenceFair", Boolean.FALSE );
+	   addPatternMonitorable("After Q variant", "ExistenceFair", Boolean.FALSE );//TODO: check After #Q# variants if they are monitorable, they have implication sign! 
+	   addPatternMonitorable("Between Q and R", "ExistenceFair", Boolean.TRUE );
+	   addPatternMonitorable("Between Q and R variant", "ExistenceFair", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("After Q until R", "ExistenceFair", Boolean.FALSE );
+	   addPatternMonitorable("After Q until R variant", "ExistenceFair", Boolean.FALSE ); //TODO
+	   
 	   
 	   addPatternMonitorable("Globally", "Universality", Boolean.TRUE );
 	   addPatternMonitorable("Before R", "Universality", Boolean.TRUE );
@@ -227,25 +272,48 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("After Q until R", "Precedence variant",  Boolean.FALSE );
 	   addPatternMonitorable("After Q until R variant", "Precedence variant",  Boolean.FALSE ); //TODO
 	   
-	   addPatternMonitorable("Globally", "Response", Boolean.FALSE );
-	   addPatternMonitorable("Before R", "Response", Boolean.TRUE );
-	   addPatternMonitorable("Before R variant", "Response", Boolean.FALSE );
-	   addPatternMonitorable("After Q", "Response", Boolean.FALSE );
-	   addPatternMonitorable("After Q variant", "Response", Boolean.FALSE );//TODO: check After #Q# variants if they are...
-	   addPatternMonitorable("Between Q and R", "Response", Boolean.TRUE );
-	   addPatternMonitorable("Between Q and R variant", "Response", Boolean.FALSE ); //TODO
-	   addPatternMonitorable("After Q until R", "Response", Boolean.FALSE );
-	   addPatternMonitorable("After Q until R variant", "Response", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("Globally", "ResponseUnfair", Boolean.FALSE );
+	   addPatternMonitorable("Before R", "ResponseUnfair", Boolean.TRUE );
+	   addPatternMonitorable("Before R variant", "ResponseUnfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q", "ResponseUnfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q variant", "ResponseUnfair", Boolean.FALSE );//TODO: check After #Q# variants if they are...
+	   addPatternMonitorable("Between Q and R", "ResponseUnfair", Boolean.TRUE );
+	   addPatternMonitorable("Between Q and R variant", "ResponseUnfair", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("After Q until R", "ResponseUnfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q until R variant", "ResponseUnfair", Boolean.FALSE ); //TODO
 	   
-	   addPatternMonitorable("Globally", "Response variant", Boolean.FALSE );
-	   addPatternMonitorable("Before R", "Response variant", Boolean.FALSE );
-	   addPatternMonitorable("Before R variant", "Response variant", Boolean.FALSE );
-	   addPatternMonitorable("After Q", "Response variant", Boolean.FALSE );
-	   addPatternMonitorable("After Q variant", "Response variant", Boolean.FALSE );//TODO: check After #Q# variants if they are...
-	   addPatternMonitorable("Between Q and R", "Response variant", Boolean.FALSE );
-	   addPatternMonitorable("Between Q and R variant", "Response variant", Boolean.FALSE ); //TODO
-	   addPatternMonitorable("After Q until R", "Response variant", Boolean.FALSE );
-	   addPatternMonitorable("After Q until R variant", "Response variant", Boolean.FALSE ); //TODO
+	   // NEW NEW NEW
+	   addPatternMonitorable("Globally", "ResponseFair", Boolean.FALSE );
+	   addPatternMonitorable("Before R", "ResponseFair", Boolean.TRUE );
+	   addPatternMonitorable("Before R variant", "ResponseFair", Boolean.FALSE );
+	   addPatternMonitorable("After Q", "ResponseFair", Boolean.FALSE );
+	   addPatternMonitorable("After Q variant", "ResponseFair", Boolean.FALSE );//TODO: check After #Q# variants if they are...
+	   addPatternMonitorable("Between Q and R", "ResponseFair", Boolean.TRUE );
+	   addPatternMonitorable("Between Q and R variant", "ResponseFair", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("After Q until R", "ResponseFair", Boolean.FALSE );
+	   addPatternMonitorable("After Q until R variant", "ResponseFair", Boolean.FALSE ); //TODO
+	   
+	   
+	   addPatternMonitorable("Globally", "Response variant Unfair", Boolean.FALSE );
+	   addPatternMonitorable("Before R", "Response variant Unfair", Boolean.FALSE );
+	   addPatternMonitorable("Before R variant", "Response variant Unfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q", "Response variant Unfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q variant", "Response variant Unfair", Boolean.FALSE );//TODO: check After #Q# variants if they are...
+	   addPatternMonitorable("Between Q and R", "Response variant Unfair", Boolean.FALSE );
+	   addPatternMonitorable("Between Q and R variant", "Response variant Unfair", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("After Q until R", "Response variant Unfair", Boolean.FALSE );
+	   addPatternMonitorable("After Q until R variant", "Response variant Unfair", Boolean.FALSE ); //TODO
+	   
+	   // NEW NEW NEW
+	   addPatternMonitorable("Globally", "Response variant Fair", Boolean.FALSE );
+	   addPatternMonitorable("Before R", "Response variant Fair", Boolean.FALSE );
+	   addPatternMonitorable("Before R variant", "Response variant Fair", Boolean.FALSE );
+	   addPatternMonitorable("After Q", "Response variant Fair", Boolean.FALSE );
+	   addPatternMonitorable("After Q variant", "Response variant Fair", Boolean.FALSE );//TODO: check After #Q# variants if they are...
+	   addPatternMonitorable("Between Q and R", "Response variant Fair", Boolean.FALSE );
+	   addPatternMonitorable("Between Q and R variant", "Response variant Fair", Boolean.FALSE ); //TODO
+	   addPatternMonitorable("After Q until R", "Response variant Fair", Boolean.FALSE );
+	   addPatternMonitorable("After Q until R variant", "Response variant Fair", Boolean.FALSE ); //TODO
 	   
 	   addPatternMonitorable("Globally", "Precedence Chain 1", Boolean.TRUE );
 	   addPatternMonitorable("Before R", "Precedence Chain 1", Boolean.TRUE);
@@ -326,13 +394,16 @@ public class PatternMuCalculusFormat {
 
 	  Questionnaire.aansw1111.setBehavior("Absence");
 	  
-	  Questionnaire.aansw1112.setBehavior("Existence");
+	  Questionnaire.aansw111212.setBehavior("ExistenceUnfair");
+	  Questionnaire.aansw111211.setBehavior("ExistenceFair");
 	  Questionnaire.aansw1113.setBehavior("Bounded Existence");
 	  Questionnaire.aansw121212.setBehavior("Precedence"); 
 	  Questionnaire.aansw121211.setBehavior("Precedence variant");
 //	  Questionnaire.aansw1222.setBehavior("Response");
-	  Questionnaire.aansw121112.setBehavior("Response");
-	  Questionnaire.aansw121111.setBehavior("Response variant"); 
+	  Questionnaire.aansw12111212.setBehavior("ResponseUnfair");
+	  Questionnaire.aansw12111211.setBehavior("ResponseFair");
+	  Questionnaire.aansw12111112.setBehavior("Response variant Unfair"); 
+	  Questionnaire.aansw12111111.setBehavior("Response variant Fair");
 	  Questionnaire.aansw1114.setBehavior("Universality");
 
 	  // OK

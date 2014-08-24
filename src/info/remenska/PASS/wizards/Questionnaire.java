@@ -32,17 +32,28 @@ public class Questionnaire {
 
 			public static TreeNode<String> aansw11 = behaviorQuestionTree.addChild("One event.", false);
 			public static 	TreeNode<String> qquest111 = aansw11.addChild("Which of the following choices best describes the restriction on A?", true);
-			public static 		TreeNode<String> aansw1111 = qquest111.addChild("A is never allowed to occur", false); // ABSENCE
-			public static 		TreeNode<String> aansw1112 = qquest111.addChild("A must eventually occur at least once.", false);	// EXISTENCE			
+			public static 		TreeNode<String> aansw1111 = qquest111.addChild("A is never allowed to occur.", false); // ABSENCE
+			public static 		TreeNode<String> aansw1112 = qquest111.addChild("A must eventually occur at least once.", false);	// EXISTENCE
+			public static 			TreeNode<String> qquest11121 = aansw1112.addChild("Assume that the system is fair in scheduling concurrent processes?", true);
+			public static 				TreeNode<String> aansw111211 = qquest11121.addChild("Yes, assume the system is fair and if it is possible \n to exit a theoretically infinite loop, eventually it will be exited.", false); //EXISTENCE_FAIR
+			public static 				TreeNode<String> aansw111212 = qquest11121.addChild("No, do not assume anything. A process can starve in practice. ", false);  // EXISTENCE_UNFAIR
+
 			public static 		TreeNode<String> aansw1113 = qquest111.addChild("A is allowed to occur at most once.", false); // BOUNDED EXISTENCE 
 			public static 		TreeNode<String> aansw1114 = qquest111.addChild("A always carries the same parameter value(s). This is useful for checking if an object state remains the same. \nThe events in such case are getter methods for querying the state. ", false); // NEW ONE!
 					
 			public static TreeNode<String> aansw12 = behaviorQuestionTree.addChild("Two events.", false);
 			public static 	TreeNode<String> qquest121 = aansw12.addChild("Which of the following best describes how A and B interact?", true);
-			public static 		TreeNode<String> aansw1211 = qquest121.addChild("If A occurs, B is required to occur subsequently", false);
+			public static 		TreeNode<String> aansw1211 = qquest121.addChild("If A occurs, B is required to occur subsequently.", false);
 			public static 			TreeNode<String> qquest12111 = aansw1211.addChild("Is A required to occur?", true);
 			public static 				TreeNode<String> aansw121111 = qquest12111.addChild("Yes, A is required to occur.", false); // can it be implemented?
+			public static 					TreeNode<String> qquest1211111 = aansw121111.addChild("Assume that the system is fair in scheduling concurrent processes?", true);
+			public static 						TreeNode<String> aansw12111111 = qquest1211111.addChild("Yes, assume the system is fair and if it is possible \n to exit a theoretically infinite loop, eventually it will be exited.", false); //RESPONSE_FAIR
+			public static 						TreeNode<String> aansw12111112 = qquest1211111.addChild("No, do not assume anything. A process can starve in practice. ", false);  // RESPONSE_UNFAIR
+
 			public static 				TreeNode<String> aansw121112 = qquest12111.addChild("No, A is not required to occur.", false); // RESPONSE
+			public static 					TreeNode<String> qquest1211121 = aansw121112.addChild("Assume that the system is fair in scheduling concurrent processes?", true);
+					public static 				TreeNode<String> aansw12111211 = qquest1211121.addChild("Yes, assume the system is fair and if it is possible \n to exit a theoretically infinite loop, eventually it will be exited.", false); //RESPONSE_FAIR
+					public static 				TreeNode<String> aansw12111212 = qquest1211121.addChild("No, do not assume anything. A process can starve in practice. ", false);  // RESPONSE_UNFAIR
 			public static 		TreeNode<String> aansw1212 = qquest121.addChild("B is not allowed to occur until after A occurs.", false); // PRECEDENCE 
 			public static 			TreeNode<String> qquest12121 = aansw1212.addChild("Is A required to occur, whether or not B eventually occurs?", true);
 			public static 				TreeNode<String> aansw121211 = qquest12121.addChild("Yes, A is required to occur, whether or not B eventually occurs.", false); // can it be implemented by a conjunction of the original formula AND formula of A must happen eventually 
