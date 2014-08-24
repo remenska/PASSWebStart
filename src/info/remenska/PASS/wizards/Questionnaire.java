@@ -40,7 +40,8 @@ public class Questionnaire {
 
 			public static 		TreeNode<String> aansw1113 = qquest111.addChild("A is allowed to occur at most once.", false); // BOUNDED EXISTENCE 
 			public static 		TreeNode<String> aansw1114 = qquest111.addChild("A always carries the same parameter value(s). This is useful for checking if an object state remains the same. \nThe events in such case are getter methods for querying the state. ", false); // NEW ONE!
-					
+			public static 		TreeNode<String> aansw1115 = qquest111.addChild("A must always be possible/enabled, every step of the system progress.", false); // TODO: ADD HERE ENABLED
+		
 			public static TreeNode<String> aansw12 = behaviorQuestionTree.addChild("Two events.", false);
 			public static 	TreeNode<String> qquest121 = aansw12.addChild("Which of the following best describes how A and B interact?", true);
 			public static 		TreeNode<String> aansw1211 = qquest121.addChild("If A occurs, B is required to occur subsequently.", false);

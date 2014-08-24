@@ -29,7 +29,7 @@
 		</TR>
 	<TR>
 		<TD COLSPAN=3 HEIGHT="85" ALIGN="LEFT" VALIGN=MIDDLE><FONT SIZE=3>These Property Pattern mappings for mu-calculus are an extension of the original mappings available at the <A HREF="http://www.inrialpes.fr/vasy/cadp/resources/evaluator/rafmc.html">CADP webpage</A>. The extensions are marked in green. There are 4 scope and 2 behavior variations leading to more than 100 unique patterns to be chosen from.<BR>Below is a brief explanation on the extensions and their usefulness in particular situations. 
-<BR> <BR> For certain properties (liveness), alternatives are given with and without a <B>fairness assumption</B>: it is the assumption that the system scheduling is fair, i.e., a process cannot continously ask to make progress without being allowed to, eventually.
+<BR> <BR> <I>Note</I>: For certain properties (liveness), alternatives are given with and without a <B>fairness assumption</B>: it is the assumption that the system scheduling is fair, i.e., a process cannot continously ask to make progress without being allowed to do so, eventually.
 <BR><BR>We advise using <A HREF="https://github.com/remenska/PASS">PASS</A> to automatically obtain the correct formula for a property, from this pattern system.</FONT></TD>
 		</TR>
 	<TR>
@@ -95,7 +95,7 @@
 	<TR>
 		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3>After Q variant</FONT></B></TD>
 		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><B><FONT SIZE=3><BR></FONT></B></TD>
-		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q](([true*. Q]false) =&gt; [true*. (P + Q)]false)</FONT></TD>
+		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT" BGCOLOR="#CFE7E5"><FONT SIZE=3>[true*. Q](([true*. Q]false) =&gt; [true*. (P or Q)]false)</FONT></TD>
 	</TR>
 	<TR>
 		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>Between Q and R</FONT></B></TD>
@@ -651,7 +651,7 @@
 	<TR>
 		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" HEIGHT="40" ALIGN="LEFT"><B><FONT SIZE=3>After Q until R</FONT></B></TD>
 		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" ALIGN="LEFT"><B><FONT SIZE=3><BR></FONT></B></TD>
-[true*. #Q# . (!( #P# || #R# ))*]<true*. #P# >true && [true*. #P# . (!( #R# || #S# ))*]<true*. #S# > true
+
 
 		<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000" ALIGN="LEFT"><FONT SIZE=3>[true*. Q. (not (P or R))*] &lt;true*. P&gt; true and [true*. P. (not (R or S))*] &lt;true*. S&gt; true </FONT></TD>
 	</TR>

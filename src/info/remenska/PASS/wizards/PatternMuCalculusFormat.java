@@ -378,6 +378,16 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("Between Q and R variant", "Bounded Existence", Boolean.FALSE); //TODO
 	   addPatternMonitorable("After Q until R variant", "Bounded Existence" , Boolean.FALSE); //TODO
 	  
+	   addPatternMonitorable("Globally", "AlwaysEnabled", Boolean.FALSE);
+	   addPatternMonitorable("Before R", "AlwaysEnabled", Boolean.FALSE);
+	   addPatternMonitorable("Before R variant", "AlwaysEnabled", Boolean.FALSE);
+	   addPatternMonitorable("After Q", "AlwaysEnabled", Boolean.FALSE);
+	   addPatternMonitorable("After Q variant", "AlwaysEnabled", Boolean.FALSE);//TODO: check After #Q# variants if they are...
+	   addPatternMonitorable("Between Q and R", "AlwaysEnabled", Boolean.FALSE);
+	   addPatternMonitorable("After Q until R", "AlwaysEnabled" , Boolean.FALSE);
+	   addPatternMonitorable("Between Q and R variant", "AlwaysEnabled", Boolean.FALSE); //TODO
+	   addPatternMonitorable("After Q until R variant", "AlwaysEnabled" , Boolean.FALSE); //TODO
+	   
 //	  Questionnaire.answ12.setScope("Globally");
 	  Questionnaire.answ12.setScope("Globally");
 	  Questionnaire.answ111111.setScope("After Q");
@@ -410,7 +420,8 @@ public class PatternMuCalculusFormat {
 	  Questionnaire.aansw131111.setBehavior("Response Chain 2");
 	  Questionnaire.aansw131112.setBehavior("Constrained Response Chain 2");
 
-	  
+	  //TODO HERE
+	  Questionnaire.aansw1115.setBehavior("AlwaysEnabled");
 	  
 	  Questionnaire.aansw1312.setBehavior("Response Chain 1");
 	  Questionnaire.aansw1313.setBehavior("Precedence Chain 1");
