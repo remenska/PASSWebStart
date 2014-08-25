@@ -209,6 +209,18 @@ public class PatternMuCalculusFormat {
 	  addPattern("Between Q and R variant", "Bounded Existence", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# . (! #R# )*. #P# . (! #R# )*. #R# ] false )");
 	  addPattern("After Q until R", "Bounded Existence" , " [true*. #Q# . (! #R# )*. #P# . (! #R# )*. #P# ] false ");
 	  addPattern("After Q until R variant", "Bounded Existence" , "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# . (! #R# )*. #P# ] false ) ");
+	 
+	  // NEW NEW NEW
+	   addPattern("Globally", "AlwaysEnabled", " [true*]< #P# > true " ); 
+	   addPattern("Before R", "AlwaysEnabled", "TODO");  //TODO
+	   addPattern("Before R variant", "AlwaysEnabled", "[ (! #R# )*] < #P# > true"); 
+	   addPattern("After Q", "AlwaysEnabled", " [(! #Q# )*. #Q# ] < #P# > true"); 
+	   addPattern("After Q variant", "AlwaysEnabled", " [true*. #Q# ](([true*. #Q# ] false) => < #P# > true)"); 
+	   addPattern("Between Q and R", "AlwaysEnabled", "TODO"); //TODO
+	   addPattern("Between Q and R variant","AlwaysEnabled", "TODO"); //TODO
+	   addPattern("After Q until R", "AlwaysEnabled", "[true*. #Q#. (!  #R# )*] < #P# > true "); 
+	   addPattern("After Q until R variant", "AlwaysEnabled", " [true*. #Q# ](([true*. #Q# ] false) => [ (! #R# )*] < #P# > true)"); 
+	   
 	  ////  ////  ////  ////  ////  ////  ////  ////  ////  ////  ////  ////  ////  ////
 	   addPatternMonitorable("Globally", "Absence", Boolean.TRUE );
 	   addPatternMonitorable("Before R", "Absence", Boolean.TRUE );

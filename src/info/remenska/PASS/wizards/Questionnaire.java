@@ -55,7 +55,7 @@ public class Questionnaire {
 			public static 					TreeNode<String> qquest1211121 = aansw121112.addChild("Assume that the system is fair in scheduling concurrent processes?", true);
 					public static 				TreeNode<String> aansw12111211 = qquest1211121.addChild("Yes, assume the system is fair and if it is possible \n to exit a theoretically infinite loop, eventually it will be exited.", false); //RESPONSE_FAIR
 					public static 				TreeNode<String> aansw12111212 = qquest1211121.addChild("No, do not assume anything. A process can starve in practice. ", false);  // RESPONSE_UNFAIR
-			public static 		TreeNode<String> aansw1212 = qquest121.addChild("B is not allowed to occur until after A occurs.", false); // PRECEDENCE 
+			public static 		TreeNode<String> aansw1212 = qquest121.addChild("B is not allowed to occur until after A occurs. In other words, if B occurs, \n it must have been the case that A has occurred before B.", false); // PRECEDENCE 
 			public static 			TreeNode<String> qquest12121 = aansw1212.addChild("Is A required to occur, whether or not B eventually occurs?", true);
 			public static 				TreeNode<String> aansw121211 = qquest12121.addChild("Yes, A is required to occur, whether or not B eventually occurs.", false); // can it be implemented by a conjunction of the original formula AND formula of A must happen eventually 
 			public static 				TreeNode<String> aansw121212 = qquest12121.addChild("No, A is not required to occur and, if it does not occur, B is never allowed to occur.", false); // PRECEDENCE 
