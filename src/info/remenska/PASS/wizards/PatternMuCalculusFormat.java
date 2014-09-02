@@ -64,15 +64,15 @@ public class PatternMuCalculusFormat {
 	   addPattern("After Q until R variant", "ExistenceUnfair", "[true*. #Q# ](([true*. #Q# ] false) =>  mu X. <true> true && [ #R# ] false && [! #P# ] X) ");
 	   
 	   // NEW NEW NEW
-	   addPattern("Globally", "ExistenceFair", "[ (! #P# )* ] <true*. #P# >true" ); 
+	   addPattern("Globally", "ExistenceFair", "[ (! #P# )* ] <(! #P# )*. #P# >true" ); 
 	   addPattern("Before R", "ExistenceFair", "[(! #P# )*. #R# ] false"); 
-	   addPattern("Before R variant", "ExistenceFair", "[ (! ( #P# || #R# ))* ) ] <true*. #P# > true"); 
-	   addPattern("After Q", "ExistenceFair", "[(! #Q# )*. #Q# . (! #P# )*]<true*. #P#> true"); 
-	   addPattern("After Q variant", "ExistenceFair", "[true*. #Q# ](([true*. #Q# ] false) => [ (! #P# )* ] <true*. #P# >true)"); 
+	   addPattern("Before R variant", "ExistenceFair", "[ (! ( #P# || #R# ))* ) ] <(! #R# )*. #P# > true"); 
+	   addPattern("After Q", "ExistenceFair", "[(! #Q# )*. #Q# . (! #P# )*]<(! #P# )*. #P#> true"); 
+	   addPattern("After Q variant", "ExistenceFair", "[true*. #Q# ](([true*. #Q# ] false) => [ (! #P# )* ] <(! #P# )*. #P# >true)"); 
 	   addPattern("Between Q and R", "ExistenceFair", "[true*. #Q# . (! ( #P# || #R# ))*. #R# ] false"); //ok
 	   addPattern("Between Q and R variant","ExistenceFair", "[true*. #Q# ](([true*. #Q# ] false) => [(! ( #P# || #R# ))*. #R# ] false)");
-	   addPattern("After Q until R", "ExistenceFair", "[true*. #Q# . (!( #P# || #R# ))*] <true*. #P# >true "); // ok
-	   addPattern("After Q until R variant", "ExistenceFair", "[true*. #Q# ](([true*. #Q# ] false) => [ (!( #P# || #R# ))*] <true*. #P# >true  ) "); 
+	   addPattern("After Q until R", "ExistenceFair", "[true*. #Q# . (!( #P# || #R# ))*] <(! #R# )*. #P# >true "); // ok
+	   addPattern("After Q until R variant", "ExistenceFair", "[true*. #Q# ](([true*. #Q# ] false) => [ (!( #P# || #R# ))*] <(! #R# )*. #P# >true  ) "); 
 	   
 	   addPattern("Globally", "Universality", "[true*. #P# ] false ");
 	   addPattern("Before R", "Universality", "[(! #R# )*. #P# . (! #R# )*. #R# ] false ");
@@ -116,13 +116,13 @@ public class PatternMuCalculusFormat {
 	   // NEW NEW NEW
 	   addPattern("Globally", "ResponseFair", "[true*. #P# . (! #S# )*] <true*. #S# > true");
 	   addPattern("Before R", "ResponseFair", "[(! #R# )*. #P# . (! ( #S# || #R# ))*. #R# ] false ");
-	   addPattern("Before R variant", "ResponseFair", "[(! #R# )*. #P# . (! ( #S# || #R# ))*] <true*. #S# > true"); 
+	   addPattern("Before R variant", "ResponseFair", "[(! #R# )*. #P# . (! ( #S# || #R# ))*] <(! #R# )*. #S# > true"); 
 	   addPattern("After Q", "ResponseFair", "[(! #Q# )*. #Q# . true*. #P# . (! #S )*] <true*. #S# > true" );
 	   addPattern("After Q variant", "ResponseFair", "[true*. #Q# ]( ([true*. #Q# ]false) => [true*. #P# . (! #S# )*] <true*. #S# > true ) " ); 
 	   addPattern("Between Q and R", "ResponseFair", "[true*. #Q# . (! #R# )*. #P#. (! ( #S# || #R# ))*. #R# ] false");
 	   addPattern("Between Q and R variant", "ResponseFair", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# . (! ( #S# || #R# ))*. #R# ] false)"); 
-	   addPattern("After Q until R", "ResponseFair", "[true*. #Q# . (! #R# )*. #P# . (! ( #S# || #R# ))*] <true*.  #S# > true");                           
-	   addPattern("After Q until R variant", "ResponseFair", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# .(! ( #S# || #R# ))* ]<true*. #S# > true) ");
+	   addPattern("After Q until R", "ResponseFair", "[true*. #Q# . (! #R# )*. #P# . (! ( #S# || #R# ))*] <(! #R# )*.  #S# > true");                           
+	   addPattern("After Q until R variant", "ResponseFair", "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# .(! ( #S# || #R# ))* ]<(! #R# )*. #S# > true) ");
 	   
 	   addPattern("Globally", "Response variant Unfair", "mu X.( [! #P# ]X && <true>true && [true*. #P# ](mu Y. [! #S# ]Y && <true>true))");
 	   addPattern("Before R", "Response variant Unfair", "((mu X. [! ( #R# || #P# )]X && <true>true) && [true*. #P# . (! ( #R# || #S# ))*. #R# ]false )");
@@ -212,7 +212,7 @@ public class PatternMuCalculusFormat {
 	 
 	  // NEW NEW NEW
 	   addPattern("Globally", "AlwaysEnabled", " [true*]< #P# > true " ); 
-	   addPattern("Before R", "AlwaysEnabled", "TODO");  //TODO
+	   addPattern("Before R", "AlwaysEnabled", "< #P# *>[ #R# ]false ");  //TODO
 	   addPattern("Before R variant", "AlwaysEnabled", "[ (! #R# )*] < #P# > true"); 
 	   addPattern("After Q", "AlwaysEnabled", " [(! #Q# )*. #Q# ] < #P# > true"); 
 	   addPattern("After Q variant", "AlwaysEnabled", " [true*. #Q# ](([true*. #Q# ] false) => < #P# > true)"); 
