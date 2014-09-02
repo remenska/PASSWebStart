@@ -137,13 +137,13 @@ public class PatternMuCalculusFormat {
 	   // NEW NEW NEW
 	   addPattern("Globally", "Response variant Fair", "[(! #P# )* ]<true*. #P# >true && [true*. #P# . (! #S# )*]<true*. #S# >true");
 	   addPattern("Before R", "Response variant Fair", "[ (! ( #R# || #P# ))*] <true*. #P# > true && [true*. #P# . (!( #R# || #S# ))*. #R# ] false");
-	   addPattern("Before R variant", "Response variant Fair", "[(! #P# )*] <true*. #P# > true && [true*. #P# . (!( #R || #S#))*]<true*. #S# >true");
+	   addPattern("Before R variant", "Response variant Fair", "[(! #P# )*] <true*. #P# > true && [true*. #P# . (!( #R || #S#))*]<(! #R# )*. #S# >true");
 	   addPattern("After Q", "Response variant Fair", "[(! #Q# )*. #Q# . (! #P# )*]<true*. #P# > true && [true*. #P#. (! #S# )*]<true*. #S# >true");
 	   addPattern("After Q variant", "Response variant Fair", "[true*. #Q# ]( ([true*. #Q# ]false) => ([ (! #P# )*]<true*. #P# >true && [true*. #P# . (! #S# )*]<true*. #S# > true))");	   
 	   addPattern("Between Q and R", "Response variant Fair", "[(! #Q# )*. #Q# . (!( #P# || #R# ))*]<true*. #P# > && [true*. #P#. (! (#R# || #S#))*. #R# ]false");
 	   addPattern("Between Q and R variant", "Response variant Fair", "[true*. #Q# ](([true*. #Q# ]false) => ([(!(#P# || #R#))*]<true*. #P#>true && [true*. #P# . (!( #R# || #S#))* . #R# ]false))");
-	   addPattern("After Q until R", "Response variant Fair", "[true*. #Q# . (!( #P# || #R# ))*]<true*. #P# >true && [true*. #P# . (!( #R# || #S# ))*]<true*. #S# > true");
-	   addPattern("After Q until R variant", "Response variant Fair", "[true*. #Q# ](([true*. #Q# ]false) => ([ (!( #P# || #R#))*]<true*. #P# >true && [true*. #P# . (!( #R# || #S# ))*]<true*. #S# > true))");
+	   addPattern("After Q until R", "Response variant Fair", "[true*. #Q# . (!( #P# || #R# ))*]<true*. #P# >true && [true*. #P# . (!( #R# || #S# ))*]<(! #R# )*. #S# > true");
+	   addPattern("After Q until R variant", "Response variant Fair", "[true*. #Q# ](([true*. #Q# ]false) => ([ (!( #P# || #R#))*]<true*. #P# >true && [true*. #P# . (!( #R# || #S# ))*]<(! #R# )*. #S# > true))");
 	
 	   
 	   addPattern("Globally", "Precedence Chain 1", "[(! #S# )*. (nil | ( #S# . (! #T# )*)). #P# ] false " );
