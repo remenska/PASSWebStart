@@ -22,10 +22,14 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.ExpandEvent;
 import org.eclipse.swt.events.ExpandListener;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -65,37 +69,11 @@ public class QuestionTreePage extends WizardPage {
 			boolean isSelected = ((Button) e.getSource()).getSelection();
 			if (isSelected) {
 
-				final ToolTip tip = new ToolTip(getShell(), SWT.BALLOON);
-		        tip.setMessage("Here is a message for the user. When the message is too long it wraps. I should say something cool but nothing comes to my mind.");
-
 				List<TreeNode<String>> newQuestions = questionnaire
 						.findTreeNode(((Button) e.getSource()).getText()).children;
 				String selected = ((Button) e.getSource()).getText();
 				Button buttonSelected = (Button) e.getSource();
-				buttonSelected.addSelectionListener(new SelectionListener(){
-
-					public void widgetDefaultSelected(SelectionEvent arg0) {
-		                tip.setVisible(true);
-						
-					}
-
-					public void widgetSelected(SelectionEvent arg0) {
-		                tip.setVisible(true);
-						
-					}
-					
-				});
-				
-				buttonSelected.addFocusListener(new FocusListener() {
-		            public void focusLost(FocusEvent e) {
-		                tip.setVisible(false);
-		            }
-
-		            public void focusGained(FocusEvent e) {
-//		                tip.setVisible(true);
-		            }
-		        });
-				
+			
 				// (1) find parent
 				// (2) remove all children
 				// (3) add this clicked one
@@ -103,6 +81,39 @@ public class QuestionTreePage extends WizardPage {
 
 				TreeNode<String> staticNode = questionnaire
 						.findTreeNode(selected);
+				
+
+		    	if(staticNode.getToolTip()!=null){
+					final ToolTip tip = new ToolTip(getShell(), SWT.BALLOON);
+					tip.setMessage(staticNode.getToolTip());
+	                tip.setVisible(true);
+
+//					buttonSelected.addSelectionListener(new SelectionListener(){
+//			
+//						public void widgetDefaultSelected(SelectionEvent arg0) {
+////			                tip.setVisible(true);
+//							
+//						}
+//
+//						public void widgetSelected(SelectionEvent arg0) {
+////			                tip.setVisible(true);
+//						}
+//						
+//					});
+					
+					buttonSelected.addFocusListener(new FocusListener() {
+			            public void focusLost(FocusEvent e) {
+			                tip.setVisible(false);
+			            }
+
+			            public void focusGained(FocusEvent e) {
+			                tip.setVisible(true);
+			            }
+			        });
+		    	}
+		    		
+				
+		        
 				LOGGER.finer("FOUND STATIC NODE: " + staticNode.data);
 
 				TreeNode<String> staticParentNode = staticNode.parent;

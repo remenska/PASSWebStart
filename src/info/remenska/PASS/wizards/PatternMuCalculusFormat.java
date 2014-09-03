@@ -402,42 +402,86 @@ public class PatternMuCalculusFormat {
 	   
 //	  Questionnaire.answ12.setScope("Globally");
 	  Questionnaire.answ12.setScope("Globally");
+	  Questionnaire.answ12.setToolTip("Heres a cool tooltip for Globally scope");
+
 	  Questionnaire.answ111111.setScope("After Q");
+	  Questionnaire.answ111111.setToolTip("Heres a cool tooltip for After-Q scope");
+
 	  Questionnaire.answ111112.setScope("After Q variant"); 
-	  
+	  Questionnaire.answ111112.setToolTip("Heres a cool tooltip for After-last-Q scope");
+
 	  Questionnaire.answ111211.setScope("Before R variant"); 
+	  Questionnaire.answ111211.setToolTip("Heres a cool tooltip for Until-R scope");
+
 	  Questionnaire.answ111212.setScope("Before R"); 
-	  
+	  Questionnaire.answ111212.setToolTip("Heres a cool tooltip for Before-R scope");
+
 	  Questionnaire.answ1131111.setScope("After Q until R");
+	  Questionnaire.answ1131111.setToolTip("Heres a cool tooltip for After-Q-Until-R scope");
+
 	  Questionnaire.answ1131211.setScope("After Q until R variant"); 
+	  Questionnaire.answ1131211.setToolTip("Heres a cool tooltip for After-Q-Until-R-variant scope");
 
 	  Questionnaire.answ1131112.setScope("Between Q and R");
+	  Questionnaire.answ1131112.setToolTip("Heres a cool tooltip for Between-Q-and-R scope");
+	  
 	  Questionnaire.answ1131212.setScope("Between Q and R variant"); 
+	  Questionnaire.answ1131212.setToolTip("Heres a cool tooltip for Between-Q-and-R-variant scope");
 
 	  Questionnaire.aansw1111.setBehavior("Absence");
-	  
+	  Questionnaire.aansw1111.setToolTip("Heres a cool tooltip for Absence behavior");
+
 	  Questionnaire.aansw111212.setBehavior("ExistenceUnfair");
+	  Questionnaire.aansw111212.setToolTip("Heres a cool tooltip for ExistenceUnfair behavior");
+
 	  Questionnaire.aansw111211.setBehavior("ExistenceFair");
+	  Questionnaire.aansw111211.setToolTip("Heres a cool tooltip for ExistenceFair behavior");
+
 	  Questionnaire.aansw1113.setBehavior("Bounded Existence");
+	  Questionnaire.aansw1113.setToolTip("Heres a cool tooltip for Bounded Existence behavior");
+
 	  Questionnaire.aansw121212.setBehavior("Precedence"); 
+	  Questionnaire.aansw121212.setToolTip("Heres a cool tooltip for Precedence behavior");
+
 	  Questionnaire.aansw121211.setBehavior("Precedence variant");
+	  Questionnaire.aansw121211.setToolTip("Heres a cool tooltip for Precedence variant behavior");
+
 //	  Questionnaire.aansw1222.setBehavior("Response");
 	  Questionnaire.aansw12111212.setBehavior("ResponseUnfair");
+	  Questionnaire.aansw12111212.setToolTip("Heres a cool tooltip for ResponseUnfair behavior");
+
 	  Questionnaire.aansw12111211.setBehavior("ResponseFair");
+	  Questionnaire.aansw12111211.setToolTip("Heres a cool tooltip for ResponseFair behavior");
+
 	  Questionnaire.aansw12111112.setBehavior("Response variant Unfair"); 
+	  Questionnaire.aansw12111112.setToolTip("Heres a cool tooltip for Response variant Unfair behavior");
+
 	  Questionnaire.aansw12111111.setBehavior("Response variant Fair");
+	  Questionnaire.aansw12111111.setToolTip("Heres a cool tooltip for Response variant Fair behavior");
+
 	  Questionnaire.aansw1114.setBehavior("Universality");
+	  Questionnaire.aansw1114.setToolTip("Heres a cool tooltip for Universality behavior");
 
 	  // OK
 	  Questionnaire.aansw131111.setBehavior("Response Chain 2");
+	  Questionnaire.aansw131111.setToolTip("Heres a cool tooltip for Response Chain 2 behavior");
+
 	  Questionnaire.aansw131112.setBehavior("Constrained Response Chain 2");
+	  Questionnaire.aansw131112.setToolTip("Heres a cool tooltip for Constrained Response Chain 2 behavior");
 
 	  //TODO HERE
 	  Questionnaire.aansw1115.setBehavior("AlwaysEnabled");
-	  
+	  Questionnaire.aansw1115.setToolTip("Heres a cool tooltip for AlwaysEnabled behavior");
+
 	  Questionnaire.aansw1312.setBehavior("Response Chain 1");
+	  Questionnaire.aansw1312.setToolTip("Heres a cool tooltip for Response Chain 1 behavior");
+
 	  Questionnaire.aansw1313.setBehavior("Precedence Chain 1");
+	  Questionnaire.aansw1313.setToolTip("Heres a cool tooltip for Precedence Chain 1 behavior");
+
 	  Questionnaire.aansw1314.setBehavior("Precedence Chain 2");
+	  Questionnaire.aansw1314.setToolTip("Heres a cool tooltip for Precedence Chain 2 behavior");
+
    }
 
 
