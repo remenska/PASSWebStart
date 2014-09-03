@@ -41,23 +41,19 @@ public class PropertySpecificationScopes extends WizardPage {
 	public void createControl(Composite parent) {
 		String explanation = "Property Specification Patterns describe commonly occurring requirements in a generalized, classified manner. "
 				+ "There are two aspects of each property. The first one tells when the property should hold, and the second "
-				+ "tells what condition should be satisfied during this time/scope. Hence, each property has a scope and a pattern."
+				+ "tells what desired condition (behavior) should be satisfied during this time/scope. Hence, each property has a scope and a pattern."
 				+
 
-				"\nThe scope is the extent of the program execution "
-				+ "over which the pattern must hold. There are five basic kinds of scopes: global (the entire program execution), "
-				+ "before (the execution up to a given event), after (the execution after a given event), "
-				+ "between (any part of the execution from one given state/event to another given event) "
-				+ "and after-until (like between but the designated part of the execution continues even if the second event does not occur). "
-				+ "The scope is determined by specifying a starting and an ending event for the pattern: "
-				+ "the scope consists of all events beginning with the starting event and up to but not including the ending event."
-				+ "\n\n"
-				+ "The figure illustrates the portions of an execution that are designated by the different kinds of scopes. "
-				+ "We note that a scope itself should be interpreted as optional; if the scope delimiters are not present in an execution "
-				+ "then the specification will be true."
-				+ "\n\n" 
-				
-				+ "Note that the <after> scopes for the patterns can be interpreted relative to the first or the last occurrence of the designated event." ;
+				"\n\nThe scope is the extent of the program execution "
+				+ "over which the pattern must hold. There are five basic kinds of scopes: 'Globally' (the entire program execution), "
+				+ "'Before-R' (the execution up to a given event), 'After-Q' (the execution after a given event), "
+				+ "'Between-Q-and-R' (any part of the execution from one given event to another given event) "
+				+ "and 'After-Q-Until-R' (like between, but the designated part of the execution continues even if the second event does not occur). \n\n"
+				+ "There are several variations of these basic kinds of scope: \n"
+				+ " \u26AB A variation of the 'After-Q' considers the last occurrence of the event Q as a starting "
+				+ "delimiter. In other words, the behavior must hold from the last occurrence of Q (if it occurs more than once), until the end of the execution. This effectivelly resets the beginning of the interval. \n"
+				+ " \u26AB Similarly, 'Until-R' considers the end-event delimiter of the scope optional: if it never occurs, then the behavior is required to hold until the end of the execution.\n\n"
+				+ "The actually scope is determined by specifying a starting and an ending event for the pattern.";
 
 //				+ "Before and after scopes for our patterns are interpreted relative to the first occurrence of the designated "
 //				+ "state/event. We have done this because it matches our experience with real specifications. Note, however, that we could just "
@@ -123,7 +119,7 @@ public class PropertySpecificationScopes extends WizardPage {
 
 		Link link = new Link(composite, SWT.NONE);
 		link.setLayoutData(gridData);
-		String message = "* The explanation and figure are borrowed from the <a href=\"http://patterns.projects.cis.ksu.edu/documentation/patterns/scopes.shtml\">Property Specification Patterns</a> project website.";
+		String message = "* The explanation and figure are partially borrowed from the <a href=\"http://patterns.projects.cis.ksu.edu/documentation/patterns/scopes.shtml\">Property Specification Patterns</a> project website.";
 		link.setText(message);
 		link.addSelectionListener(new SelectionAdapter() {
 			@Override

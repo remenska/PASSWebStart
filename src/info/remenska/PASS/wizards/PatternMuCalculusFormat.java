@@ -212,9 +212,9 @@ public class PatternMuCalculusFormat {
 	 
 	  // NEW NEW NEW
 	   addPattern("Globally", "AlwaysEnabled", " [true*]< #P# > true " ); 
-	   addPattern("Before R", "AlwaysEnabled", "< #P# *>[ #R# ]false ");  //TODO
+	   addPattern("Before R", "AlwaysEnabled", "nu X.(< #P# >true && [(! #R# )]X)");  //TODO
 	   addPattern("Before R variant", "AlwaysEnabled", "[ (! #R# )*] < #P# > true"); 
-	   addPattern("After Q", "AlwaysEnabled", " [(! #Q# )*. #Q# ] < #P# > true"); 
+	   addPattern("After Q", "AlwaysEnabled", " [(! #Q# )*. #Q# . true*]< #P# > true"); 
 	   addPattern("After Q variant", "AlwaysEnabled", " [true*. #Q# ](([true*. #Q# ] false) => < #P# > true)"); 
 	   addPattern("Between Q and R", "AlwaysEnabled", "TODO"); //TODO
 	   addPattern("Between Q and R variant","AlwaysEnabled", "TODO"); //TODO
@@ -394,7 +394,7 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("Before R", "AlwaysEnabled", Boolean.FALSE);
 	   addPatternMonitorable("Before R variant", "AlwaysEnabled", Boolean.FALSE);
 	   addPatternMonitorable("After Q", "AlwaysEnabled", Boolean.FALSE);
-	   addPatternMonitorable("After Q variant", "AlwaysEnabled", Boolean.FALSE);//TODO: check After #Q# variants if they are...
+	   addPatternMonitorable("After Q variant", "AlwaysEnabled", Boolean.FALSE);
 	   addPatternMonitorable("Between Q and R", "AlwaysEnabled", Boolean.FALSE);
 	   addPatternMonitorable("After Q until R", "AlwaysEnabled" , Boolean.FALSE);
 	   addPatternMonitorable("Between Q and R variant", "AlwaysEnabled", Boolean.FALSE); //TODO
