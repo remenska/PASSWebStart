@@ -432,10 +432,15 @@ public class PatternMuCalculusFormat {
 	  Questionnaire.aansw1111.setToolTip("Heres a cool tooltip for Absence behavior");
 
 	  Questionnaire.aansw111212.setBehavior("ExistenceUnfair");
-	  Questionnaire.aansw111212.setToolTip("Heres a cool tooltip for ExistenceUnfair behavior");
+	  Questionnaire.aansw111212.setToolTip("Informally it states that we do NOT assume the underlying OS scheduler of the running system that is modeled, to be fair. " +
+		  		"So if a single process gets all the execution time, while other processes are not given a fair chance to run, and the " +
+		  		"event A may never happen as a result of that, then the property will not hold. If it is expected that such process starvation can happen in practise, and it should" +
+		  		"be taken into consideration, then this is the right answer.");
 
 	  Questionnaire.aansw111211.setBehavior("ExistenceFair");
-	  Questionnaire.aansw111211.setToolTip("Heres a cool tooltip for ExistenceFair behavior");
+	  Questionnaire.aansw111211.setToolTip("Informally it states that we assume each process of the system is given a fair chance to execute. " +
+		  		"The model typically abstracts away from the underlying operating system and hence of the OS scheduler. As a result," +
+		  		"there could be unrealistic scenarios in the model execution, where, for example, a single process gets all execution time. We want to disregard such unrealistic loops.");
 
 	  Questionnaire.aansw1113.setBehavior("Bounded Existence");
 	  Questionnaire.aansw1113.setToolTip("Heres a cool tooltip for Bounded Existence behavior");
@@ -446,28 +451,38 @@ public class PatternMuCalculusFormat {
 	  Questionnaire.aansw121211.setBehavior("Precedence variant");
 	  Questionnaire.aansw121211.setToolTip("Heres a cool tooltip for Precedence variant behavior");
 
-//	  Questionnaire.aansw1222.setBehavior("Response");
-	  Questionnaire.aansw12111212.setBehavior("ResponseUnfair");
 	  Questionnaire.aansw1211.setToolTip("E.g.: Say resource is shared by many users, and the program which monitors may have to " +
 			  "fulfill the requests of each user to access the resource. " +
 			  "If the resource is mutually exclusive, in general not all the requests can be fulfilled immediately, " +
 			  "as the resource may be already occupied when a request arrives; " +
 			  "so the monitor must schedule the allocation of the resource in a way that the following property holds:" +
 			  "\"Every request for the resource is eventually acknowledged\". ");
-	
-	  Questionnaire.aansw12111212.setToolTip("Heres a cool tooltip for ResponseUnfair behavior");
+	  
+//	  Questionnaire.aansw1222.setBehavior("Response");
+	  Questionnaire.aansw12111212.setBehavior("ResponseUnfair");
+	  Questionnaire.aansw12111212.setToolTip("Informally it states that we do NOT assume the underlying OS scheduler of the running system that is modeled, to be fair. " +
+		  		"So if a single process gets all the execution time, while other processes are not given a fair chance to run, and the " +
+		  		"response event B may never happen as a result of that, then the property will not hold. If it is expected that such process starvation can happen in practise, and it should" +
+		  		"be taken into consideration, then this is the right answer.");
 
 	  Questionnaire.aansw12111211.setBehavior("ResponseFair");
-	  Questionnaire.aansw12111211.setToolTip("Heres a cool tooltip for ResponseFair behavior");
+	  Questionnaire.aansw12111211.setToolTip("Informally it states that we assume each process of the system is given a fair chance to execute. " +
+		  		"The model typically abstracts away from the underlying operating system and hence of the OS scheduler. As a result," +
+		  		"there could be unrealistic scenarios in the model execution, where, for example, a single process gets all execution time. We want to disregard such unrealistic loops.");
 
 	  Questionnaire.aansw12111112.setBehavior("Response variant Unfair"); 
-	  Questionnaire.aansw12111112.setToolTip("Heres a cool tooltip for Response variant Unfair behavior");
+	  Questionnaire.aansw12111112.setToolTip("Informally it states that we do NOT assume the underlying OS scheduler of the running system that is modeled, to be fair. " +
+		  		"So if a single process gets all the execution time, while other processes are not given a fair chance to run, and the " +
+		  		"response event B may never happen as a result of that, then the property will not hold. If it is expected that such process starvation can happen in practise, and it should" +
+		  		"be taken into consideration, then this is the right answer.");
 
 	  Questionnaire.aansw12111111.setBehavior("Response variant Fair");
-	  Questionnaire.aansw12111111.setToolTip("Heres a cool tooltip for Response variant Fair behavior");
+	  Questionnaire.aansw12111111.setToolTip("Informally it states that we assume each process of the system is given a fair chance to execute. " +
+		  		"The model typically abstracts away from the underlying operating system and hence of the OS scheduler. As a result," +
+		  		"there could be unrealistic scenarios in the model execution, where, for example, a single process gets all execution time. We want to disregard such unrealistic loops.");
 
 	  Questionnaire.aansw1114.setBehavior("Universality");
-	  Questionnaire.aansw1114.setToolTip("The events in such case are typically getter methods for querying the state. E.g., the action could be of the form: getTemperature(24), getStatus(Success)");
+	  Questionnaire.aansw1114.setToolTip("The events in such case are typically getter methods for querying the state. E.g., the action could be of the form:\n getTemperature(24), getStatus(Success)");
 
 	  // OK
 	  Questionnaire.aansw131111.setBehavior("Response Chain 2");

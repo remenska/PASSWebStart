@@ -12,20 +12,21 @@ public class TestMain {
 		String resultModel = new String();
 		Main main = new Main();
 //		String formula = "[(! StorageManagementDB_removeTasks([tasks(1,Staged,1)]))*.JobDB_setJobStatus(1,Staging).(! (JobDB_setJobStatus(1,Done) || StorageManagementDB_removeTasks([tasks(1,Staged,1)])))*.StorageManagementDB_removeTasks([tasks(1,Staged,1)])]false";
-		String formula = "[(! ready)*][coin]false"; // ready must happen before coin
+//		String formula = "[(! ready)*][coin]false"; // ready must happen before coin
 //		String formula = "[(!R )*. P . (! ( S || R ))*. R ] false"; // S must respond to P, before R happens
-//		resultModel = main.generateMonitor(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/modelFlattened.mcrl2",
-//				formula,
-//				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/modelFlattened.mcrl2"
-//				, "false"});
-		
-		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/SimpleExample.mcrl2",
+		String formula = "[true*. __prListLock_acquire . (! __prListLock_release )*. __prListLock_acquire ] false";
+		resultModel = main.generateMonitor(new String[] {"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolSmaller.mcrl2",
 				formula,
-				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/SimpleExample.mcrl2"
+				"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolSmaller.mcrl2"
 				, "false"});
+		
+//		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/ProcessPoolSmaller.mcrl2",
+//				formula,
+//				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/ProcessPoolSmaller.mcrl2"
+//				, "false"});
 		System.out.println("resulting model in: " + resultModel);
 
-		
+/*		
 		
 		 String[] cmd_mcrl22lps = { "mcrl22lps", "-v", resultModel, resultModel + ".lps" };
 		 String[] cmd_lps2lts = { "lps2lts", "-v", resultModel + ".lps", resultModel + ".lts" };
@@ -137,7 +138,7 @@ public class TestMain {
 		 	      err.printStackTrace();
 		    }
 	        //----
-		
+		*/
 	}
 
 }

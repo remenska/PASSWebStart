@@ -52,9 +52,8 @@ public class PropertySpecificationScopes extends WizardPage {
 				+ "There are several variations of these basic kinds of scope: \n"
 				+ " \u26AB A variation of the 'After-Q' considers the last occurrence of the event Q as a starting "
 				+ "delimiter. In other words, the behavior must hold from the last occurrence of Q (if it occurs more than once), until the end of the execution. This effectivelly resets the beginning of the interval. \n"
-				+ " \u26AB Similarly, 'Until-R' considers the end-event delimiter of the scope optional: if it never occurs, then the behavior is required to hold until the end of the execution.\n\n"
-				+ "The actually scope is determined by specifying a starting and an ending event for the pattern.";
-
+				+ " \u26AB Similarly, 'Until-R' considers the end-event delimiter of the scope optional: if it never occurs, then the behavior is required to hold until the end of the execution.\n\n";
+		
 //				+ "Before and after scopes for our patterns are interpreted relative to the first occurrence of the designated "
 //				+ "state/event. We have done this because it matches our experience with real specifications. Note, however, that we could just "
 //				+ "as easily interpret these scopes relative to the last occurrence of the designated state/event "
