@@ -448,6 +448,13 @@ public class PatternMuCalculusFormat {
 
 //	  Questionnaire.aansw1222.setBehavior("Response");
 	  Questionnaire.aansw12111212.setBehavior("ResponseUnfair");
+	  Questionnaire.aansw1211.setToolTip("E.g.: Say resource is shared by many users, and the program which monitors may have to " +
+			  "fulfill the requests of each user to access the resource. " +
+			  "If the resource is mutually exclusive, in general not all the requests can be fulfilled immediately, " +
+			  "as the resource may be already occupied when a request arrives; " +
+			  "so the monitor must schedule the allocation of the resource in a way that the following property holds:" +
+			  "\"Every request for the resource is eventually acknowledged\". ");
+	
 	  Questionnaire.aansw12111212.setToolTip("Heres a cool tooltip for ResponseUnfair behavior");
 
 	  Questionnaire.aansw12111211.setBehavior("ResponseFair");
@@ -460,7 +467,7 @@ public class PatternMuCalculusFormat {
 	  Questionnaire.aansw12111111.setToolTip("Heres a cool tooltip for Response variant Fair behavior");
 
 	  Questionnaire.aansw1114.setBehavior("Universality");
-	  Questionnaire.aansw1114.setToolTip("Heres a cool tooltip for Universality behavior");
+	  Questionnaire.aansw1114.setToolTip("The events in such case are typically getter methods for querying the state. E.g., the action could be of the form: getTemperature(24), getStatus(Success)");
 
 	  // OK
 	  Questionnaire.aansw131111.setBehavior("Response Chain 2");

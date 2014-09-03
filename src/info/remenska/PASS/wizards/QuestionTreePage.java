@@ -87,19 +87,6 @@ public class QuestionTreePage extends WizardPage {
 					final ToolTip tip = new ToolTip(getShell(), SWT.BALLOON);
 					tip.setMessage(staticNode.getToolTip());
 	                tip.setVisible(true);
-
-//					buttonSelected.addSelectionListener(new SelectionListener(){
-//			
-//						public void widgetDefaultSelected(SelectionEvent arg0) {
-////			                tip.setVisible(true);
-//							
-//						}
-//
-//						public void widgetSelected(SelectionEvent arg0) {
-////			                tip.setVisible(true);
-//						}
-//						
-//					});
 					
 					buttonSelected.addFocusListener(new FocusListener() {
 			            public void focusLost(FocusEvent e) {

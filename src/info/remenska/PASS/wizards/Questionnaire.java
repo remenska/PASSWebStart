@@ -39,7 +39,7 @@ public class Questionnaire {
 			public static 				TreeNode<String> aansw111212 = qquest11121.addChild("No, do not assume anything. A process can starve in practice. ", false);  // EXISTENCE_UNFAIR
 
 			public static 		TreeNode<String> aansw1113 = qquest111.addChild("A is allowed to occur at most once.", false); // BOUNDED EXISTENCE 
-			public static 		TreeNode<String> aansw1114 = qquest111.addChild("A always carries the same parameter value(s). This is useful for checking if an object state remains the same. \nThe events in such case are getter methods for querying the state. ", false); // NEW ONE!
+			public static 		TreeNode<String> aansw1114 = qquest111.addChild("A always carries the same parameter value(s). This is useful for checking if an object state remains the same.  ", false); // NEW ONE!
 			public static 		TreeNode<String> aansw1115 = qquest111.addChild("A must always be possible/enabled, every step of the system progress.", false); // TODO: ADD HERE ENABLED
 		
 			public static TreeNode<String> aansw12 = behaviorQuestionTree.addChild("Two events.", false);
