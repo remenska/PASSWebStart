@@ -12,6 +12,15 @@ public class TreeNode<T> implements Iterable<TreeNode<T>>, Comparable<T> {
 	public boolean isQuestion;
 	public List<TreeNode<T>> toDelete;
 	public String scope, behavior;
+	public String toolTip;
+	public String getToolTip() {
+		return toolTip;
+	}
+
+	public void setToolTip(String toolTip) {
+		this.toolTip = toolTip;
+	}
+
 	public boolean isRoot() {
 		return parent == null;
 	}

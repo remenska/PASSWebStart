@@ -24,9 +24,12 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ExpandEvent;
 import org.eclipse.swt.events.ExpandListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -49,6 +52,8 @@ import org.eclipse.ui.PlatformUI;
 //import org.eclipse.uml2.uml.SendOperationEvent;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.FilteredList;
+import org.eclipse.swt.widgets.ToolTip;
+
 
 public class QuestionTreePage extends WizardPage {
 	private final static Logger LOGGER = Logger.getLogger("info.remenska.PASS");
@@ -60,9 +65,37 @@ public class QuestionTreePage extends WizardPage {
 			boolean isSelected = ((Button) e.getSource()).getSelection();
 			if (isSelected) {
 
+				final ToolTip tip = new ToolTip(getShell(), SWT.BALLOON);
+		        tip.setMessage("Here is a message for the user. When the message is too long it wraps. I should say something cool but nothing comes to my mind.");
+
 				List<TreeNode<String>> newQuestions = questionnaire
 						.findTreeNode(((Button) e.getSource()).getText()).children;
 				String selected = ((Button) e.getSource()).getText();
+				Button buttonSelected = (Button) e.getSource();
+				buttonSelected.addSelectionListener(new SelectionListener(){
+
+					public void widgetDefaultSelected(SelectionEvent arg0) {
+		                tip.setVisible(true);
+						
+					}
+
+					public void widgetSelected(SelectionEvent arg0) {
+		                tip.setVisible(true);
+						
+					}
+					
+				});
+				
+				buttonSelected.addFocusListener(new FocusListener() {
+		            public void focusLost(FocusEvent e) {
+		                tip.setVisible(false);
+		            }
+
+		            public void focusGained(FocusEvent e) {
+//		                tip.setVisible(true);
+		            }
+		        });
+				
 				// (1) find parent
 				// (2) remove all children
 				// (3) add this clicked one
