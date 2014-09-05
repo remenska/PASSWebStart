@@ -402,10 +402,10 @@ public class PatternMuCalculusFormat {
 	   
 //	  Questionnaire.answ12.setScope("Globally");
 	  Questionnaire.answ12.setScope("Globally");
-	  Questionnaire.answ12.setToolTip("Heres a cool tooltip for Globally scope");
+//	  Questionnaire.answ12.setToolTip("Heres a cool tooltip for Globally scope");
 
 	  Questionnaire.answ111111.setScope("After Q");
-	  Questionnaire.answ111111.setToolTip("Heres a cool tooltip for After-Q scope");
+	  Questionnaire.answ111111.setToolTip("For example, pressing multiple times on the same elevator button should not matter. After the first call, the elevator should fullfil some requirement, like moving.");
 
 	  Questionnaire.answ111112.setScope("After Q variant"); 
 	  Questionnaire.answ111112.setToolTip("Heres a cool tooltip for After-last-Q scope");
