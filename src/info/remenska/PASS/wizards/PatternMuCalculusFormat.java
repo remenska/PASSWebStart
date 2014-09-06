@@ -472,6 +472,9 @@ public class PatternMuCalculusFormat {
 	  Questionnaire.aansw1211.setToolTip("E.g.: If a resource is mutually exclusive, in general not all the requests can be fulfilled immediately, " +
 	  		"as the resource may be already occupied when a request arrives; so scheduling the allocation of the resource must be in a way that the" +
 	  		" following property holds:\"Every request for the resource is eventually acknowledged\".");
+	  Questionnaire.aansw121111.setToolTip("E.g.:\"Every request for the resource is eventually acknowledged. Also, a request must eventually arrive in a correctly working system.\"");
+	  
+	  
 	  
 //	  Questionnaire.aansw1222.setBehavior("Response");
 	  Questionnaire.aansw12111212.setBehavior("ResponseUnfair");
@@ -501,23 +504,27 @@ public class PatternMuCalculusFormat {
 
 	  // OK
 	  Questionnaire.aansw131111.setBehavior("Response Chain 2");
-	  Questionnaire.aansw131111.setToolTip("Heres a cool tooltip for Response Chain 2 behavior");
+	  Questionnaire.aansw131111.setToolTip("E.g.:\"When a request arrives, it will be enqueued and eventually served.\"");
 
 	  Questionnaire.aansw131112.setBehavior("Constrained Response Chain 2");
-	  Questionnaire.aansw131112.setToolTip("Heres a cool tooltip for Constrained Response Chain 2 behavior");
+	  Questionnaire.aansw131112.setToolTip("E.g.:\"An enqueue without subsequent dequeue can only be followed by empty(false).\"");
 
 	  //TODO HERE
 	  Questionnaire.aansw1115.setBehavior("AlwaysEnabled");
 	  Questionnaire.aansw1115.setToolTip("E.g.:\"It should be always possible to stop the beam, no matter what.\", \"The exit button must always be enabled.\" ");
 
 	  Questionnaire.aansw1312.setBehavior("Response Chain 1");
-	  Questionnaire.aansw1312.setToolTip("Heres a cool tooltip for Response Chain 1 behavior");
+	  Questionnaire.aansw1312.setToolTip("E.g.:\"If a search is done and a match is found, the user will get a notfication.\"");
 
 	  Questionnaire.aansw1313.setBehavior("Precedence Chain 1");
-	  Questionnaire.aansw1313.setToolTip("Heres a cool tooltip for Precedence Chain 1 behavior");
+	  Questionnaire.aansw1313.setToolTip("E.g.:\"A file cannot be purged unless the owner has deleted it previously, and the administrator activated " +
+	  		"the system-cleanup. \nIn other words, if the file is purged, then previously the" +
+	  		" file was deleted by the user, and subsequently the system-cleanup was activated.\"");
 
 	  Questionnaire.aansw1314.setBehavior("Precedence Chain 2");
-	  Questionnaire.aansw1314.setToolTip("Heres a cool tooltip for Precedence Chain 2 behavior");
+	  Questionnaire.aansw1314.setToolTip("E.g.:\"The customer must pay for the product, before it " +
+	  		"is packaged and shipped. In other words, the product cannot be packaged and then shipped, " +
+	  		"until the customer has paid for it.\"");
 
    }
 
