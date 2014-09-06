@@ -405,31 +405,46 @@ public class PatternMuCalculusFormat {
 //	  Questionnaire.answ12.setToolTip("Heres a cool tooltip for Globally scope");
 
 	  Questionnaire.answ111111.setScope("After Q");
-	  Questionnaire.answ111111.setToolTip("For example, pressing multiple times on the same elevator button should not matter. After the first call, the elevator should fullfil some requirement, like moving.");
+	  Questionnaire.answ111111.setToolTip("For example, pressing multiple times on the same elevator button should not matter. A requirement would be: \"After the first call, the elevator should start moving.\"");
+	  Questionnaire.answ11311.setToolTip("For example, pressing multiple times on the same elevator button should not matter. A requirement would be: \"After the first call, the elevator should start moving.\"");
 
+	  
+	  
 	  Questionnaire.answ111112.setScope("After Q variant"); 
-	  Questionnaire.answ111112.setToolTip("Heres a cool tooltip for After-last-Q scope");
+	  Questionnaire.answ111112.setToolTip("E.g.:\"Only after payment is made, the product can be delivered.\". " +
+	  		"In an online shopping system which has a possibility to cancel an order within 24 hours, without payment, only the last payment matters.");
 
-	  Questionnaire.answ111211.setScope("Before R variant"); 
-	  Questionnaire.answ111211.setToolTip("Heres a cool tooltip for Until-R scope");
+	  Questionnaire.answ11312.setToolTip("E.g.:\"Only after payment is made, the product can be delivered.\". " +
+		  		"In an online shopping system which has a possibility to cancel an order within 24 hours, without payment, only the last payment matters.");
 
+		
+	  
+	  Questionnaire.answ111211.setScope("Before R variant"); // Until-R
+	  Questionnaire.answ111211.setToolTip("E.g.:\"A student cannot take an exam before taking the course\". If the course is optional, the event of taking the course may also not happen, so the student cannot take the exam until taking the course.");
+	  Questionnaire.answ1131111.setToolTip("E.g.:\"A student cannot take an exam before taking the course\". If the course is optional, the event of taking the course may also not happen, so the student cannot take the exam until taking the course.");
+	  Questionnaire.answ1131211.setToolTip("E.g.:\"A student cannot take an exam before taking the course\". If the course is optional, the event of taking the course may also not happen, so the student cannot take the exam until taking the course.");
+	  
+	  
+	  
 	  Questionnaire.answ111212.setScope("Before R"); 
-	  Questionnaire.answ111212.setToolTip("Heres a cool tooltip for Before-R scope");
-
+	  Questionnaire.answ111212.setToolTip("E.g.:\"A student must take the course before taking the exam\". If the exam is mandatory for every course, the event of taking it will happen. Otherwise, then the behavior \"A student must take the course\" is not mandatory.");
+	  Questionnaire.answ1131112.setToolTip("E.g.:\"A student must take the course before taking the exam\". If the exam is mandatory for every course, the event of taking it will happen. Otherwise, then the behavior \"A student must take the course\" is not mandatory.");
+	  Questionnaire.answ1131212.setToolTip("E.g.:\"A student must take the course before taking the exam\". If the exam is mandatory for every course, the event of taking it will happen. Otherwise, then the behavior \"A student must take the course\" is not mandatory.");
+	  
+	  
+	  
 	  Questionnaire.answ1131111.setScope("After Q until R");
-	  Questionnaire.answ1131111.setToolTip("Heres a cool tooltip for After-Q-Until-R scope");
+//	  Questionnaire.answ1131111.setToolTip("Heres a cool tooltip for After-Q-Until-R scope");
 
 	  Questionnaire.answ1131211.setScope("After Q until R variant"); 
-	  Questionnaire.answ1131211.setToolTip("Heres a cool tooltip for After-Q-Until-R-variant scope");
+//	  Questionnaire.answ1131211.setToolTip("Heres a cool tooltip for After-Q-Until-R-variant scope");
 
 	  Questionnaire.answ1131112.setScope("Between Q and R");
-	  Questionnaire.answ1131112.setToolTip("Heres a cool tooltip for Between-Q-and-R scope");
+//	  Questionnaire.answ1131112.setToolTip("Heres a cool tooltip for Between-Q-and-R scope");
 	  
 	  Questionnaire.answ1131212.setScope("Between Q and R variant"); 
-	  Questionnaire.answ1131212.setToolTip("Heres a cool tooltip for Between-Q-and-R-variant scope");
 
 	  Questionnaire.aansw1111.setBehavior("Absence");
-	  Questionnaire.aansw1111.setToolTip("Heres a cool tooltip for Absence behavior");
 
 	  Questionnaire.aansw111212.setBehavior("ExistenceUnfair");
 	  Questionnaire.aansw111212.setToolTip("Informally it states that we do NOT assume the underlying OS scheduler of the running system that is modeled, to be fair. " +
@@ -443,20 +458,20 @@ public class PatternMuCalculusFormat {
 		  		"there could be unrealistic scenarios in the model execution, where, for example, a single process gets all execution time. We want to disregard such unrealistic loops.");
 
 	  Questionnaire.aansw1113.setBehavior("Bounded Existence");
-	  Questionnaire.aansw1113.setToolTip("Heres a cool tooltip for Bounded Existence behavior");
+	  Questionnaire.aansw1113.setToolTip("...though it is not considered a problem if it doesn’t occur at all!");
 
-	  Questionnaire.aansw121212.setBehavior("Precedence"); 
-	  Questionnaire.aansw121212.setToolTip("Heres a cool tooltip for Precedence behavior");
+	  Questionnaire.aansw121212.setBehavior("Precedence");
+	  
+	  
+	  Questionnaire.aansw1212.setToolTip("E.g.:\"The order cannot be shipped before it has been paid for\", " +
+	  		"\"The Find Keyword Button on the Main menu is disabled unless the user has entered a keyword to search for\"");
 
 	  Questionnaire.aansw121211.setBehavior("Precedence variant");
-	  Questionnaire.aansw121211.setToolTip("Heres a cool tooltip for Precedence variant behavior");
+	  Questionnaire.aansw121211.setToolTip("E.g.\"A patient must be registered in the hospital before a medical check begins.\" It is commonly required that every patient is registered in the hospital.");
 
-	  Questionnaire.aansw1211.setToolTip("E.g.: Say resource is shared by many users, and the program which monitors may have to " +
-			  "fulfill the requests of each user to access the resource. " +
-			  "If the resource is mutually exclusive, in general not all the requests can be fulfilled immediately, " +
-			  "as the resource may be already occupied when a request arrives; " +
-			  "so the monitor must schedule the allocation of the resource in a way that the following property holds:" +
-			  "\"Every request for the resource is eventually acknowledged\". ");
+	  Questionnaire.aansw1211.setToolTip("E.g.: If a resource is mutually exclusive, in general not all the requests can be fulfilled immediately, " +
+	  		"as the resource may be already occupied when a request arrives; so scheduling the allocation of the resource must be in a way that the" +
+	  		" following property holds:\"Every request for the resource is eventually acknowledged\".");
 	  
 //	  Questionnaire.aansw1222.setBehavior("Response");
 	  Questionnaire.aansw12111212.setBehavior("ResponseUnfair");
@@ -493,7 +508,7 @@ public class PatternMuCalculusFormat {
 
 	  //TODO HERE
 	  Questionnaire.aansw1115.setBehavior("AlwaysEnabled");
-	  Questionnaire.aansw1115.setToolTip("Heres a cool tooltip for AlwaysEnabled behavior");
+	  Questionnaire.aansw1115.setToolTip("E.g.:\"It should be always possible to stop the beam, no matter what.\", \"The exit button must always be enabled.\" ");
 
 	  Questionnaire.aansw1312.setBehavior("Response Chain 1");
 	  Questionnaire.aansw1312.setToolTip("Heres a cool tooltip for Response Chain 1 behavior");
