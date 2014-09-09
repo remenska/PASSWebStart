@@ -2,9 +2,7 @@ package info.remenska.PASS.wizards;
 
 import info.remenska.PASS.wizards.SelectDataSetDialog.ModelAction;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,26 +12,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.swing.JOptionPane;
-
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.viewers.LabelProvider;
-//import org.eclipse.emf.common.util.EList;
-import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.ExpandEvent;
 import org.eclipse.swt.events.ExpandListener;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -46,17 +33,8 @@ import org.eclipse.swt.widgets.ExpandItem;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-//import org.eclipse.uml2.uml.Message;
-//import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-//import org.eclipse.uml2.uml.Operation;
-//import org.eclipse.uml2.uml.Parameter;
-//import org.eclipse.uml2.uml.ParameterDirectionKind;
-//import org.eclipse.uml2.uml.SendOperationEvent;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.eclipse.ui.dialogs.FilteredList;
 import org.eclipse.swt.widgets.ToolTip;
+//import org.eclipse.emf.common.util.EList;
 
 
 public class QuestionTreePage extends WizardPage {

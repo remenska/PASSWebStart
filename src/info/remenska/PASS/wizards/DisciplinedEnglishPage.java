@@ -543,6 +543,7 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 			
 
 			textDirectoryFormula = new Text(composite, SWT.LEFT);
+			System.out.println("PATHHH TEMP!!!: " + pathTemp);
 			textDirectoryFormula.setText(pathTemp);
 			gd = new GridData();
 			gd.horizontalSpan = 2;
