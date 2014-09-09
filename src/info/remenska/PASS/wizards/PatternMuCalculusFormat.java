@@ -211,13 +211,13 @@ public class PatternMuCalculusFormat {
 	  addPattern("After Q until R variant", "Bounded Existence" , "[true*. #Q# ]( ([true*. #Q# ]false) => [(! #R# )*. #P# . (! #R# )*. #P# ] false ) ");
 	 
 	  // NEW NEW NEW
-	   addPattern("Globally", "AlwaysEnabled", " [true*]< #P# > true " ); 
-	   addPattern("Before R", "AlwaysEnabled", "nu X.(< #P# >true && [(! #R# )]X)");  //TODO
-	   addPattern("Before R variant", "AlwaysEnabled", "[ (! #R# )*] < #P# > true"); 
-	   addPattern("After Q", "AlwaysEnabled", " [(! #Q# )*. #Q# . true*]< #P# > true"); 
-	   addPattern("After Q variant", "AlwaysEnabled", " [true*. #Q# ](([true*. #Q# ] false) => < #P# > true)"); 
-	   addPattern("Between Q and R", "AlwaysEnabled", "TODO"); //TODO
-	   addPattern("Between Q and R variant","AlwaysEnabled", "TODO"); //TODO
+	   addPattern("Globally", "AlwaysEnabled", " [true*]< #P# > true " ); //OK
+	   addPattern("Before R", "AlwaysEnabled", "[ (! #R# )*] < #P# > true");  //OK
+	   addPattern("Before R variant", "AlwaysEnabled", "[ (! #R# )*] < #P# > true"); //OK 
+	   addPattern("After Q", "AlwaysEnabled", " [(! #Q# )*. #Q# . true*]< #P# > true");  //OK
+	   addPattern("After Q variant", "AlwaysEnabled", " [true*. #Q# ](([true*. #Q# ] false) => [true*]< #P# > true)"); 
+	   addPattern("Between Q and R", "AlwaysEnabled", "[true*. #Q#. (!  #R# )*] < #P# > true "); 
+	   addPattern("Between Q and R variant","AlwaysEnabled", "[true*. #Q# ](([true*. #Q# ] false) => [ (! #R# )*] < #P# > true)"); 
 	   addPattern("After Q until R", "AlwaysEnabled", "[true*. #Q#. (!  #R# )*] < #P# > true "); 
 	   addPattern("After Q until R variant", "AlwaysEnabled", " [true*. #Q# ](([true*. #Q# ] false) => [ (! #R# )*] < #P# > true)"); 
 	   
