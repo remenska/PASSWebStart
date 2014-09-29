@@ -14,23 +14,26 @@ public class TestMain {
 //		String formula = "[(! StorageManagementDB_removeTasks([tasks(1,Staged,1)]))*.JobDB_setJobStatus(1,Staging).(! (JobDB_setJobStatus(1,Done) || StorageManagementDB_removeTasks([tasks(1,Staged,1)])))*.StorageManagementDB_removeTasks([tasks(1,Staged,1)])]false";
 //		String formula = "[(! ready)*][coin]false"; // ready must happen before coin
 //		String formula = "[(!R )*. P . (! ( S || R ))*. R ] false"; // S must respond to P, before R happens
-		String formula = "[true*. __prListLock_acquire . (! __prListLock_release )*. __prListLock_acquire ] false";
-		resultModel = main.generateMonitor(new String[] {"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolSmaller.mcrl2",
-				formula,
-				"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolSmaller.mcrl2"
-				, "false"});
+//		String formula = "[true*. __prListLock_acquire . (! __prListLock_release )*. __prListLock_acquire ] false";
+//		String formula = "[(! c__createAndQueueTask(task(2,false,RegisterFile)) )*. __pendingQueueSize(__queueSize) . (! ( __pendingQueueGet(None) || c__createAndQueueTask(task(2,false,RegisterFile)) ))*. c__createAndQueueTask(task(2,false,RegisterFile)) ] false";
+		String formula = "[true*. Q . (! ( P || R ))*. R ] false";
 		
-//		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/ProcessPoolSmaller.mcrl2",
+//		resultModel = main.generateMonitor(new String[] {"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolSmaller.mcrl2",
 //				formula,
-//				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/ProcessPoolSmaller.mcrl2"
+//				"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolSmaller.mcrl2"
 //				, "false"});
+		
+		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",
+				formula,
+				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2"
+				, "true"});
 		System.out.println("resulting model in: " + resultModel);
 
-/*		
+
 		
 		 String[] cmd_mcrl22lps = { "mcrl22lps", "-v", resultModel, resultModel + ".lps" };
 		 String[] cmd_lps2lts = { "lps2lts", "-v", resultModel + ".lps", resultModel + ".lts" };
-		 String[] cmd_ltsconvert = { "ltsconvert", "-v", "-e", "trace",resultModel +".lts", resultModel + ".dot" };
+		 String[] cmd_ltsconvert = { "ltsconvert", "-v", "-e", "trace",resultModel +".lts", resultModel + ".dot" }; // MINIMIZED MODULO TRACE-EQUIVALENCE!!
 		 String[] cmd_dot = { "dot", "-Tps",  resultModel +".dot","-o", resultModel + ".ps" };
 //		 String[] cmd_gs = { "gs",  resultModel + ".ps" };
 
@@ -138,7 +141,7 @@ public class TestMain {
 		 	      err.printStackTrace();
 		    }
 	        //----
-		*/
+		
 	}
 
 }

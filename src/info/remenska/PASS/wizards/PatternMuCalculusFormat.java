@@ -390,6 +390,7 @@ public class PatternMuCalculusFormat {
 	   addPatternMonitorable("Between Q and R variant", "Bounded Existence", Boolean.FALSE); //TODO
 	   addPatternMonitorable("After Q until R variant", "Bounded Existence" , Boolean.FALSE); //TODO
 	  
+	   // NEW NEW NEW
 	   addPatternMonitorable("Globally", "AlwaysEnabled", Boolean.FALSE);
 	   addPatternMonitorable("Before R", "AlwaysEnabled", Boolean.FALSE);
 	   addPatternMonitorable("Before R variant", "AlwaysEnabled", Boolean.FALSE);
