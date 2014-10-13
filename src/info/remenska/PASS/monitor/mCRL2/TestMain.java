@@ -18,22 +18,22 @@ public class TestMain {
 //		String formula = "[(! c__createAndQueueTask(task(2,false,RegisterFile)) )*. __pendingQueueSize(__queueSize) . (! ( __pendingQueueGet(None) || c__createAndQueueTask(task(2,false,RegisterFile)) ))*. c__createAndQueueTask(task(2,false,RegisterFile)) ] false";
 		String formula = "[true*. Q . (! ( P || R ))*. R ] false";
 		
-//		resultModel = main.generateMonitor(new String[] {"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolSmaller.mcrl2",
+//		resultModel = main.generateMonitor(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",
 //				formula,
-//				"/home/daniela/remenska/Documents/LHCb/GEOC/ProcessPool/ProcessPoolSmaller.mcrl2"
+//				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2"
 //				, "false"});
 		
 		resultModel = main.generateMonitorVisual(new String[] {"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2",
 				formula,
 				"/home/daniela/IBM/rationalsdp/workspace1/UML2mCRL2/Test.mcrl2"
-				, "true"});
+				, "false"});
 		System.out.println("resulting model in: " + resultModel);
 
 
 		
 		 String[] cmd_mcrl22lps = { "mcrl22lps", "-v", resultModel, resultModel + ".lps" };
 		 String[] cmd_lps2lts = { "lps2lts", "-v", resultModel + ".lps", resultModel + ".lts" };
-		 String[] cmd_ltsconvert = { "ltsconvert", "-v", "-e", "trace",resultModel +".lts", resultModel + ".dot" }; // MINIMIZED MODULO TRACE-EQUIVALENCE!!
+		 String[] cmd_ltsconvert = { "ltsconvert", "-v", "-e", "weak-trace",resultModel +".lts", resultModel + ".dot" }; // MINIMIZED MODULO TRACE-EQUIVALENCE!!
 		 String[] cmd_dot = { "dot", "-Tps",  resultModel +".dot","-o", resultModel + ".ps" };
 //		 String[] cmd_gs = { "gs",  resultModel + ".ps" };
 

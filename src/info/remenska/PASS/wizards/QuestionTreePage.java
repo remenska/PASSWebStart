@@ -56,7 +56,6 @@ public class QuestionTreePage extends WizardPage {
 				// (2) remove all children
 				// (3) add this clicked one
 				LOGGER.finer("SELECTED: " + selected);
-
 				TreeNode<String> staticNode = questionnaire
 						.findTreeNode(selected);
 				
