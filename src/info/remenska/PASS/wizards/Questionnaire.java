@@ -12,9 +12,9 @@ public class Questionnaire {
 	public static 				TreeNode<String> answ111112 = quest11111.addChild("Only the last occurrence of START starts the restricted interval; \n each occurrence of START resets the beginning of a restricted interval. ", false); //can it be implemented? AFTER-Q variant (ASK if possible)
 	
 	public static 		TreeNode<String> answ1112 = quest111.addChild("There is a restricted interval in the event sequence and it has an ending \n delimiter, END: the behavior is required to hold from the start of the event sequence \n through to the first occurrence of END. ", false);
-	public static 			TreeNode<String> quest11121 = answ1112.addChild("If END does not occur, is the behavior still required to hold, until the end of the event sequence?", true);
-	public static 				TreeNode<String> answ111211 = quest11121.addChild("Yes, if END does not occur, the behavior is required to hold throughout the entire event sequence.", false); // can it be implemented?
-	public static 				TreeNode<String> answ111212 = quest11121.addChild("No, if END does not occur, the behavior is not required to hold anywhere in the event sequence.", false); // BEFORE-R
+	public static 			TreeNode<String> quest11121 = answ1112.addChild("Is the occurrence of the END event optional, or is it expected to happen in order for the behavior to hold?", true);
+	public static 				TreeNode<String> answ111211 = quest11121.addChild("No, END is optional, and if it does not occur, the behavior is required to hold until the end of the run.", false); // can it be implemented?
+	public static 				TreeNode<String> answ111212 = quest11121.addChild("Yes, END is expected to happen in order for the behavior to hold.", false); // BEFORE-R
 
 	public static 		TreeNode<String> answ1113 = quest111.addChild("A restricted interval in the event sequence can have both a starting delimiter, START, and an \n ending delimiter, END. The behavior is required to hold from an occurrence of START \n through to the end of that restricted interval. ", false);
 	public static 			TreeNode<String> quest11131 = answ1113.addChild("What happens if there are multiple occurrences of START without an occurrence of END in between them?", true);
