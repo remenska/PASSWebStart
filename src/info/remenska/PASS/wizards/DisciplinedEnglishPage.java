@@ -54,14 +54,61 @@ public class DisciplinedEnglishPage  extends WizardPage  {
 		 startEvent = QuestionTreePage.textStartEvent.getText() ;
 		 endEvent = QuestionTreePage.textEndEvent.getText();
 		scope.put("Globally", "The required behavior must hold throughout the entire system execution, i.e., from the start until the end of any event sequence.");
-		scope.put("After Q", "The behavior must hold in a restricted interval in the event sequence, and this interval has a starting delimiter " + "["+ startEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + " until the end of the system execution. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the end of the event sequence, only the first occurrence begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect." );
-		scope.put("After Q variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has a starting delimiter " + "["+ startEvent + "]" + ". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + " until the end of the system execution. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the end of the event sequence, only the last occurrence begins the restricted interval; previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect." );
-		scope.put("Before R", "The behavior must hold in a restricted interval in the event sequence, and this interval has a ending delimiter " + "["+ endEvent + "]" + ". The behavior is required to hold from the start of the event sequence through to the first occurrence of " + "["+ endEvent+ "]" +".["+ endEvent + "]" +" is expected to happen in order for the correctness of the behavior to be considered. In other words, if " + "["+ endEvent+ "] does not occur, the behavior is trivially satisfied.");
-		scope.put("Before R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has a ending delimiter " + "["+ endEvent + "]" + ". The behavior is required to hold from the start of the event sequence through to the first occurrence of " + "["+ endEvent+ "]" +", if it ever occurs. " + "["+ endEvent + "]" +" is optional, and if it never occurs, then the behavior is required to hold throughout the entire system execution, i.e., until the end of the run. ");
-		scope.put("After Q until R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the first of those occurences of " + "["+ startEvent + "]" + " potentially  begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is not followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is required to hold until the end of the event sequence." );
-		scope.put("Between Q and R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the first of those occurences of " + "["+ startEvent + "]" + " potentially  begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is never followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is not required to hold for the remainder of the event sequence." );
-		scope.put("After Q until R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the last occurrence begins the restricted interval; previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is not followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is required to hold until the end of the event sequence." );
-		scope.put("Between Q and R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the last occurrence begins the restricted interval; previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is never followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is not required to hold for the remainder of the event sequence." );
+		
+		scope.put("After Q", "The behavior must hold in a restricted interval in the event sequence, and this interval has a starting delimiter " + "["+ startEvent + "]" + ". " +
+				"The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + " until the end of the system execution. " +
+						"\nEven if " + "["+ startEvent + "]" + " occurs more than once before the end of the event sequence, " +
+								"only the first occurrence begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect." );
+		
+		scope.put("After Q variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has a starting delimiter " + "["+ startEvent + "]" +
+								". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + " until the end of the system execution. " +
+										"\nEven if " + "["+ startEvent + "]" + " occurs more than once before the end of the event sequence, " +
+												"only the last occurrence begins the restricted interval; previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect." );
+		
+		scope.put("Before R", "The behavior must hold in a restricted interval in the event sequence, and this interval has a ending delimiter " + "["+ endEvent + "]" + 
+												". The behavior is required to hold from the start of the event sequence through to the first occurrence of " + "["+ endEvent+ "]" +
+				".["+ endEvent + "]" +" is expected to happen in order for the correctness of the behavior to be considered. " +
+						"In other words, if " + "["+ endEvent+ "] does not occur, the behavior is trivially satisfied.");
+		
+		scope.put("Before R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has a ending delimiter " + "["+ endEvent + "]" + 
+		". The behavior is required to hold from the start of the event sequence through to the first occurrence of " + "["+ endEvent+ "]" +", if it ever occurs. " + 
+				"["+ endEvent + "]" +" is optional, and if it never occurs, then the behavior is required to hold throughout " +
+						"the entire system execution, i.e., until the end of the run. ");
+		
+		scope.put("After Q until R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + 
+		", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + ", " +
+				"if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. " +
+						"\nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + 
+				", only the first of those occurences of " + "["+ startEvent + "]" + " potentially  begins the restricted interval; " +
+						"later occurrences of "+  "["+ startEvent + "]" + " do not have an effect. " +
+						"["+ endEvent + "]" +" is optional, and if an occurrence of " + "["+ startEvent + "]" + " is not followed by occurrence of " + "["+ endEvent + "]" + 
+						", then the behavior is required to hold until the end of the system run." );
+		
+		
+//		scope.put("Between Q and R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + "["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + ", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the first of those occurences of " + "["+ startEvent + "]" + " potentially  begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect. If an occurrence of " + "["+ startEvent + "]" + " is never followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is not required to hold for the remainder of the event sequence." );
+		scope.put("Between Q and R", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + 
+				"["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the first occurrence of " + "["+ startEvent + "]" + 
+				", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + "\nEven if " + "["+ startEvent + "]" + 
+				" occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the first of those occurences of " + "["+ startEvent + "]" + 
+				" potentially  begins the restricted interval; later occurrences of "+  "["+ startEvent + "]" + " do not have an effect. "
+				+"\n["+ endEvent + "]" +" is expected to happen in order for the correctness of the behavior to be considered. " +
+						"In other words, if " + "["+ endEvent+ "] does not occur, the behavior is trivially satisfied.");		
+		
+		scope.put("After Q until R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + 
+		"["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + 
+				", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + 
+		"["+ startEvent + "]" + " occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the last occurrence begins the restricted interval; " +
+				"previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect. "+"\n["+ endEvent + "] is optional, and if an occurrence of " + "["+ startEvent + "]" + 
+		" is not followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is required to hold until the end of the system execution." );
+		
+		scope.put("Between Q and R variant", "The behavior must hold in a restricted interval in the event sequence, and this interval has both a starting delimiter, " + 
+		"["+ startEvent+ "]" + ", and an ending delimiter " + "["+ endEvent + "]" + ". The behavior must hold from the last occurrence of " + "["+ startEvent + "]" + 
+				", if it ever occurs, throughout the first subsequent occurrence of " + "["+ endEvent + "]" + ", if it ever occurs. \nEven if " + "["+ startEvent + "]" + 
+		" occurs more than once before the first occurence of " + "["+ endEvent + "]" + ", only the last occurrence begins the restricted interval;" +
+				" previous occurrences of "+  "["+ startEvent + "]" + " do not have an effect. " +
+				"\n["+ endEvent + "]" +" is expected to happen in order for the correctness of the behavior to be considered. " +		
+				"In other words, if an occurrence of " + "["+ startEvent + "]" + 
+		" is never followed by occurrence of " + "["+ endEvent + "]" + ", then the behavior is trivially satisfied." );
 		
 	}
 	
