@@ -14,19 +14,19 @@ public class Questionnaire {
 	public static 		TreeNode<String> answ1112 = quest111.addChild("There is a restricted interval in the event sequence and it has an ending \n delimiter, END: the behavior is required to hold from the start of the event sequence \n through to the first occurrence of END. ", false);
 	public static 			TreeNode<String> quest11121 = answ1112.addChild("Is the occurrence of the END event optional, or is it expected to happen in order for the behavior to hold?", true);
 	public static 				TreeNode<String> answ111211 = quest11121.addChild("No, END is optional, and if it does not occur, the behavior is required to hold until the end of the run.", false); // can it be implemented?
-	public static 				TreeNode<String> answ111212 = quest11121.addChild("Yes, END is expected to happen in order for the behavior to hold.", false); // BEFORE-R
+	public static 				TreeNode<String> answ111212 = quest11121.addChild("Yes, END is expected to happen in order for \n the correctness of the behavior to be considered.", false); // BEFORE-R
 
 	public static 		TreeNode<String> answ1113 = quest111.addChild("A restricted interval in the event sequence can have both a starting delimiter, START, and an \n ending delimiter, END. The behavior is required to hold from an occurrence of START \n through to the end of that restricted interval. ", false);
 	public static 			TreeNode<String> quest11131 = answ1113.addChild("What happens if there are multiple occurrences of START without an occurrence of END in between them?", true);
 	public static 				TreeNode<String> answ11311 = quest11131.addChild("Only the first of those occurrences of START potentially starts a restricted interval; \n later occurrences of START within that restricted interval do not have an effect.", false); // this is the default
 		public static 			TreeNode<String> quest113111 = answ11311.addChild("Is the occurrence of the END-event optional, or is it expected to happen in order for the behavior to hold?", true);
 		public static 				TreeNode<String> answ1131111 = quest113111.addChild("No, END is optional, and if it does not occur, then the behavior is required to hold until the end of the run.", false); // AFTER-Q-UNTILL-R 
-		public static 				TreeNode<String> answ1131112 = quest113111.addChild("Yes, the event END is expected to happen in order for the behavior to hold.", false); // BETWEEN-Q-AND-R
+		public static 				TreeNode<String> answ1131112 = quest113111.addChild("Yes, the event END is expected to happen in order \n for the correctness of the behavior to be considered.", false); // BETWEEN-Q-AND-R
 
 	public static 				TreeNode<String> answ11312 = quest11131.addChild("Only the last of those occurrences of START potentially starts a restricted interval; \n each of those occurrences of START resets the beginning of that restricted interval. ", false); 
 	public static 			TreeNode<String> quest113121 = answ11312.addChild("Is the occurrence of the event END optional, or is it expected to happen in order for the behavior to hold?", true);
 			public static 				TreeNode<String> answ1131211 = quest113121.addChild("No, event END is optional, and if it does not occur, the behavior is required to hold until the end of the run.", false); // AFTER-Q-UNTILL-R  variant // can it be implemented?
-			public static 				TreeNode<String> answ1131212 = quest113121.addChild("Yes, the END event is expected to happen in order for the behavior to hold.", false); // BETWEEN-Q-AND-R variant // can it be implemented?
+			public static 				TreeNode<String> answ1131212 = quest113121.addChild("Yes, the END event is expected to happen in order \n for the correctness of the behavior to be considered.", false); // BETWEEN-Q-AND-R variant // can it be implemented?
 		
 			public static TreeNode<String> answ12 = scopeQuestionTree.addChild("No, the behavior is required to hold throughout the entire event sequence", false); // GLOBALLY
 
